@@ -2,6 +2,7 @@
 #include "delay.h"
 #include "spi.h"
 #include "usart.h"
+#include "led.h"
 //////////////////////////////////////////////////////////////////////////////////	 
 //本程序只供学习使用，未经作者许可，不得用于其它任何用途
 //ALIENTEK战舰STM32开发板
@@ -40,27 +41,27 @@ void NRF24L01_Init(void)
 
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;	//PG8 7 推挽 	  
     GPIO_Init(GPIOB, &GPIO_InitStructure);//初始化指定IO
-
+    GPIO_ResetBits(GPIOB,GPIO_Pin_0);//PB0上拉	
     //GPIOE.2 中断线以及中断初始化配置   下降沿触发
   	GPIO_EXTILineConfig(GPIO_PortSourceGPIOB,GPIO_PinSource1);
     
     EXTI_InitStructure.EXTI_Line=EXTI_Line1;	//KEY2
   	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;	
-  	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Rising;
+  	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
   	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
   	EXTI_Init(&EXTI_InitStructure);	 	//根据EXTI_InitStruct中指定的参数初始化外设EXTI寄存器
     
-//    GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_1;   
-//    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD; //PB1 输入  
-//    GPIO_Init(GPIOB, &GPIO_InitStructure);
+    GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_1;   
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; //PB1 输入  
+    GPIO_Init(GPIOB, &GPIO_InitStructure);
 
     NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;			//使能按键WK_UP所在的外部中断通道
-  	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x02;	//抢占优先级2， 
-  	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x03;					//子优先级3
+  	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;	//抢占优先级2， 
+  	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;					//子优先级3
   	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								//使能外部中断通道
   	NVIC_Init(&NVIC_InitStructure); 
     
-    GPIO_ResetBits(GPIOB,GPIO_Pin_0);//PB0上拉					 
+    GPIO_SetBits(GPIOB,GPIO_Pin_1);//PB0上拉					 
     ////////////////// 
     SPI2_Init();    		//初始化SPI	 
 
@@ -184,7 +185,7 @@ u8 NRF24L01_RxPacket(u8 *rxbuf)
 	NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
 	if(sta&RX_OK)//接收到数据
 	{
-		NRF24L01_Read_Buf(RD_RX_PLOAD,rxbuf,RX_PLOAD_WIDTH);//读取数据
+//		NRF24L01_Read_Buf(RD_RX_PLOAD,rxbuf,RX_PLOAD_WIDTH);//读取数据
 		NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
 		return 0; 
 	}	   
@@ -226,24 +227,25 @@ void NRF24L01_TX_Mode(void)
   	NRF24L01_Write_Reg(NRF_WRITE_REG+CONFIG,0x0e);    //配置基本工作模式的参数;PWR_UP,EN_CRC,16BIT_CRC,接收模式,开启所有中断
 	NRF24L01_CE=1;//CE为高,10us后启动发送
 }
-
-void NRF24L01_INT_RX_Mode(void)
+extern u8 Rx_buff[33];
+void NRF24L01_INT_RX_Mode(u8 *rxbuf)
 {
     u8 sta;
+    SPI2_SetSpeed(SPI_BaudRatePrescaler_8);
     sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
 	NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
     if(sta&RX_OK)//接收到数据
 	{
-//		NRF24L01_Read_Buf(RD_RX_PLOAD,rxbuf,RX_PLOAD_WIDTH);//读取数据
+		NRF24L01_Read_Buf(RD_RX_PLOAD,rxbuf,RX_PLOAD_WIDTH);//读取数据
 		NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
-
+        LED2 =!LED2;
 	}
 }
 
 void EXTI1_IRQHandler(void)
 {
-//    NRF24L01_INT_RX_Mode();
-//    NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+    NRF24L01_INT_RX_Mode(Rx_buff);
+
     EXTI_ClearITPendingBit(EXTI_Line1); 
 }
 
