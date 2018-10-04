@@ -34,14 +34,14 @@ void pwm_init(u16 arr,u16 psc)
 	//配置定时器
 	TIM_TimeBaseInitStruct.TIM_ClockDivision=TIM_CKD_DIV1;
 	TIM_TimeBaseInitStruct.TIM_CounterMode=TIM_CounterMode_Up;
-	TIM_TimeBaseInitStruct.TIM_Period=2500-1;
-	TIM_TimeBaseInitStruct.TIM_Prescaler=71;
+	TIM_TimeBaseInitStruct.TIM_Period=arr;
+	TIM_TimeBaseInitStruct.TIM_Prescaler=psc;
 	TIM_TimeBaseInit(TIM4,&TIM_TimeBaseInitStruct);
 	
 	//TIM14 通道
 	TIM_OCInitStruct.TIM_OCMode=TIM_OCMode_PWM1;
 	TIM_OCInitStruct.TIM_OutputState=TIM_OutputState_Enable;
-	TIM_OCInitStruct.TIM_OCPolarity=TIM_OCPolarity_Low;
+	TIM_OCInitStruct.TIM_OCPolarity=TIM_OCPolarity_High;
     
 	TIM_OC1Init(TIM4,&TIM_OCInitStruct);
 	TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);

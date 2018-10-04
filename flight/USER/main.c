@@ -9,11 +9,14 @@
 #include "timer3.h"
 #include  "IMU.h"
 #include "pwm.h"
+#include "spi.h"
+#include "24l01.h"
 
-
+u8 Tx_buff[33] = "2401 tx";
+u8 Rx_buff[33];
 int main(void)
 {	 
-
+    u8 sta;
     delay_init();	    	 //延时函数初始化	  
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断优先级分组为组2：2位抢占优先级，2位响应优先级
     uart_init(115200);	 	//串口初始化为115200
@@ -24,22 +27,27 @@ int main(void)
     Get_offest();
     pwm_init(2500-1,72-1);
     tim3_init(100-1,7200-1);
-//    Moto_PwmRflash(100,100,100,100);
+    NRF24L01_Init();
+    
+    while(NRF24L01_Check() != 0)
+    {
+        LED2 = 0;
+        delay_ms(1000);
+    }
+    LED2 = 1;
+    NRF24L01_RX_Mode();
     while(1)
     {
-        if(angle.pitch >40||angle.pitch<-40)
-            PWM3  = 1;
+//        SPI2_SetSpeed(SPI_BaudRatePrescaler_8);
+//        sta=NRF24L01_Read_Reg(STATUS);
+//        NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
+        if(NRF24L01_RxPacket(Rx_buff)==0)//一旦接收到信息,则显示出来.
+        {
+
+            LED1 = 0;
+        }  
         else 
-            PWM3 = 0;
-//        LED0 = 0;
-//        LED1 = 0;
-//        
-//        delay_ms(1000);
-//        LED0 = 1;
-//        LED1 = 1;
-//        delay_ms(1000);
-//        READ_9250();
-////        sand_ACC_GYRO_data(); 
-//        READ_MPU9250_MAG();
+            LED1 = 1;
+            
     }
 }

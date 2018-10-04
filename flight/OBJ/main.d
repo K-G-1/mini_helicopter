@@ -40,3 +40,5 @@
 ..\obj\main.o: ..\HARDWARE\TIM\timer3.h
 ..\obj\main.o: ..\HARDWARE\IMU\IMU.h
 ..\obj\main.o: ..\HARDWARE\PWM\pwm.h
+..\obj\main.o: ..\HARDWARE\SPI\spi.h
+..\obj\main.o: ..\HARDWARE\NRF24L01\24l01.h

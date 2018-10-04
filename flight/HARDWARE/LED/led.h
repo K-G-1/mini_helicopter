@@ -16,7 +16,7 @@
 #define LED0 PBout(12)// PB5
 #define LED1 PBout(14)// PE5	
 #define LED2 PBout(13)// PE5
-#define PWM3 PBout(8)// PE5
+
 void LED_Init(void);//≥ı ºªØ
 
 		 				    
