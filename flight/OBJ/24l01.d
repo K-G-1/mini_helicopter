@@ -35,3 +35,4 @@
 ..\obj\24l01.o: ..\SYSTEM\usart\usart.h
 ..\obj\24l01.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\24l01.o: ..\HARDWARE\LED\led.h
+..\obj\24l01.o: ..\HARDWARE\RC\RC.h

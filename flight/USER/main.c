@@ -14,10 +14,11 @@
 
 u8 Tx_buff[33] = "2401 tx";
 u8 Rx_buff[33];
+int IRQ_timeout = 0;
 int main(void)
 {	 
     u8 sta;
-    int t=0;
+                                                                                                                                                            int t=0;
     delay_init();	    	 //延时函数初始化	  
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断优先级分组为组2：2位抢占优先级，2位响应优先级
     uart_init(115200);	 	//串口初始化为115200
@@ -29,7 +30,6 @@ int main(void)
     pwm_init(2500-1,72-1);
     tim3_init(100-1,7200-1);
     NRF24L01_Init();
-    delay_ms(1000);
     while(NRF24L01_Check() != 0)
     {
         LED2 = 0;
@@ -37,10 +37,26 @@ int main(void)
     }
     LED2 = 1;
     NRF24L01_RX_Mode();
+    NRF_IRQ_INIT();
     while(1)
     {
+//        IRQ_timeout ++;
+//        delay_ms(100);
+//        if(IRQ_timeout >= 2000)
+//        {
+//            IRQ_timeout = 0;
+//            sta=NRF24L01_Read_Reg(STATUS);
+//            NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
+//            if(sta&RX_OK)//接收到数据
+//            {
+//                NRF24L01_Read_Buf(RD_RX_PLOAD,Rx_buff,RX_PLOAD_WIDTH);//读取数据
+//                NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+
+//            }
+//            
+//        }
 //        SPI2_SetSpeed(SPI_BaudRatePrescaler_8);
-//        sta=NRF24L01_Read_Reg(STATUS);
+        
 //        NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
 //        if(NRF24L01_RxPacket(Rx_buff)==0)//一旦接收到信息,则显示出来.
 //        {

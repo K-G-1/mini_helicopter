@@ -3,18 +3,19 @@
 #include "spi.h"
 #include "usart.h"
 #include "led.h"
-//////////////////////////////////////////////////////////////////////////////////	 
-//本程序只供学习使用，未经作者许可，不得用于其它任何用途
-//ALIENTEK战舰STM32开发板
-//NRF24L01驱动代码	   
-//正点原子@ALIENTEK
-//技术论坛:www.openedv.com
-//修改日期:2012/9/13
-//版本：V1.0
-//版权所有，盗版必究。
-//Copyright(C) 广州市星翼电子科技有限公司 2009-2019
-//All rights reserved									  
-//////////////////////////////////////////////////////////////////////////////////
+#include "RC.h"
+
+
+#define ReceiveFrameHeaderH	0xAA
+#define ReceiveFrameHeaderL	0xAA
+
+#define FrameHeaderH_Addr		0u
+#define FrameHeaderL_Addr		1u
+#define FuncWord_Addr	2u
+#define THR_Addr     	3u
+#define YAW_Addr	 	6u
+#define ROL_Addr		8u
+#define PIT_Addr		10u
     
 const u8 TX_ADDRESS[TX_ADR_WIDTH]={0xAA,0xBB,0xCC,0x00,0x01}; //发送地址
 const u8 RX_ADDRESS[RX_ADR_WIDTH]={0xAA,0xBB,0xCC,0x00,0x01};
@@ -42,26 +43,7 @@ void NRF24L01_Init(void)
     GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;	//PG8 7 推挽 	  
     GPIO_Init(GPIOB, &GPIO_InitStructure);//初始化指定IO
     GPIO_ResetBits(GPIOB,GPIO_Pin_0);//PB0上拉	
-    //GPIOE.2 中断线以及中断初始化配置   下降沿触发
-  	GPIO_EXTILineConfig(GPIO_PortSourceGPIOB,GPIO_PinSource1);
-    
-    EXTI_InitStructure.EXTI_Line=EXTI_Line1;	//KEY2
-  	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;	
-  	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
-  	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
-  	EXTI_Init(&EXTI_InitStructure);	 	//根据EXTI_InitStruct中指定的参数初始化外设EXTI寄存器
-    
-    GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_1;   
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; //PB1 输入  
-    GPIO_Init(GPIOB, &GPIO_InitStructure);
-
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;			//使能按键WK_UP所在的外部中断通道
-  	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;	//抢占优先级2， 
-  	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x00;					//子优先级3
-  	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								//使能外部中断通道
-  	NVIC_Init(&NVIC_InitStructure); 
-    
-    GPIO_SetBits(GPIOB,GPIO_Pin_1);//PB0上拉					 
+    				 
     ////////////////// 
     SPI2_Init();    		//初始化SPI	 
 
@@ -82,7 +64,39 @@ void NRF24L01_Init(void)
          
     NRF24L01_CE=0; 			//使能24L01
     NRF24L01_CSN=1;			//SPI片选取消  
-	 		 	 
+	delay_ms(1000); 		 
+    	
+}
+
+void NRF_IRQ_INIT(void)
+{
+    GPIO_InitTypeDef GPIO_InitStructure;
+    EXTI_InitTypeDef EXTI_InitStructure;
+ 	NVIC_InitTypeDef NVIC_InitStructure;
+    
+    //GPIOE.2 中断线以及中断初始化配置   下降沿触发
+  	GPIO_EXTILineConfig(GPIO_PortSourceGPIOB,GPIO_PinSource1);
+    
+    GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_1;   
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; //PB1 输入  
+    GPIO_Init(GPIOB, &GPIO_InitStructure);
+    
+    
+    EXTI_InitStructure.EXTI_Line=EXTI_Line1;	//KEY2
+  	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;	
+  	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
+  	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
+  	EXTI_Init(&EXTI_InitStructure);	 	//根据EXTI_InitStruct中指定的参数初始化外设EXTI寄存器
+    
+    
+
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;			//使能按键WK_UP所在的外部中断通道
+  	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;	//抢占优先级2， 
+  	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x03;					//子优先级3
+  	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								//使能外部中断通道
+  	NVIC_Init(&NVIC_InitStructure); 
+    
+    GPIO_SetBits(GPIOB,GPIO_Pin_1);//PB0上拉
 }
 //检测24L01是否存在
 //返回值:0，成功;1，失败	
@@ -228,6 +242,7 @@ void NRF24L01_TX_Mode(void)
 	NRF24L01_CE=1;//CE为高,10us后启动发送
 }
 extern u8 Rx_buff[33];
+extern int IRQ_timeout;
 void NRF24L01_INT_RX_Mode(u8 *rxbuf)
 {
     u8 sta;
@@ -238,7 +253,9 @@ void NRF24L01_INT_RX_Mode(u8 *rxbuf)
 	{
 		NRF24L01_Read_Buf(RD_RX_PLOAD,rxbuf,RX_PLOAD_WIDTH);//读取数据
 		NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+        ReceiveData(rxbuf);
         LED2 =!LED2;
+        IRQ_timeout = 0;
 	}
 }
 
@@ -250,4 +267,43 @@ void EXTI1_IRQHandler(void)
 }
 
 
+
+void ReceiveData(u8 *rxbuf)
+{
+    uint8_t FrameHeader[2] = {0,0};
+	uint8_t FuncWord = 0;
+	static uint8_t flag_Lock = 0;
+	FrameHeader[0] = rxbuf[FrameHeaderH_Addr];
+	FrameHeader[1] = rxbuf[FrameHeaderL_Addr];
+	
+	FuncWord = rxbuf[FuncWord_Addr];
+	
+	if((FrameHeader[0] != ReceiveFrameHeaderH) || (FrameHeader[1] != ReceiveFrameHeaderL))
+	{
+		return;
+	}
+	
+	switch(FuncWord)
+	{
+		case 0x01:
+			break;
+		case 0x03:
+			break;
+		case 0x02:
+			Rc_Data.THROTTLE = ((uint16_t)rxbuf[THR_Addr] << 8) \
+								  + (uint16_t)rxbuf[THR_Addr + 1];	
+			Rc_Data.YAW      = ((uint16_t)rxbuf[YAW_Addr] << 8) \
+								  + (uint16_t)rxbuf[YAW_Addr + 1];
+			Rc_Data.YAW      =Rc_Data.YAW;
+			Rc_Data.ROLL     = ((uint16_t)rxbuf[ROL_Addr] << 8) \
+								  + (uint16_t)rxbuf[ROL_Addr + 1];
+			Rc_Data.ROLL     =Rc_Data.ROLL-34;
+			Rc_Data.PITCH    = ((uint16_t)rxbuf[PIT_Addr] << 8) \
+								  + (uint16_t)rxbuf[PIT_Addr + 1];		
+			Rc_Data.PITCH=3000-Rc_Data.PITCH+50;
+			break;
+		default :
+			break;
+	}
+}
 
