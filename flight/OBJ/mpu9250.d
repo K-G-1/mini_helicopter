@@ -30,6 +30,7 @@
 ..\obj\mpu9250.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\obj\mpu9250.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 ..\obj\mpu9250.o: ..\STM32F10x_FWLib\inc\misc.h
+..\obj\mpu9250.o: ..\HARDWARE\IMU\imu.h
 ..\obj\mpu9250.o: ..\SYSTEM\delay\delay.h
 ..\obj\mpu9250.o: ..\HARDWARE\IIC\IIC.h
 ..\obj\mpu9250.o: ..\HARDWARE\Algorithm\Algorithm_filter\Algorithm_filter.h

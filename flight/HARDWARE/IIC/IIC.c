@@ -108,10 +108,10 @@ void IIC_Send_Byte(u8 txd)
     for(t=0;t<8;t++)
     {              
         if(txd&0x80)
-				{
-					SDA_H;
-				}
-				else SDA_L;
+        {
+            SDA_H;
+        }
+        else SDA_L;
         txd<<=1; 	  
 		delay_us(2);   //对TEA5767这三个延时都是必须的
 		IIC_SCL=1;
@@ -131,7 +131,7 @@ u8 IIC_Read_Byte(void)
 	{
         IIC_SCL=0; 
         delay_us(2);
-				IIC_SCL=1;
+	    IIC_SCL=1;
         receive<<=1;
         if(SDA_READ)
 					receive++;   

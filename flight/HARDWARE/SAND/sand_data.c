@@ -92,8 +92,8 @@ void sand_ACC_GYRO_data(void)
 	Tx_buff[3]=18;
 	
 
-	Tx_buff[4]=BYTE1(sensor.acc.averag.x);
-	Tx_buff[5]=BYTE0(sensor.acc.averag.x);	
+	Tx_buff[4]=BYTE1(sensor.acc.temp.y);
+	Tx_buff[5]=BYTE0(sensor.acc.temp.y);	
 	Tx_buff[6]=BYTE1(sensor.acc.averag.y);
 	Tx_buff[7]=BYTE0(sensor.acc.averag.y);
 	Tx_buff[8]=BYTE1(sensor.acc.averag.z);
@@ -139,7 +139,7 @@ void sand_ACC_GYRO_data(void)
 		
 
 }
-
+extern int att_cnt ;
 void sand_IMU_data(void)
 {
 	u8 sum=0,i=0;
@@ -163,12 +163,13 @@ void sand_IMU_data(void)
 	Tx_buff[8]=BYTE1(temp);
 	Tx_buff[9]=BYTE0(temp);
 	
-	Tx_buff[9]=BYTE1(angle.roll);
-	Tx_buff[10]=BYTE0(angle.roll);	
-	
-	Tx_buff[11]=BYTE3(angle.yaw);
-	Tx_buff[12]=BYTE2(angle.yaw);
-	Tx_buff[13]=BYTE1(angle.yaw);
+    temp = att_cnt*2000;
+//	Tx_buff[10]=BYTE3(temp);
+//	Tx_buff[11]=BYTE2(temp);	
+	Tx_buff[12]=BYTE1(temp);
+	Tx_buff[13]=BYTE0(temp);
+    temp = 1;
+	Tx_buff[14]=BYTE0(temp);
     temp = 0;
 	Tx_buff[15]=BYTE0(temp);
 	

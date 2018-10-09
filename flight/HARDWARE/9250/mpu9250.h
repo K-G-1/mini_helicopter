@@ -1,7 +1,7 @@
 #ifndef __mpu9250_H__
 #define __mpu9250_H__
 #include "sys.h"
-
+#include "imu.h"
 #define RtA 		57.324841f		//  180/3.1415  弧度转化为角度		
 #define AtR    	0.0174533f		//  1/RtA             RtA倒数		
 #define Acc_G 	0.0011963f		//  1/32768/4/9.8     加速度量程为4G		int型1/(2^15)/4g
@@ -134,7 +134,7 @@
 
 #define	GYRO_ADDRESS   0xD2	  //陀螺地址
 #define MAG_ADDRESS    0x18   //磁场地址
-#define MAG_ADDRESS_H    0x0c   //磁场地址
+#define MAG_ADDRESS_H    0x1A   //磁场地址
 #define ACCEL_ADDRESS  0xD2 
 //*********************************
 typedef struct{
@@ -204,6 +204,7 @@ void Get_offest(void);
 void READ_MPU9250_ACCEL(void);
 void READ_MPU9250_GYRO(void);
 void READ_MPU9250_MAG(void);
-void Prepare_Data(void);              
+void Prepare_Data(void);   
+void MPU6500_Dataanl(T_int16_xyz *data_tempacc,T_int16_xyz *data_tempgyr);              
 #endif
 

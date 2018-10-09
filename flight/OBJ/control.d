@@ -32,3 +32,4 @@
 ..\obj\control.o: ..\SYSTEM\sys\sys.h
 ..\obj\control.o: ..\HARDWARE\RC\RC.h
 ..\obj\control.o: ..\HARDWARE\9250\mpu9250.h
+..\obj\control.o: ..\HARDWARE\IMU\imu.h

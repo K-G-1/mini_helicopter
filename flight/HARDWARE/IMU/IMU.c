@@ -6,54 +6,76 @@
 #include "Algorithm_filter.h"
 
 struct _angle angle;
-
+struct IMU_DATA imu_data;
 #define KALMAN_Q        0.012
 #define KALMAN_R        81.0000
 double ACC_KALMAN_X  =1;
 double ACC_KALMAN_Y  =1;
 double ACC_KALMAN_Z  =1;
 
+#define FILTER_NUM 	20
+
 void Prepare_Data()
 {
-//    READ_MPU6050_ACCEL();
-//    READ_MPU6050_GYRO();
-//    READ_MPU9250_ACCEL();
-//    READ_MPU9250_GYRO();
-//    READ_MPU9250_MAG();
-    READ_9250();
-    
+    static uint8_t 	filter_cnt=0;
+	static int16_t	ACC_X_BUF[FILTER_NUM],ACC_Y_BUF[FILTER_NUM],ACC_Z_BUF[FILTER_NUM];
+	int32_t temp1=0,temp2=0,temp3=0;
+	uint8_t i;
+
+    sensor.acc.origin.x = (imu_data.mpu6500_dataacc1.x + imu_data.mpu6500_dataacc2.x)/2;
+    sensor.acc.origin.y = (imu_data.mpu6500_dataacc1.y + imu_data.mpu6500_dataacc2.y)/2;
+    sensor.acc.origin.z = (imu_data.mpu6500_dataacc1.z + imu_data.mpu6500_dataacc2.z)/2;
+    sensor.gyro.origin.x = (imu_data.mpu6500_datagyr1.x + imu_data.mpu6500_datagyr2.x)/2;
+    sensor.gyro.origin.y = (imu_data.mpu6500_datagyr1.y + imu_data.mpu6500_datagyr2.y)/2;
+    sensor.gyro.origin.z = (imu_data.mpu6500_datagyr1.z + imu_data.mpu6500_datagyr2.z)/2;
   
     sensor.acc.temp.x = sensor.acc.origin.x - sensor.acc.quiet.x;
     sensor.acc.temp.y = sensor.acc.origin.y - sensor.acc.quiet.y;
     sensor.acc.temp.z = sensor.acc.origin.z ;
     
-    sensor.gyro.origin.x = (sensor.gyro.origin.x - sensor.gyro.quiet.x);
-    sensor.gyro.origin.y = (sensor.gyro.origin.y - sensor.gyro.quiet.y);
-    sensor.gyro.origin.z = (sensor.gyro.origin.z - sensor.gyro.quiet.z);
+    sensor.gyro.temp.x = (sensor.gyro.origin.x - sensor.gyro.quiet.x);
+    sensor.gyro.temp.y = (sensor.gyro.origin.y - sensor.gyro.quiet.y);
+    sensor.gyro.temp.z = (sensor.gyro.origin.z - sensor.gyro.quiet.z);
+////////    
+    sensor.gyro.averag.x = LPF_1st(sensor.gyro.averag.x ,sensor.gyro.temp.x,0.1f);
+    sensor.gyro.averag.y = LPF_1st(sensor.gyro.averag.y ,sensor.gyro.temp.y,0.1f);
+    sensor.gyro.averag.z = LPF_1st(sensor.gyro.averag.z ,sensor.gyro.temp.z,0.05f);
     
-    sensor.gyro.averag.x = LPF_1st(sensor.gyro.averag.x ,sensor.gyro.origin.x,0.1f);
-    sensor.gyro.averag.y = LPF_1st(sensor.gyro.averag.y ,sensor.gyro.origin.y,0.1f);
-    sensor.gyro.averag.z = LPF_1st(sensor.gyro.averag.z ,sensor.gyro.origin.z,0.05f);
+    sensor.gyro.radian.x = ((float)sensor.gyro.averag.x) *Gyro_Gr;
+    sensor.gyro.radian.y = ((float)sensor.gyro.averag.y) *Gyro_Gr;
+    sensor.gyro.radian.z = ((float)sensor.gyro.averag.z) *Gyro_Gr;
+////////    
+    ACC_X_BUF[filter_cnt] = sensor.acc.temp.x;
+	ACC_Y_BUF[filter_cnt] = sensor.acc.temp.y ;
+	ACC_Z_BUF[filter_cnt] = sensor.acc.temp.z;
     
-    sensor.acc.averag.x = LPF_1st(sensor.acc.averag.x ,sensor.acc.temp.x,0.1f);
-    sensor.acc.averag.y = LPF_1st(sensor.acc.averag.y ,sensor.acc.temp.y,0.1f);
-    sensor.acc.averag.z = LPF_1st(sensor.acc.averag.z ,sensor.acc.temp.z,0.1f);
+    for(i=0;i<FILTER_NUM;i++)
+	{
+		temp1 += ACC_X_BUF[i];
+		temp2 += ACC_Y_BUF[i];
+		temp3 += ACC_Z_BUF[i];
+	}
+    filter_cnt++;
     
+    sensor.acc.averag.x = temp1 /FILTER_NUM;
+    sensor.acc.averag.y = temp2 /FILTER_NUM;
+    sensor.acc.averag.z = temp3 /FILTER_NUM;
+    
+    if(filter_cnt==FILTER_NUM)	
+        filter_cnt=0;
     
     sensor.acc.radian.x = sensor.acc.averag.x ;
     sensor.acc.radian.y = sensor.acc.averag.y ;
     sensor.acc.radian.z = sensor.acc.averag.z ;
-    sensor.gyro.radian.x = ((float)sensor.gyro.averag.x) *Gyro_Gr;
-    sensor.gyro.radian.y = ((float)sensor.gyro.averag.y) *Gyro_Gr;
-    sensor.gyro.radian.z = ((float)sensor.gyro.averag.z) *Gyro_Gr;
+    
 }
 
 
-float Kp= 4.0f;
-float Ki= 0.005f;
+float Kp= 2.0f;
+float Ki= 0.002f;
 //#define Kp 0.5f                        // 比例增益支配收敛率accelerometer/magnetometer  
 //#define Ki 0.002f                     // 积分增益支配执政速率陀螺仪的衔接gyroscopeases  //KP,KI需要调的
-#define halfT 0.005f                 // 采样周期的一半  本程序 2.5MS 采集一次  所以 halfT是1.25MS
+#define halfT 0.001f                 // 采样周期的一半  本程序 2.5MS 采集一次  所以 halfT是1.25MS
 
 /**************************************
  * 函数名：Get_Attitude
@@ -64,7 +86,7 @@ float Ki= 0.005f;
  *************************************/
 void Get_Attitude(void)
 {
-	Prepare_Data();
+//	Prepare_Data();
 	
 	IMUupdate(  sensor.gyro.radian.x,
                 sensor.gyro.radian.y,

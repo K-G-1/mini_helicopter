@@ -28,7 +28,7 @@ int main(void)
     mpu9250_init();
     Get_offest();
     pwm_init(2500-1,72-1);
-    tim3_init(100-1,7200-1);
+    tim2_init(1000-1,72-1);
     NRF24L01_Init();
     while(NRF24L01_Check() != 0)
     {
@@ -38,6 +38,7 @@ int main(void)
     LED2 = 1;
     NRF24L01_RX_Mode();
     NRF_IRQ_INIT();
+    TIM_Cmd(TIM2, ENABLE);
     while(1)
     {
 //        IRQ_timeout ++;

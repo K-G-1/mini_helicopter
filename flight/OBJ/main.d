@@ -35,10 +35,10 @@
 ..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\main.o: ..\HARDWARE\IIC\IIC.h
 ..\obj\main.o: ..\HARDWARE\9250\mpu9250.h
+..\obj\main.o: ..\HARDWARE\IMU\imu.h
 ..\obj\main.o: ..\HARDWARE\6050\mpu6050.h
 ..\obj\main.o: ..\HARDWARE\SAND\sand_data.h
 ..\obj\main.o: ..\HARDWARE\TIM\timer3.h
-..\obj\main.o: ..\HARDWARE\IMU\IMU.h
 ..\obj\main.o: ..\HARDWARE\PWM\pwm.h
 ..\obj\main.o: ..\HARDWARE\SPI\spi.h
 ..\obj\main.o: ..\HARDWARE\NRF24L01\24l01.h
