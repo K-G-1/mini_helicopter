@@ -86,6 +86,6 @@ void READ_MPU6050_ACCEL(void);
 void READ_MPU6050_GYRO(void);
 void READ_MPU6050_MAG(void);
 void Get_6050_offest(void);
-
+void READ_6050();
 #endif
 

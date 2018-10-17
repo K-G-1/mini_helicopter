@@ -29,7 +29,7 @@ void mpu9250_init()
     IIC_ADD_write(GYRO_ADDRESS,MPU6500_RA_PWR_MGMT_2,0x00); //Reset ing
     IIC_ADD_write(GYRO_ADDRESS,MPU6500_RA_CONFIG,0x03);  
 	delay_ms(10);
-    IIC_ADD_write(GYRO_ADDRESS,MPU6500_RA_SMPLRT_DIV,0x04);  
+    IIC_ADD_write(GYRO_ADDRESS,MPU6500_RA_SMPLRT_DIV,0x00);  
 	IIC_ADD_write(GYRO_ADDRESS,MPU6500_RA_ACCEL_CONFIG,0x10);//加速度度最大量程 +-2G
 	delay_ms(10);	
 	IIC_ADD_write(GYRO_ADDRESS,MPU6500_RA_GYRO_CONFIG,0x10); //陀螺仪最大量程 +-1000度每秒
@@ -44,10 +44,7 @@ void mpu9250_init()
     res=IIC_ADD_read(GYRO_ADDRESS,MPU6500_RA_WHO_AM_I);
     
     while(res!=0x71);
-    
-    READ_MPU9250_MAG();
-    delay_ms(100);
-    READ_MPU9250_MAG();
+
 }
 
 //******读取MPU9250数据****************************************
@@ -135,7 +132,7 @@ void READ_MPU9250_MAG(void)
 //    delay_ms(10);
     
     
-    IIC_Read_MultiBytes(MAG_ADDRESS,0x00,9,AK_8975_buffer);
+    IIC_Read_MultiBytes(MAG_ADDRESS,0x03,6,AK_8975_buffer);
 //    sensor.mag.origin.x = ((((int16_t)AK_8975_buffer[0]) << 8) | AK_8975_buffer[1]);
 //    sensor.mag.origin.y = ((((int16_t)AK_8975_buffer[2]) << 8) | AK_8975_buffer[3]);
 //    sensor.mag.origin.z = ((((int16_t)AK_8975_buffer[4]) << 8) | AK_8975_buffer[5]);

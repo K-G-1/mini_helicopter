@@ -19,11 +19,11 @@ u8 mpu6050_init(void)
 	delay_ms(10);
 	IIC_ADD_write(MPU_6050_ADDR,MPU_SAMPLE_RATE_REG,0x00);
 	delay_ms(10);					 
-    IIC_ADD_write(MPU_6050_ADDR,MPU_CFG_REG,0x04);  
+    IIC_ADD_write(MPU_6050_ADDR,MPU_CFG_REG,0x03);  
 	delay_ms(10);
 	IIC_ADD_write(MPU_6050_ADDR,MPU_ACCEL_CFG_REG,0x10);//加速度度最大量程 +-8G
 	delay_ms(10);	
-	IIC_ADD_write(MPU_6050_ADDR,MPU_GYRO_CFG_REG,0x18); //陀螺仪最大量程 +-2000度每秒
+	IIC_ADD_write(MPU_6050_ADDR,MPU_GYRO_CFG_REG,0x10); //陀螺仪最大量程 +-2000度每秒
 	delay_ms(10);
 
     
@@ -44,6 +44,19 @@ u8 mpu6050_init(void)
 }
 
 //******读取MPU9250数据****************************************
+void READ_6050()
+{
+    IIC_Read_MultiBytes(MPU_6050_ADDR,MPU_ACCEL_XOUTH_REG,14,mpu6050_buffer);
+    sensor.acc.origin.x = ((((int16_t)mpu6050_buffer[0]) << 8) | mpu6050_buffer[1]);
+	sensor.acc.origin.y = ((((int16_t)mpu6050_buffer[2]) << 8) | mpu6050_buffer[3]);
+	sensor.acc.origin.z = ((((int16_t)mpu6050_buffer[4]) << 8) | mpu6050_buffer[5]) ;
+    sensor.gyro.origin.x = ((((int16_t)mpu6050_buffer[8]) << 8) | mpu6050_buffer[9]);
+	sensor.gyro.origin.y = ((((int16_t)mpu6050_buffer[10]) << 8)| mpu6050_buffer[11]);
+	sensor.gyro.origin.z = ((((int16_t)mpu6050_buffer[12]) << 8)| mpu6050_buffer[13]);
+    
+//    READ_MPU6050_ACCEL();
+//    READ_MPU6050_GYRO();
+}
 void READ_MPU6050_ACCEL(void)
 { 
     

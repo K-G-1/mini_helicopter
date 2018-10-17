@@ -26,11 +26,20 @@ Project File Date:  10/05/2018
 
 <h2>Output:</h2>
 Build target 'IIC'
-compiling mpu9250.c...
+compiling main.c...
+..\HARDWARE\IMU\imu.h(29): warning:  #1295-D: Deprecated declaration Prepare_6050_Data - give arg types
+  void Prepare_6050_Data();
+..\HARDWARE\6050\mpu6050.h(89): warning:  #1295-D: Deprecated declaration READ_6050 - give arg types
+  void READ_6050();
+main.c(20): warning:  #177-D: variable "sta" was declared but never referenced
+      u8 sta;
+main.c(21): warning:  #177-D: variable "t" was declared but never referenced
+                                                                                                                                                              int t=0;
+main.c: 4 warnings, 0 errors
 linking...
-Program Size: Code=30074 RO-data=590 RW-data=184 ZI-data=2184  
+Program Size: Code=30966 RO-data=586 RW-data=200 ZI-data=2200  
 FromELF: creating hex file...
-"..\OBJ\IIC.axf" - 0 Error(s), 0 Warning(s).
+"..\OBJ\IIC.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Collection of Component include folders:</h2>
   G:\Keil\STM32F1\mini_helicopter\flight\USER\RTE

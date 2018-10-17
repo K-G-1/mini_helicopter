@@ -25,22 +25,31 @@ int main(void)
     LED_Init();		  		//初始化与LED连接的硬件接口
   
     IIC_Init();
-    mpu9250_init();
-    Get_offest();
-    pwm_init(2500-1,72-1);
-    tim2_init(1000-1,72-1);
-    NRF24L01_Init();
-    while(NRF24L01_Check() != 0)
-    {
-        LED2 = 0;
-        delay_ms(1000);
-    }
-    LED2 = 1;
-    NRF24L01_RX_Mode();
-    NRF_IRQ_INIT();
-    TIM_Cmd(TIM2, ENABLE);
+    while(mpu6050_init())
+        LED1 = !LED1;
+    Get_6050_offest();
+//    pwm_init(1200-1,72-1);
+//    tim4_init(2000-1,72-1);
+
+//    NRF24L01_Init();
+//    while(NRF24L01_Check() != 0)
+//    {
+//        LED2 = 0;
+//        delay_ms(1000);
+//    }
+//    LED2 = 1;
+//    NRF24L01_RX_Mode();
+//    NRF_IRQ_INIT();
+//    TIM_Cmd(TIM4, ENABLE);
+
+//    Moto_PwmRflash(0,0,0,0);
     while(1)
     {
+        
+        READ_MPU6050_ACCEL();
+        READ_MPU6050_GYRO();
+        
+        
 //        IRQ_timeout ++;
 //        delay_ms(100);
 //        if(IRQ_timeout >= 2000)

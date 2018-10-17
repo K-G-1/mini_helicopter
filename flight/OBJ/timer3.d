@@ -33,4 +33,6 @@
 ..\obj\timer3.o: ..\HARDWARE\IMU\IMU.h
 ..\obj\timer3.o: ..\HARDWARE\SAND\sand_data.h
 ..\obj\timer3.o: ..\HARDWARE\LED\led.h
+..\obj\timer3.o: ..\HARDWARE\PWM\PWM.h
 ..\obj\timer3.o: ..\HARDWARE\9250\mpu9250.h
+..\obj\timer3.o: ..\HARDWARE\6050\mpu6050.h

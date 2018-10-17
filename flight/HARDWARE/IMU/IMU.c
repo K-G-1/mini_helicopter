@@ -13,13 +13,13 @@ double ACC_KALMAN_X  =1;
 double ACC_KALMAN_Y  =1;
 double ACC_KALMAN_Z  =1;
 
-#define FILTER_NUM 	20
+#define FILTER_NUM 	10
 
 void Prepare_Data()
 {
     static uint8_t 	filter_cnt=0;
 	static int16_t	ACC_X_BUF[FILTER_NUM],ACC_Y_BUF[FILTER_NUM],ACC_Z_BUF[FILTER_NUM];
-	int32_t temp1=0,temp2=0,temp3=0;
+	long temp1=0,temp2=0,temp3=0;
 	uint8_t i;
 
     sensor.acc.origin.x = (imu_data.mpu6500_dataacc1.x + imu_data.mpu6500_dataacc2.x)/2;
@@ -70,8 +70,56 @@ void Prepare_Data()
     
 }
 
+void Prepare_6050_Data()
+{
+    static uint8_t 	filter_cnt=0;
+	static int16_t	ACC_X_BUF[FILTER_NUM],ACC_Y_BUF[FILTER_NUM],ACC_Z_BUF[FILTER_NUM];
+	long temp1=0,temp2=0,temp3=0;
+	uint8_t i;
 
-float Kp= 2.0f;
+  
+    sensor.acc.temp.x = sensor.acc.origin.x - sensor.acc.quiet.x;
+    sensor.acc.temp.y = sensor.acc.origin.y - sensor.acc.quiet.y;
+    sensor.acc.temp.z = sensor.acc.origin.z ;
+    
+    sensor.gyro.temp.x = (sensor.gyro.origin.x - sensor.gyro.quiet.x);
+    sensor.gyro.temp.y = (sensor.gyro.origin.y - sensor.gyro.quiet.y);
+    sensor.gyro.temp.z = (sensor.gyro.origin.z - sensor.gyro.quiet.z);
+////////    
+    sensor.gyro.averag.x = LPF_1st(sensor.gyro.averag.x ,sensor.gyro.temp.x,0.1f);
+    sensor.gyro.averag.y = LPF_1st(sensor.gyro.averag.y ,sensor.gyro.temp.y,0.1f);
+    sensor.gyro.averag.z = LPF_1st(sensor.gyro.averag.z ,sensor.gyro.temp.z,0.05f);
+    
+    sensor.gyro.radian.x = ((float)sensor.gyro.averag.x) *Gyro_Gr;
+    sensor.gyro.radian.y = ((float)sensor.gyro.averag.y) *Gyro_Gr;
+    sensor.gyro.radian.z = ((float)sensor.gyro.averag.z) *Gyro_Gr;
+////////    
+    ACC_X_BUF[filter_cnt] = sensor.acc.temp.x;
+	ACC_Y_BUF[filter_cnt] = sensor.acc.temp.y ;
+	ACC_Z_BUF[filter_cnt] = sensor.acc.temp.z;
+    
+    for(i=0;i<FILTER_NUM;i++)
+	{
+		temp1 += ACC_X_BUF[i];
+		temp2 += ACC_Y_BUF[i];
+		temp3 += ACC_Z_BUF[i];
+	}
+    filter_cnt++;
+    
+    sensor.acc.averag.x = temp1 /FILTER_NUM;
+    sensor.acc.averag.y = temp2 /FILTER_NUM;
+    sensor.acc.averag.z = temp3 /FILTER_NUM;
+    
+    if(filter_cnt==FILTER_NUM)	
+        filter_cnt=0;
+    
+    sensor.acc.radian.x = sensor.acc.averag.x ;
+    sensor.acc.radian.y = sensor.acc.averag.y ;
+    sensor.acc.radian.z = sensor.acc.averag.z ;
+    
+}
+
+float Kp= 5.0f;
 float Ki= 0.002f;
 //#define Kp 0.5f                        // 比例增益支配收敛率accelerometer/magnetometer  
 //#define Ki 0.002f                     // 积分增益支配执政速率陀螺仪的衔接gyroscopeases  //KP,KI需要调的
@@ -199,7 +247,7 @@ void IMUupdate1(float gx, float gy, float gz, float ax, float ay, float az)
 
 }
 
-
+float IMU_pitch_old,IMU_roll_old;
 
 void IMUupdate(float gx, float gy, float gz, float ax, float ay, float az, float mx, float my, float mz)
 {
@@ -295,8 +343,11 @@ void IMUupdate(float gx, float gy, float gz, float ax, float ay, float az, float
 	angle.pitch = asin(-2*q1*q3 + 2*q0*q2) *RtA; // pitch
 
 	
-
-
+//    angle.pitch = LPF_1st(IMU_pitch_old,angle.pitch,0.1f);
+//    IMU_pitch_old = angle.pitch;
+//    
+//    angle.roll = LPF_1st(IMU_roll_old,angle.roll,0.1f);
+//    IMU_roll_old = angle.roll;
 }
 
 

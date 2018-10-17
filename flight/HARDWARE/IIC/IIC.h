@@ -4,20 +4,20 @@
 
 /*函数声明----------------------------------------------------------------*/
 
-#define SCL     GPIO_Pin_1 //24C02 SCL
-#define SDA     GPIO_Pin_0 //24C02 SDA 
+#define SCL     GPIO_Pin_6 //24C02 SCL
+#define SDA     GPIO_Pin_7 //24C02 SDA 
 
 //IO方向设置
-#define SDA_IN()  {GPIOA->CRL&=0XFFFFFFF0;GPIOA->CRL|=(u32)8<<0;}
-#define SDA_OUT() {GPIOA->CRL&=0XFFFFFFF0;GPIOA->CRL|=(u32)1<<0;}
+#define SDA_IN()  {GPIOB->CRL&=0X0FFFFFFF;GPIOB->CRL|=(u32)8<<28;}
+#define SDA_OUT() {GPIOB->CRL&=0X0FFFFFFF;GPIOB->CRL|=(u32)1<<28;}
 //IO操作函数	
-#define IIC_SCL    PAout(1) //SCL
-#define IIC_SDA    PAout(0) //SDA
-#define SDA_H               GPIO_SetBits(GPIOA,SDA)          /*SDA做输出*/
-#define SDA_L               GPIO_ResetBits(GPIOA,SDA)        /*SDA做输入*/
-#define SCL_H               GPIO_SetBits(GPIOA,SCL)          /*SCL做输出*/
-#define SCL_L               GPIO_ResetBits(GPIOA,SCL)        /*SCL做输入*/
-#define SDA_READ            GPIO_ReadInputDataBit(GPIOA,SDA) /* 读取SDA*/
+#define IIC_SCL    PBout(6) //SCL
+#define IIC_SDA    PBout(7) //SDA
+#define SDA_H               GPIO_SetBits(GPIOB,SDA)          /*SDA做输出*/
+#define SDA_L               GPIO_ResetBits(GPIOB,SDA)        /*SDA做输入*/
+#define SCL_H               GPIO_SetBits(GPIOB,SCL)          /*SCL做输出*/
+#define SCL_L               GPIO_ResetBits(GPIOB,SCL)        /*SCL做输入*/
+#define SDA_READ            GPIO_ReadInputDataBit(GPIOB,SDA) /* 读取SDA*/
 
 
 

@@ -31,6 +31,7 @@
 ..\obj\mpu6050.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 ..\obj\mpu6050.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\obj\mpu6050.o: ..\HARDWARE\9250\mpu9250.h
+..\obj\mpu6050.o: ..\HARDWARE\IMU\imu.h
 ..\obj\mpu6050.o: ..\SYSTEM\delay\delay.h
 ..\obj\mpu6050.o: ..\HARDWARE\IIC\IIC.h
 ..\obj\mpu6050.o: ..\HARDWARE\Algorithm\Algorithm_filter\Algorithm_filter.h
