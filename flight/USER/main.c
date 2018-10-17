@@ -28,8 +28,8 @@ int main(void)
     while(mpu6050_init())
         LED1 = !LED1;
     Get_6050_offest();
-//    pwm_init(1200-1,72-1);
-//    tim4_init(2000-1,72-1);
+    pwm_init(1200-1,72-1); //1Khz
+    tim4_init(2000-1,72-1);
 
 //    NRF24L01_Init();
 //    while(NRF24L01_Check() != 0)
@@ -40,14 +40,14 @@ int main(void)
 //    LED2 = 1;
 //    NRF24L01_RX_Mode();
 //    NRF_IRQ_INIT();
-//    TIM_Cmd(TIM4, ENABLE);
+    TIM_Cmd(TIM4, ENABLE);
 
-//    Moto_PwmRflash(0,0,0,0);
+    Moto_PwmRflash(500,500,200,200);
     while(1)
     {
         
-        READ_MPU6050_ACCEL();
-        READ_MPU6050_GYRO();
+//        READ_MPU6050_ACCEL();
+//        READ_MPU6050_GYRO();
         
         
 //        IRQ_timeout ++;

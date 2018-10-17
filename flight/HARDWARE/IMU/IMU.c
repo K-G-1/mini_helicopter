@@ -119,8 +119,8 @@ void Prepare_6050_Data()
     
 }
 
-float Kp= 5.0f;
-float Ki= 0.002f;
+float Kp= 35.0f;
+float Ki= 0.02f;
 //#define Kp 0.5f                        // 比例增益支配收敛率accelerometer/magnetometer  
 //#define Ki 0.002f                     // 积分增益支配执政速率陀螺仪的衔接gyroscopeases  //KP,KI需要调的
 #define halfT 0.001f                 // 采样周期的一半  本程序 2.5MS 采集一次  所以 halfT是1.25MS
@@ -136,23 +136,23 @@ void Get_Attitude(void)
 {
 //	Prepare_Data();
 	
-	IMUupdate(  sensor.gyro.radian.x,
-                sensor.gyro.radian.y,
-                sensor.gyro.radian.z,
-                sensor.acc.averag.x,
-                sensor.acc.averag.y,
-                sensor.acc.averag.z,
-                sensor.mag.origin.x,
-                sensor.mag.origin.y,
-                sensor.mag.origin.z
-            );	
-//    IMUupdate1(  sensor.gyro.radian.x,
+//	IMUupdate(  sensor.gyro.radian.x,
 //                sensor.gyro.radian.y,
 //                sensor.gyro.radian.z,
-//                sensor.acc.radian.x,
-//                sensor.acc.radian.y,
-//                sensor.acc.radian.z
+//                sensor.acc.averag.x,
+//                sensor.acc.averag.y,
+//                sensor.acc.averag.z,
+//                sensor.mag.origin.x,
+//                sensor.mag.origin.y,
+//                sensor.mag.origin.z
 //            );	
+    IMUupdate1(  sensor.gyro.radian.x,
+                sensor.gyro.radian.y,
+                sensor.gyro.radian.z,
+                sensor.acc.radian.x,
+                sensor.acc.radian.y,
+                sensor.acc.radian.z
+            );	
 
 }
 

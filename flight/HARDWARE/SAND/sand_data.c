@@ -1,6 +1,7 @@
 #include "usart.h"
 #include "sand_data.h"
 #include "mpu9250.h"
+#include "mpu6050.h"
 #include "led.h"
 #include "IMU.h"
 
@@ -629,7 +630,7 @@ void Data_Receive_Anl(u8 *data_buf,u8 num)
 		if(*(data_buf+4)==0X01)
 		{
 			sensor.acc.CALIBRATE = 1;
-			Get_offest();
+			Get_6050_offest();
 		}
 		else if(*(data_buf+4)==0X02)
 			sensor.gyro.CALIBRATE = 1;

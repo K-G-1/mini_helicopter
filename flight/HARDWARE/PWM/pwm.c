@@ -10,9 +10,9 @@ void pwm_init(u16 arr,u16 psc)
 	
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE );
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE);
-	
-	//¸´ÓÃIO¿Ú
-//	GPIO_PinAFConfig(GPIOF,GPIO_PinSource9,GPIO_AF_TIM14);
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO,ENABLE);
+    
+    GPIO_PinRemapConfig(GPIO_PartialRemap_TIM3,ENABLE);
 	
 	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_AF_PP;
 	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_0;

@@ -34,4 +34,5 @@
 ..\obj\sand_data.o: ..\HARDWARE\SAND\sand_data.h
 ..\obj\sand_data.o: ..\HARDWARE\9250\mpu9250.h
 ..\obj\sand_data.o: ..\HARDWARE\IMU\imu.h
+..\obj\sand_data.o: ..\HARDWARE\6050\mpu6050.h
 ..\obj\sand_data.o: ..\HARDWARE\LED\led.h
