@@ -17,7 +17,7 @@ u8		 mpu6500_buffer[14];
 u8		 AK_8975_buffer[9];
 struct _sensor sensor;
 
-void mpu9250_init()
+u8 mpu9250_init()
 {
     u8 res;
     IIC_ADD_write(GYRO_ADDRESS,MPU6500_RA_PWR_MGMT_1,0x80); //Reset ing
@@ -30,7 +30,7 @@ void mpu9250_init()
     IIC_ADD_write(GYRO_ADDRESS,MPU6500_RA_CONFIG,0x03);  
 	delay_ms(10);
     IIC_ADD_write(GYRO_ADDRESS,MPU6500_RA_SMPLRT_DIV,0x00);  
-	IIC_ADD_write(GYRO_ADDRESS,MPU6500_RA_ACCEL_CONFIG,0x10);//加速度度最大量程 +-2G
+	IIC_ADD_write(GYRO_ADDRESS,MPU6500_RA_ACCEL_CONFIG,0x18);//加速度度最大量程 +-2G
 	delay_ms(10);	
 	IIC_ADD_write(GYRO_ADDRESS,MPU6500_RA_GYRO_CONFIG,0x10); //陀螺仪最大量程 +-1000度每秒
 	delay_ms(10);
@@ -43,7 +43,11 @@ void mpu9250_init()
     
     res=IIC_ADD_read(GYRO_ADDRESS,MPU6500_RA_WHO_AM_I);
     
-    while(res!=0x71);
+	if(res != 0x71)
+		return 1;
+	else 
+		return 0;
+
 
 }
 

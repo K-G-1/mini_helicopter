@@ -70,11 +70,56 @@ void tim4_init(u16 arr,u16 psc)
 int times= 0;
 int Flag_att = 0;
 int att_cnt = 0;
+int TIM4_times = 0;
+int PWM_cnt = 0;
+int PWM_value = 0;
+
+//void TIM2_IRQHandler(void)
+//{
+//	if( TIM_GetITStatus(TIM2 ,TIM_IT_Update)==SET)
+//	{	
+//		PWM_cnt++;
+//	
+//		if(PWM_cnt<50)
+//		{
+//			PWM_value = 0;
+//		}
+//		else if(PWM_cnt>=50&&PWM_cnt<250)
+//		{
+//			PWM_value+=5;
+//			
+//		}
+//		else{
+//			PWM_cnt = 0;
+//			PWM_value = 0;
+//		}
+//		Moto_PwmRflash(PWM_value,PWM_value,PWM_value,PWM_value);
+//		TIM_ClearITPendingBit(TIM2,TIM_IT_Update);
+//	}
+//}
 void TIM2_IRQHandler(void)
 {
 	if( TIM_GetITStatus(TIM2 ,TIM_IT_Update)==SET)
 	{
-        TIM_ClearITPendingBit(TIM2,TIM_IT_Update);
+#if USE_IMU_DEVICE
+		PWM_cnt++;
+	
+		if(PWM_cnt<50)
+		{
+			PWM_value = 0;
+		}
+		else if(PWM_cnt>=50&&PWM_cnt<250)
+		{
+			PWM_value+=5;
+			
+		}
+		else{
+			PWM_cnt = 0;
+			PWM_value = 0;
+		}
+		Moto_PwmRflash(PWM_value,PWM_value,PWM_value,PWM_value);
+#else
+        
         times ++;
         Flag_att++;
         if(Flag_att == 1)
@@ -104,17 +149,18 @@ void TIM2_IRQHandler(void)
         }
         if(times % 23 == 0)
             READ_MPU9250_MAG();
+			
+#endif
 	}
-    
+    TIM_ClearITPendingBit(TIM2,TIM_IT_Update);
 	
 }
-int TIM4_times = 0;
-int PWM_cnt = 0;
+
 void TIM4_IRQHandler(void)
 {
 	if( TIM_GetITStatus(TIM4 ,TIM_IT_Update)==SET)
 	{
-
+#if USE_IMU_DEVICE
         TIM4_times ++;
         READ_6050();
         Prepare_6050_Data();
@@ -130,7 +176,24 @@ void TIM4_IRQHandler(void)
             sand_ACC_GYRO_data(); 
         }
         
-
+#else
+		PWM_cnt++;
+	
+		if(PWM_cnt<50)
+		{
+			PWM_value = 0;
+		}
+		else if(PWM_cnt>=50&&PWM_cnt<250)
+		{
+			PWM_value+=5;
+			
+		}
+		else{
+			PWM_cnt = 0;
+			PWM_value = 0;
+		}
+		Moto_PwmRflash(PWM_value,PWM_value,PWM_value,PWM_value);
+#endif
 	}
 	TIM_ClearITPendingBit(TIM4,TIM_IT_Update);
 }

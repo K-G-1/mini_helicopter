@@ -13,7 +13,7 @@ double ACC_KALMAN_X  =1;
 double ACC_KALMAN_Y  =1;
 double ACC_KALMAN_Z  =1;
 
-#define FILTER_NUM 	10
+#define FILTER_NUM 	100
 
 void Prepare_Data()
 {
@@ -22,12 +22,12 @@ void Prepare_Data()
 	long temp1=0,temp2=0,temp3=0;
 	uint8_t i;
 
-    sensor.acc.origin.x = (imu_data.mpu6500_dataacc1.x + imu_data.mpu6500_dataacc2.x)/2;
-    sensor.acc.origin.y = (imu_data.mpu6500_dataacc1.y + imu_data.mpu6500_dataacc2.y)/2;
-    sensor.acc.origin.z = (imu_data.mpu6500_dataacc1.z + imu_data.mpu6500_dataacc2.z)/2;
-    sensor.gyro.origin.x = (imu_data.mpu6500_datagyr1.x + imu_data.mpu6500_datagyr2.x)/2;
-    sensor.gyro.origin.y = (imu_data.mpu6500_datagyr1.y + imu_data.mpu6500_datagyr2.y)/2;
-    sensor.gyro.origin.z = (imu_data.mpu6500_datagyr1.z + imu_data.mpu6500_datagyr2.z)/2;
+    sensor.acc.origin.x = -(imu_data.mpu6500_dataacc1.x + imu_data.mpu6500_dataacc2.x)/2;
+    sensor.acc.origin.y = -(imu_data.mpu6500_dataacc1.y + imu_data.mpu6500_dataacc2.y)/2;
+    sensor.acc.origin.z = -(imu_data.mpu6500_dataacc1.z + imu_data.mpu6500_dataacc2.z)/2;
+    sensor.gyro.origin.x = -(imu_data.mpu6500_datagyr1.x + imu_data.mpu6500_datagyr2.x)/2;
+    sensor.gyro.origin.y = -(imu_data.mpu6500_datagyr1.y + imu_data.mpu6500_datagyr2.y)/2;
+    sensor.gyro.origin.z = -(imu_data.mpu6500_datagyr1.z + imu_data.mpu6500_datagyr2.z)/2;
   
     sensor.acc.temp.x = sensor.acc.origin.x - sensor.acc.quiet.x;
     sensor.acc.temp.y = sensor.acc.origin.y - sensor.acc.quiet.y;

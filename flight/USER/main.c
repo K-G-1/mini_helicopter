@@ -12,6 +12,7 @@
 #include "spi.h"
 #include "24l01.h"
 
+
 u8 Tx_buff[33] = "2401 tx";
 u8 Rx_buff[33];
 int IRQ_timeout = 0;
@@ -24,62 +25,46 @@ int main(void)
     uart_init(115200);	 	//串口初始化为115200
     LED_Init();		  		//初始化与LED连接的硬件接口
   
+	Jtag_disable();
     IIC_Init();
+#if USE_IMU_DEVICE
     while(mpu6050_init())
         LED1 = !LED1;
     Get_6050_offest();
-    pwm_init(1200-1,72-1); //1Khz
-    tim4_init(2000-1,72-1);
-
-//    NRF24L01_Init();
-//    while(NRF24L01_Check() != 0)
-//    {
-//        LED2 = 0;
-//        delay_ms(1000);
-//    }
-//    LED2 = 1;
-//    NRF24L01_RX_Mode();
-//    NRF_IRQ_INIT();
-    TIM_Cmd(TIM4, ENABLE);
-
-    Moto_PwmRflash(500,500,200,200);
+	tim4_init(2000-1,72-1);
+	tim2_init(1000-1,7200-1);
+#else	
+	while(mpu9250_init())
+	LED1 = !LED1;
+	Get_offest();
+	tim2_init(1000-1,72-1);
+	tim4_init(1000-1,7200-1);
+#endif	
+    
+	
+////////    NRF24L01_Init();
+////////    while(NRF24L01_Check() != 0)
+////////    {
+////////        LED2 = 0;
+////////        delay_ms(1000);
+////////    }
+////////    LED2 = 1;
+////////    NRF24L01_RX_Mode();
+////////    NRF_IRQ_INIT();
+//    
+	pwm_init(1200-1,72-1); //1Khz
+    Moto_PwmRflash(200,200,200,200);
+#if USE_IMU_DEVICE	
+	TIM_Cmd(TIM4, ENABLE);
+	TIM_Cmd(TIM2, ENABLE);
+#else
+	TIM_Cmd(TIM2, ENABLE);
+	TIM_Cmd(TIM4, ENABLE);
+#endif
     while(1)
     {
-        
-//        READ_MPU6050_ACCEL();
-//        READ_MPU6050_GYRO();
-        
-        
-//        IRQ_timeout ++;
-//        delay_ms(100);
-//        if(IRQ_timeout >= 2000)
-//        {
-//            IRQ_timeout = 0;
-//            sta=NRF24L01_Read_Reg(STATUS);
-//            NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
-//            if(sta&RX_OK)//接收到数据
-//            {
-//                NRF24L01_Read_Buf(RD_RX_PLOAD,Rx_buff,RX_PLOAD_WIDTH);//读取数据
-//                NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
-
-//            }
-//            
-//        }
-//        SPI2_SetSpeed(SPI_BaudRatePrescaler_8);
-        
-//        NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
-//        if(NRF24L01_RxPacket(Rx_buff)==0)//一旦接收到信息,则显示出来.
-//        {
-
-//            LED1 = 0;
-//            t = 0;
-//        }  
-//        else
-//        {         
-//            t++;
-//            if(t >=1000)
-//                LED1 = 1;
-//        }
-            
+       
+//         LED2 = !LED2; 
+//		 delay_ms(1000);
     }
 }

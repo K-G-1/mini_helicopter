@@ -2,6 +2,9 @@
 #define __mpu9250_H__
 #include "sys.h"
 #include "imu.h"
+
+#define USE_IMU_DEVICE 1	//0:9250 1:6050
+
 #define RtA 		57.324841f		//  180/3.1415  弧度转化为角度		
 #define AtR    	0.0174533f		//  1/RtA             RtA倒数		
 #define Acc_G 	0.0011963f		//  1/32768/4/9.8     加速度量程为4G		int型1/(2^15)/4g
@@ -198,7 +201,7 @@ extern struct _sensor sensor;
 extern u8		 mpu6500_buffer[14];	
 
 //
-void mpu9250_init(void);
+u8 mpu9250_init(void);
 void READ_9250(void);
 void Get_offest(void);
 void READ_MPU9250_ACCEL(void);

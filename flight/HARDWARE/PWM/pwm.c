@@ -2,6 +2,21 @@
 
 #define Moto_PwmMax 1000
 
+void Jtag_disable()
+{
+	GPIO_InitTypeDef GPIO_InitStruct;
+	
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE );
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_AFIO,ENABLE);
+	GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable,ENABLE);
+	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_IPD;
+	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_4;
+	GPIO_InitStruct.GPIO_Speed=GPIO_Speed_50MHz;
+	GPIO_Init(GPIOB,&GPIO_InitStruct);
+//	GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable,ENABLE);
+//	GPIO_ResetBits(GPIOB,GPIO_Pin_4);
+	
+}
 void pwm_init(u16 arr,u16 psc)
 {
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;
@@ -14,10 +29,10 @@ void pwm_init(u16 arr,u16 psc)
     
     GPIO_PinRemapConfig(GPIO_PartialRemap_TIM3,ENABLE);
 	
+	
 	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_AF_PP;
-	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_0;
 	GPIO_InitStruct.GPIO_Speed=GPIO_Speed_50MHz;
-	GPIO_Init(GPIOB,&GPIO_InitStruct);
+	
 	
     GPIO_InitStruct.GPIO_Pin=GPIO_Pin_1;
     GPIO_Init(GPIOB,&GPIO_InitStruct);
@@ -25,6 +40,11 @@ void pwm_init(u16 arr,u16 psc)
     GPIO_Init(GPIOB,&GPIO_InitStruct);
     GPIO_InitStruct.GPIO_Pin=GPIO_Pin_5;
     GPIO_Init(GPIOB,&GPIO_InitStruct);
+	
+	GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);
+	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_0;
+	GPIO_Init(GPIOB,&GPIO_InitStruct);
+	
     /**********************************************************
 	72 000 000/72=1M
 	1000 000/2500=400Hz
@@ -44,13 +64,16 @@ void pwm_init(u16 arr,u16 psc)
 	TIM_OCInitStruct.TIM_OCPolarity=TIM_OCPolarity_High;
     
 	TIM_OC1Init(TIM3,&TIM_OCInitStruct);
-	TIM_OC1PreloadConfig(TIM4, TIM_OCPreload_Enable);
+	TIM_OC1PreloadConfig(TIM3, TIM_OCPreload_Enable);
+	
 	TIM_OC2Init(TIM3,&TIM_OCInitStruct);
-	TIM_OC2PreloadConfig(TIM4, TIM_OCPreload_Enable);
+	TIM_OC2PreloadConfig(TIM3, TIM_OCPreload_Enable);
+	
     TIM_OC3Init(TIM3,&TIM_OCInitStruct);
-	TIM_OC3PreloadConfig(TIM4, TIM_OCPreload_Enable);
+	TIM_OC3PreloadConfig(TIM3, TIM_OCPreload_Enable);
+	
     TIM_OC4Init(TIM3,&TIM_OCInitStruct);
-	TIM_OC4PreloadConfig(TIM4, TIM_OCPreload_Enable);
+	TIM_OC4PreloadConfig(TIM3, TIM_OCPreload_Enable);
     
 	TIM_Cmd(TIM3, ENABLE);
 	

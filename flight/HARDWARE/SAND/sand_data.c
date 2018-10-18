@@ -630,7 +630,11 @@ void Data_Receive_Anl(u8 *data_buf,u8 num)
 		if(*(data_buf+4)==0X01)
 		{
 			sensor.acc.CALIBRATE = 1;
+			#if USE_IMU_DEVICE
 			Get_6050_offest();
+			#else 
+			Get_offest();
+			#endif
 		}
 		else if(*(data_buf+4)==0X02)
 			sensor.gyro.CALIBRATE = 1;
