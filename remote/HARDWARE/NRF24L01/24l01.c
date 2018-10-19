@@ -35,14 +35,14 @@ void NRF24L01_Init(void)
  	GPIO_SetBits(GPIOA,GPIO_Pin_4);//上拉				
  	
 
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;	//PG8 7 推挽 	  
- 	GPIO_Init(GPIOB, &GPIO_InitStructure);//初始化指定IO
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;	//PG8 7 推挽 	  
+ 	GPIO_Init(GPIOA, &GPIO_InitStructure);//初始化指定IO
   
-	GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_1;   
+	GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_0;   
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD; //PB1 输入  
-	GPIO_Init(GPIOB, &GPIO_InitStructure);
+	GPIO_Init(GPIOA, &GPIO_InitStructure);
 
-	GPIO_ResetBits(GPIOB,GPIO_Pin_0|GPIO_Pin_1);//PG6,7,8上拉					 
+	GPIO_ResetBits(GPIOA,GPIO_Pin_0|GPIO_Pin_1);//PG6,7,8上拉					 
 		 
   SPI2_Init();    		//初始化SPI	 
  

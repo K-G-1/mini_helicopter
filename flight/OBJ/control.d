@@ -2,7 +2,7 @@
 ..\obj\control.o: ..\HARDWARE\Control\control.h
 ..\obj\control.o: ..\USER\stm32f10x.h
 ..\obj\control.o: ..\CORE\core_cm3.h
-..\obj\control.o: G:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\control.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\control.o: ..\USER\system_stm32f10x.h
 ..\obj\control.o: ..\USER\stm32f10x_conf.h
 ..\obj\control.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -33,3 +33,4 @@
 ..\obj\control.o: ..\HARDWARE\RC\RC.h
 ..\obj\control.o: ..\HARDWARE\9250\mpu9250.h
 ..\obj\control.o: ..\HARDWARE\IMU\imu.h
+..\obj\control.o: ..\HARDWARE\PWM\pwm.h

@@ -16,6 +16,8 @@
 "..\obj\24l01.o"
 "..\obj\spi.o"
 "..\obj\mpu6050.o"
+"..\obj\stmflash.o"
+"..\obj\param.o"
 "..\obj\delay.o"
 "..\obj\sys.o"
 "..\obj\usart.o"

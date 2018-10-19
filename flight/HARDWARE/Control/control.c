@@ -1,10 +1,12 @@
 #include "control.h"
 #include "RC.h"
 #include "mpu9250.h"
+#include "pwm.h"
+
 
 struct _ctrl ctrl;
-u8 mode;
-u8 ARMED = 0;
+
+
 vs16 Moto_duty[4];
 float	Yawtemp2;
 float Yaw_offest_tem;
@@ -23,25 +25,25 @@ float roll_old,pitch_old;
 void PID_Param_init(void)
 {
     ctrl.pitch.shell.kp = 10;
-    ctrl.pitch.shell.ki = 0.05;
-    ctrl.pitch.shell.kd = 10;
+    ctrl.pitch.shell.ki = 0;
+    ctrl.pitch.shell.kd = 0;
     ctrl.pitch.core.kp = 10;
-    ctrl.pitch.core.ki = 0.05;
-    ctrl.pitch.core.kd = 10;
+    ctrl.pitch.core.ki = 0.00;
+    ctrl.pitch.core.kd = 0;
     
     ctrl.roll.shell.kp = 10;
-    ctrl.roll.shell.ki = 0.05;
-    ctrl.roll.shell.kd = 10;
+    ctrl.roll.shell.ki = 0.0;
+    ctrl.roll.shell.kd = 0;
     ctrl.roll.core.kp = 10;
-    ctrl.roll.core.ki = 0.05;
-    ctrl.roll.core.kd = 10;
+    ctrl.roll.core.ki = 0.0;
+    ctrl.roll.core.kd = 0;
     
     ctrl.yaw.shell.kp = 10;
-    ctrl.yaw.shell.ki = 0.05;
-    ctrl.yaw.shell.kd = 10;
+    ctrl.yaw.shell.ki = 0.0;
+    ctrl.yaw.shell.kd = 0;
     ctrl.yaw.core.kp = 10;
-    ctrl.yaw.core.ki = 0.05;
-    ctrl.yaw.core.kd = 10;
+    ctrl.yaw.core.ki = 0.0;
+    ctrl.yaw.core.kd = 0;
 
     
     ctrl.pitch.shell.increment_max = 100;
@@ -121,28 +123,28 @@ void CONTROL(float rol, float pit, float yaw)
 	ctrl.ctrlRate ++;	
 	//********************内环(角速度环)PID*********************************//
 
-	ctrl.roll.core.kp_out = ctrl.roll.core.kp * (ctrl.roll.shell.pid_out + sensor.gyro.origin.x * RtA); 
-	ctrl.roll.core.increment += (ctrl.roll.shell.pid_out+ sensor.gyro.origin.x * RtA ) ;
+	ctrl.roll.core.kp_out = ctrl.roll.core.kp * (ctrl.roll.shell.pid_out + sensor.gyro.averag.x ); 
+	ctrl.roll.core.increment += (ctrl.roll.shell.pid_out+ sensor.gyro.averag.x  ) ;
 			//积分限幅
 		if(ctrl.roll.core.increment > ctrl.roll.core.increment_max)
 				ctrl.roll.core.increment = ctrl.roll.core.increment_max;
 		else if(ctrl.roll.core.increment < -ctrl.roll.core.increment_max)
 				ctrl.roll.core.increment = -ctrl.roll.core.increment_max; 
 	ctrl.roll.core.ki_out	= ctrl.roll.core.ki * ctrl.roll.core.increment ;
-	ctrl.roll.core.kd_out = ctrl.roll.core.kd * (sensor.gyro.origin.x  - sensor.gyro.histor.x);
+	ctrl.roll.core.kd_out = ctrl.roll.core.kd * (sensor.gyro.averag.x  - sensor.gyro.histor.x);
 	
-	ctrl.pitch.core.kp_out = ctrl.pitch.core.kp * (ctrl.pitch.shell.pid_out+ sensor.gyro.origin.y * RtA ) ;
-	ctrl.pitch.core.increment += (ctrl.pitch.shell.pid_out+ sensor.gyro.origin.y * RtA ) ;
+	ctrl.pitch.core.kp_out = ctrl.pitch.core.kp * (ctrl.pitch.shell.pid_out+ sensor.gyro.averag.y  ) ;
+	ctrl.pitch.core.increment += (ctrl.pitch.shell.pid_out+ sensor.gyro.averag.y  ) ;
 			//积分限幅
 		if(ctrl.pitch.core.increment > ctrl.pitch.core.increment_max)
 				ctrl.pitch.core.increment = ctrl.pitch.core.increment_max;
 		else if(ctrl.pitch.core.increment < -ctrl.pitch.core.increment_max)
 				ctrl.pitch.core.increment = -ctrl.pitch.core.increment_max; 	
 	ctrl.pitch.core.ki_out	= ctrl.pitch.core.ki * ctrl.pitch.core.increment ;
-	ctrl.pitch.core.kd_out = ctrl.pitch.core.kd * (sensor.gyro.origin.y - sensor.gyro.histor.y);
+	ctrl.pitch.core.kd_out = ctrl.pitch.core.kd * (sensor.gyro.averag.y - sensor.gyro.histor.y);
 	
-	ctrl.yaw.core.kp_out = ctrl.yaw.core.kp * (ctrl.yaw.shell.pid_out + sensor.gyro.origin.z * RtA);
-	ctrl.yaw.core.kd_out = ctrl.yaw.core.kd * (sensor.gyro.origin.z - sensor.gyro.histor.z);
+	ctrl.yaw.core.kp_out = ctrl.yaw.core.kp * (ctrl.yaw.shell.pid_out + sensor.gyro.averag.z );
+	ctrl.yaw.core.kd_out = ctrl.yaw.core.kd * (sensor.gyro.averag.z - sensor.gyro.histor.z);
 	
 	ctrl.roll.core.pid_out = ctrl.roll.core.kp_out + ctrl.roll.core.ki_out + ctrl.roll.core.kd_out;
 	ctrl.pitch.core.pid_out = ctrl.pitch.core.kp_out + ctrl.pitch.core.ki_out + ctrl.pitch.core.kd_out;
@@ -153,9 +155,9 @@ void CONTROL(float rol, float pit, float yaw)
 	if(ctrl.yaw.core.pid_out < -100)
 		ctrl.yaw.core.pid_out = -100;
 	
-	sensor.gyro.histor.x = sensor.gyro.origin.x;   //储存陀螺仪（角速度）历史值
-	sensor.gyro.histor.y = sensor.gyro.origin.y;
-	sensor.gyro.histor.z = sensor.gyro.origin.z;
+	sensor.gyro.histor.x = sensor.gyro.averag.x;   //储存陀螺仪（角速度）历史值
+	sensor.gyro.histor.y = sensor.gyro.averag.y;
+	sensor.gyro.histor.z = sensor.gyro.averag.z;
 	
 //	ctrl.roll.core.pid_out = ctrl.roll.core.kp_out+ctrl.roll.core.ki_out + ctrl.roll.core.kd_out;
 //	ctrl.pitch.core.pid_out = ctrl.pitch.core.kp_out +ctrl.pitch.core.ki_out+ ctrl.pitch.core.kd_out;
@@ -226,11 +228,11 @@ void CONTROL(float rol, float pit, float yaw)
 	if(Moto_duty[3]<=0) Moto_duty[3] = 0;
 	
 	if(ARMED)
-        ;
-//		Moto_PwmRflash(Moto_duty[0],Moto_duty[1],Moto_duty[2],Moto_duty[3]);
+    
+		Moto_PwmRflash(Moto_duty[0],Moto_duty[1],Moto_duty[2],Moto_duty[3]);
 	else 
 	{
-        ;
-//		Moto_PwmRflash(0,0,0,0);
+
+		Moto_PwmRflash(0,0,0,0);
 	}
 }

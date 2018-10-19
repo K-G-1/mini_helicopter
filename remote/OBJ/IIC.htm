@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\IIC.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\IIC.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Fri Oct 05 14:03:53 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5050106: Last Updated: Sat Oct 20 01:55:45 2018
 <BR><P>
 <H3>Maximum Stack Usage =        100 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -232,7 +232,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
 </UL>
 
-<P><STRONG><a name="[55]"></a>main</STRONG> (Thumb, 150 bytes, Stack size 0 bytes, main.o(.text))
+<P><STRONG><a name="[55]"></a>main</STRONG> (Thumb, 164 bytes, Stack size 0 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 100<LI>Call Chain = main &rArr; uart_init &rArr; USART_Init &rArr; RCC_GetClocksFreq
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;uart_init
@@ -324,7 +324,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[75]"></a>NRF24L01_Read_Buf</STRONG> (Thumb, 56 bytes, Stack size 24 bytes, 24l01.o(.text))
+<P><STRONG><a name="[75]"></a>NRF24L01_Read_Buf</STRONG> (Thumb, 60 bytes, Stack size 24 bytes, 24l01.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = NRF24L01_Read_Buf &rArr; SPI2_ReadWriteByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI2_ReadWriteByte
@@ -333,7 +333,7 @@ Global Symbols
 <LI><a href="#[61]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF24L01_Check
 </UL>
 
-<P><STRONG><a name="[77]"></a>NRF24L01_Write_Buf</STRONG> (Thumb, 56 bytes, Stack size 24 bytes, 24l01.o(.text))
+<P><STRONG><a name="[77]"></a>NRF24L01_Write_Buf</STRONG> (Thumb, 60 bytes, Stack size 24 bytes, 24l01.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 40<LI>Call Chain = NRF24L01_Write_Buf &rArr; SPI2_ReadWriteByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI2_ReadWriteByte
@@ -354,7 +354,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[79]"></a>NRF24L01_Write_Reg</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, 24l01.o(.text))
+<P><STRONG><a name="[79]"></a>NRF24L01_Write_Reg</STRONG> (Thumb, 40 bytes, Stack size 16 bytes, 24l01.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = NRF24L01_Write_Reg &rArr; SPI2_ReadWriteByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI2_ReadWriteByte
@@ -365,7 +365,7 @@ Global Symbols
 <LI><a href="#[62]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF24L01_TX_Mode
 </UL>
 
-<P><STRONG><a name="[7a]"></a>NRF24L01_Read_Reg</STRONG> (Thumb, 36 bytes, Stack size 16 bytes, 24l01.o(.text))
+<P><STRONG><a name="[7a]"></a>NRF24L01_Read_Reg</STRONG> (Thumb, 38 bytes, Stack size 16 bytes, 24l01.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = NRF24L01_Read_Reg &rArr; SPI2_ReadWriteByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[76]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI2_ReadWriteByte
@@ -374,7 +374,7 @@ Global Symbols
 <LI><a href="#[63]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF24L01_TxPacket
 </UL>
 
-<P><STRONG><a name="[63]"></a>NRF24L01_TxPacket</STRONG> (Thumb, 120 bytes, Stack size 16 bytes, 24l01.o(.text))
+<P><STRONG><a name="[63]"></a>NRF24L01_TxPacket</STRONG> (Thumb, 116 bytes, Stack size 16 bytes, 24l01.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = NRF24L01_TxPacket &rArr; NRF24L01_Write_Buf &rArr; SPI2_ReadWriteByte
 </UL>
 <BR>[Calls]<UL><LI><a href="#[78]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SPI2_SetSpeed

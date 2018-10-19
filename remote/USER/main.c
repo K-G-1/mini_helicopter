@@ -9,7 +9,7 @@ u8 Tx_buff[30] ={0};
 int main(void)
 {	 
     u8 sta;
-    u8 cnt;
+    uint16_t cnt;
     delay_init();	    	 //延时函数初始化	  
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断优先级分组为组2：2位抢占优先级，2位响应优先级
     uart_init(115200);	 	//串口初始化为115200
@@ -31,22 +31,20 @@ int main(void)
     while(1)
     {
         cnt++;
-        if(cnt >=200)
+        if(cnt >=800)
         {
             cnt = 0;
         }
-//        LED0 = 0;
-//        delay_ms(1000);
-//        LED0 = 1;
-//        delay_ms(1000);
-        Tx_buff[4] = cnt;
+
+        Tx_buff[3] = (1000+cnt)>>8;
+        Tx_buff[4] = (1000+cnt);
         if(NRF24L01_TxPacket(Tx_buff)==TX_OK)
         {
             LED1 = 0;
         }
         else
             LED1 = 1;
-        delay_ms(1500);				   
+		 delay_ms(50);	   
 //        sta=NRF24L01_Read_Reg(NRF_READ_REG + STATUS);
 //        printf("sta = %d",sta);
         LED0 = !LED0;

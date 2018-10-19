@@ -40,9 +40,9 @@ void NRF24L01_Init(void)
     GPIO_SetBits(GPIOA,GPIO_Pin_4);//上拉				
 
 
-    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;	//PG8 7 推挽 	  
-    GPIO_Init(GPIOB, &GPIO_InitStructure);//初始化指定IO
-    GPIO_ResetBits(GPIOB,GPIO_Pin_0);//PB0上拉	
+    GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;	//PG8 7 推挽 	  
+    GPIO_Init(GPIOA, &GPIO_InitStructure);//初始化指定IO
+    GPIO_ResetBits(GPIOA,GPIO_Pin_1);//PB0上拉	
     				 
     ////////////////// 
     SPI2_Init();    		//初始化SPI	 
@@ -75,14 +75,14 @@ void NRF_IRQ_INIT(void)
  	NVIC_InitTypeDef NVIC_InitStructure;
     
     //GPIOE.2 中断线以及中断初始化配置   下降沿触发
-  	GPIO_EXTILineConfig(GPIO_PortSourceGPIOB,GPIO_PinSource1);
+  	GPIO_EXTILineConfig(GPIO_PortSourceGPIOB,GPIO_PinSource0);
     
-    GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_1;   
+    GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_0;   
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; //PB1 输入  
-    GPIO_Init(GPIOB, &GPIO_InitStructure);
+    GPIO_Init(GPIOA, &GPIO_InitStructure);
     
     
-    EXTI_InitStructure.EXTI_Line=EXTI_Line1;	//KEY2
+    EXTI_InitStructure.EXTI_Line=EXTI_Line0;	//KEY2
   	EXTI_InitStructure.EXTI_Mode = EXTI_Mode_Interrupt;	
   	EXTI_InitStructure.EXTI_Trigger = EXTI_Trigger_Falling;
   	EXTI_InitStructure.EXTI_LineCmd = ENABLE;
@@ -90,13 +90,13 @@ void NRF_IRQ_INIT(void)
     
     
 
-    NVIC_InitStructure.NVIC_IRQChannel = EXTI1_IRQn;			//使能按键WK_UP所在的外部中断通道
+    NVIC_InitStructure.NVIC_IRQChannel = EXTI0_IRQn;			//使能按键WK_UP所在的外部中断通道
   	NVIC_InitStructure.NVIC_IRQChannelPreemptionPriority = 0x00;	//抢占优先级2， 
-  	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x03;					//子优先级3
+  	NVIC_InitStructure.NVIC_IRQChannelSubPriority = 0x01;					//子优先级3
   	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								//使能外部中断通道
   	NVIC_Init(&NVIC_InitStructure); 
     
-    GPIO_SetBits(GPIOB,GPIO_Pin_1);//PB0上拉
+//    GPIO_SetBits(GPIOA,GPIO_Pin_0);//PB0上拉
 }
 //检测24L01是否存在
 //返回值:0，成功;1，失败	
@@ -108,7 +108,7 @@ u8 NRF24L01_Check(void)
 	SPI2_SetSpeed(SPI_BaudRatePrescaler_8); //spi速度为9Mhz（24L01的最大SPI时钟为10Mhz）   	 
 	NRF24L01_Write_Buf(NRF_WRITE_REG+TX_ADDR,buf,5);//写入5个字节的地址.	
 	NRF24L01_Read_Buf(TX_ADDR,buf_check,5); //读出写入的地址  
-	for(i=0;i<5;i++)if(buf[i]!=0XA5)break;	 							   
+	for(i=0;i<5;i++)if(buf_check[i]!=0XA5)break;	 							   
 	if(i!=5)return 1;//检测24L01错误	
 	return 0;		 //检测到24L01
 }	 	 
@@ -242,28 +242,28 @@ void NRF24L01_TX_Mode(void)
 	NRF24L01_CE=1;//CE为高,10us后启动发送
 }
 extern u8 Rx_buff[33];
-extern int IRQ_timeout;
+int IRQ_timeout;
 void NRF24L01_INT_RX_Mode(u8 *rxbuf)
 {
     u8 sta;
-    SPI2_SetSpeed(SPI_BaudRatePrescaler_8);
+
     sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
-	NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
+	NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,0x40); //清除TX_DS或MAX_RT中断标志
     if(sta&RX_OK)//接收到数据
 	{
 		NRF24L01_Read_Buf(RD_RX_PLOAD,rxbuf,RX_PLOAD_WIDTH);//读取数据
 		NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
         ReceiveData(rxbuf);
-        LED2 =!LED2;
+        LED1 =!LED1;
         IRQ_timeout = 0;
 	}
 }
 
-void EXTI1_IRQHandler(void)
+void EXTI0_IRQHandler(void)
 {
     NRF24L01_INT_RX_Mode(Rx_buff);
 
-    EXTI_ClearITPendingBit(EXTI_Line1); 
+    EXTI_ClearITPendingBit(EXTI_Line0); 
 }
 
 
@@ -272,7 +272,7 @@ void ReceiveData(u8 *rxbuf)
 {
     uint8_t FrameHeader[2] = {0,0};
 	uint8_t FuncWord = 0;
-	static uint8_t flag_Lock = 0;
+
 	FrameHeader[0] = rxbuf[FrameHeaderH_Addr];
 	FrameHeader[1] = rxbuf[FrameHeaderL_Addr];
 	
@@ -294,13 +294,10 @@ void ReceiveData(u8 *rxbuf)
 								  + (uint16_t)rxbuf[THR_Addr + 1];	
 			Rc_Data.YAW      = ((uint16_t)rxbuf[YAW_Addr] << 8) \
 								  + (uint16_t)rxbuf[YAW_Addr + 1];
-			Rc_Data.YAW      =Rc_Data.YAW;
 			Rc_Data.ROLL     = ((uint16_t)rxbuf[ROL_Addr] << 8) \
 								  + (uint16_t)rxbuf[ROL_Addr + 1];
-			Rc_Data.ROLL     =Rc_Data.ROLL-34;
 			Rc_Data.PITCH    = ((uint16_t)rxbuf[PIT_Addr] << 8) \
 								  + (uint16_t)rxbuf[PIT_Addr + 1];		
-			Rc_Data.PITCH=3000-Rc_Data.PITCH+50;
 			break;
 		default :
 			break;

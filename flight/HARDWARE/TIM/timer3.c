@@ -5,6 +5,9 @@
 #include "PWM.h"
 #include "mpu9250.h"
 #include "mpu6050.h"
+#include "RC.h"
+#include "control.h"
+#include "24l01.h"
 
 void tim2_init(u16 arr,u16 psc)
 {
@@ -73,34 +76,32 @@ int att_cnt = 0;
 int TIM4_times = 0;
 int PWM_cnt = 0;
 int PWM_value = 0;
-
-//void TIM2_IRQHandler(void)
-//{
-//	if( TIM_GetITStatus(TIM2 ,TIM_IT_Update)==SET)
-//	{	
-//		PWM_cnt++;
-//	
-//		if(PWM_cnt<50)
-//		{
-//			PWM_value = 0;
-//		}
-//		else if(PWM_cnt>=50&&PWM_cnt<250)
-//		{
-//			PWM_value+=5;
-//			
-//		}
-//		else{
-//			PWM_cnt = 0;
-//			PWM_value = 0;
-//		}
-//		Moto_PwmRflash(PWM_value,PWM_value,PWM_value,PWM_value);
-//		TIM_ClearITPendingBit(TIM2,TIM_IT_Update);
-//	}
-//}
+extern int IRQ_timeout;
+extern u8 Rx_buff[33];
 void TIM2_IRQHandler(void)
 {
+    u8 sta = 0;
 	if( TIM_GetITStatus(TIM2 ,TIM_IT_Update)==SET)
 	{
+        
+//实际测试时，IRQ引脚中断没有作用，这就相当于每10ms检测一次       
+        IRQ_timeout++;
+        if(IRQ_timeout > 10)
+        {
+            IRQ_timeout = 0;
+
+            sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
+            NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
+            if(sta&RX_OK)//接收到数据
+            {
+                NRF24L01_Read_Buf(RD_RX_PLOAD,Rx_buff,RX_PLOAD_WIDTH);//读取数据
+                NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+                ReceiveData(Rx_buff);
+                LED1 =!LED1;
+                
+            }
+        }
+        
 #if USE_IMU_DEVICE
 		PWM_cnt++;
 	
@@ -117,7 +118,7 @@ void TIM2_IRQHandler(void)
 			PWM_cnt = 0;
 			PWM_value = 0;
 		}
-		Moto_PwmRflash(PWM_value,PWM_value,PWM_value,PWM_value);
+
 #else
         
         times ++;
@@ -160,20 +161,34 @@ void TIM4_IRQHandler(void)
 {
 	if( TIM_GetITStatus(TIM4 ,TIM_IT_Update)==SET)
 	{
+        
 #if USE_IMU_DEVICE
+        //标志位改变
         TIM4_times ++;
+        //遥控器部分
+        Deblocking();
+        mode_contrl();
+        //姿态部分
         READ_6050();
         Prepare_6050_Data();
         Get_Attitude();
+        
+        //PID控制部分
+        CONTROL(angle.pitch,angle.roll,angle.yaw);
         
         if(TIM4_times % 5==0)
         {
              LED0 =!LED0;
         }
-        else if(times % 7 == 0)
+        else if(TIM4_times % 7 == 0)
         {   
             sand_IMU_data();
             sand_ACC_GYRO_data(); 
+        }
+        else if(TIM4_times %13 == 0)
+        {
+            sand_RC_data();
+            sand_Motor_data();
         }
         
 #else

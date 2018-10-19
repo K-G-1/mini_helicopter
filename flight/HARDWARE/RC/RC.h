@@ -19,7 +19,7 @@ typedef struct int16_rcget{
 				
 extern T_RC_DATA Rc_Data;//1000~2000
 extern u16 Rc_Pwm_In[8],Rc_Data_5;
-
+extern u8 ARMED,mode;
 void PWM_IN_Init(void);
 void RC_Data_Refine(void);
 void Deblocking(void);

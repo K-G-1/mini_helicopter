@@ -32,8 +32,9 @@ struct _ctrl{
 
 extern struct _ctrl ctrl;						
 						
-extern u8 ARMED;
 
+
+void PID_Param_init(void);
 void CONTROL(float rol, float pit, float yaw);
 
 						

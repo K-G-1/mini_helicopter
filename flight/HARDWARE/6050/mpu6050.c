@@ -4,7 +4,7 @@
 #include "delay.h"
 #include "IIC.h"
 #include "Algorithm_filter.h"
-
+#include "param.h"
 
 u8		 mpu6050_buffer[14];	
 
@@ -142,7 +142,7 @@ void Get_6050_offest(void)
     sensor.acc.quiet.y=sensor.acc.temp.y/cnt;
     sensor.acc.quiet.z=sensor.acc.temp.z/cnt;
     
-    
+    Save_Acc_Gyro_offest();
 }
 
 
