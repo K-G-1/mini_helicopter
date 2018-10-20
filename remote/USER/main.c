@@ -3,8 +3,15 @@
 #include "sys.h"
 #include "usart.h"
 #include "24l01.h"
+#include "ADC.h"
+#include "timer3.h"
+#include "oled.h"
+
 
 u8 Tx_buff[30] ={0};
+uint16_t Offest_data[4] ={100,100,100,100};
+extern uint16_t RC_ADC_Buff[4] ;
+
 
 int main(void)
 {	 
@@ -14,39 +21,35 @@ int main(void)
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断优先级分组为组2：2位抢占优先级，2位响应优先级
     uart_init(115200);	 	//串口初始化为115200
     LED_Init();		  		//初始化与LED连接的硬件接口
+    Adc_Init();
+    
+    
     NRF24L01_Init();
     delay_ms(1000);
-    while(NRF24L01_Check() != 0)
-    {
-        LED1 = 0;
-        delay_ms(1000);
-    }
-    LED1 = 1;
-    NRF24L01_TX_Mode();
+    
+//    while(NRF24L01_Check() != 0)
+//    {
+//        LED1 = 0;
+//        delay_ms(1000);
+//    }
+//    LED1 = 1;
+//    NRF24L01_TX_Mode();
 
-    Tx_buff[0] = 0xaa;
-    Tx_buff[1] = 0xaa;
-    Tx_buff[2] = 0x02;
+    OLED_Init();
+    oled_dis_str();
+    oled_show_offest_data(Offest_data);
+    tim3_init(1000-1,720-1); //100HZ
 
     while(1)
     {
-        cnt++;
-        if(cnt >=800)
-        {
-            cnt = 0;
-        }
+        oled_show_RC_data(RC_ADC_Buff);
+        
+        delay_ms(100);
 
-        Tx_buff[3] = (1000+cnt)>>8;
-        Tx_buff[4] = (1000+cnt);
-        if(NRF24L01_TxPacket(Tx_buff)==TX_OK)
-        {
-            LED1 = 0;
-        }
-        else
-            LED1 = 1;
-		 delay_ms(50);	   
-//        sta=NRF24L01_Read_Reg(NRF_READ_REG + STATUS);
-//        printf("sta = %d",sta);
         LED0 = !LED0;
     }
 }
+
+
+
+

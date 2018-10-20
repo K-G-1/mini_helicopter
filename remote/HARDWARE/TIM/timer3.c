@@ -1,7 +1,7 @@
 #include "timer3.h"
 #include "led.h"
-
-
+#include "24l01.h"
+#include "ADC.h"
 
 void tim3_init(u16 arr,u16 psc)
 {
@@ -34,11 +34,20 @@ void tim3_init(u16 arr,u16 psc)
 }
 
 int times= 0;
+extern u8 Tx_buff[30] ;
 void TIM3_IRQHandler(void)
 {
 	if( TIM_GetITStatus(TIM3 ,TIM_IT_Update)==SET)
 	{
-		
+        Get_Adc_Average(10);
+//		 nrf_sand_rc();
+
+//        if(NRF24L01_TxPacket(Tx_buff)==TX_OK)
+//        {
+//            LED1 = 0;
+//        }
+//        else
+//            LED1 = 1;
 
 	}
 	TIM_ClearITPendingBit(TIM3,TIM_IT_Update);

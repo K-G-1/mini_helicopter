@@ -34,3 +34,6 @@
 ..\obj\main.o: ..\SYSTEM\usart\usart.h
 ..\obj\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\main.o: ..\HARDWARE\NRF24L01\24l01.h
+..\obj\main.o: ..\HARDWARE\ADC\ADC.h
+..\obj\main.o: ..\HARDWARE\TIM\timer3.h
+..\obj\main.o: ..\HARDWARE\oled\oled.h

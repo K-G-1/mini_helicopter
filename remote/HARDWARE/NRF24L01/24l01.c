@@ -210,6 +210,37 @@ void NRF24L01_TX_Mode(void)
 	NRF24L01_CE=1;//CE为高,10us后启动发送
 }
 
+extern u8 Tx_buff[30] ;
+extern uint16_t RC_ADC_Buff[4] ;
+
+
+void nrf_sand_rc()
+{
+
+    
+    
+    Tx_buff[0] = 0xaa;
+    Tx_buff[1] = 0xaa;
+    Tx_buff[2] = 0x02;
+    
+    Tx_buff[3] = RC_ADC_Buff[0]>>8;
+    Tx_buff[4] = RC_ADC_Buff[0];
+    
+    Tx_buff[5] = RC_ADC_Buff[1]>>8;
+    Tx_buff[6] = RC_ADC_Buff[1];
+    
+    Tx_buff[7] = RC_ADC_Buff[2]>>8;
+    Tx_buff[8] = RC_ADC_Buff[2];
+    
+    Tx_buff[9] = RC_ADC_Buff[3]>>8;
+    Tx_buff[10] = RC_ADC_Buff[3];
+    
+    
+    
+    
+    
+}
+
 
 
 
