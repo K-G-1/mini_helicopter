@@ -498,6 +498,11 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\6050\mpu6050.c</FilePath>
             </File>
+            <File>
+              <FileName>stmflash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\STMFLASH\stmflash.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

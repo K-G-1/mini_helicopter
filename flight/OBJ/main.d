@@ -44,5 +44,3 @@
 ..\obj\main.o: ..\HARDWARE\NRF24L01\24l01.h
 ..\obj\main.o: ..\HARDWARE\RC\rc.h
 ..\obj\main.o: ..\HARDWARE\Control\control.h
-..\obj\main.o: ..\HARDWARE\STMFLASH\stmflash.h
-..\obj\main.o: ..\HARDWARE\param\param.h

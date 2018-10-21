@@ -38,4 +38,3 @@
 ..\obj\sand_data.o: ..\HARDWARE\LED\led.h
 ..\obj\sand_data.o: ..\HARDWARE\RC\rc.h
 ..\obj\sand_data.o: ..\HARDWARE\Control\control.h
-..\obj\sand_data.o: ..\HARDWARE\param\param.h

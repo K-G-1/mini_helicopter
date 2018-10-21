@@ -35,4 +35,3 @@
 ..\obj\imu.o: ..\HARDWARE\6050\mpu6050.h
 ..\obj\imu.o: ..\HARDWARE\Algorithm\Algorithm_math\Algorithm_math.h
 ..\obj\imu.o: ..\HARDWARE\Algorithm\Algorithm_filter\Algorithm_filter.h
-..\obj\imu.o: ..\HARDWARE\param\param.h
