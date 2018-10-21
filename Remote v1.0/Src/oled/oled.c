@@ -221,7 +221,7 @@ void oled_dis_data(int P,int R,int Y,int H)
 	
 }
 
-void oled_show_RC_data(uint16_t *data)
+void oled_show_RC_data(int16_t *data)
 {
 	OLED_P6x8data(36,0,*data);
 	OLED_P6x8data(36,1,*(data+1));
@@ -230,7 +230,7 @@ void oled_show_RC_data(uint16_t *data)
 	
 }
 
-void oled_show_offest_data(uint16_t *data)
+void oled_show_offest_data(int16_t *data)
 {
 	OLED_P6x8data(64,4,*data);
 	OLED_P6x8data(64,5,*(data+1));

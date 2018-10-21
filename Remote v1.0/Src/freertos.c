@@ -71,6 +71,7 @@ osMailQId Nrf_TX_BuffHandle;
 osMailQId RC_Offest_buffHandle;
 
 extern uint16_t RC_ADC_Buff[4];
+int16_t RC_offest[4];
 /* USER CODE END Variables */
 
 /* Function prototypes -------------------------------------------------------*/
@@ -151,7 +152,7 @@ void MX_FREERTOS_Init(void) {
 
   /* definition and creation of RC_Offest_buff */
   /* what about the sizeof here??? cd native code */
-  osMailQDef(RC_Offest_buff, 4, uint16_t);
+  osMailQDef(RC_Offest_buff, 4, int16_t);
   RC_Offest_buffHandle = osMailCreate(osMailQ(RC_Offest_buff), NULL);
   /* USER CODE END RTOS_QUEUES */
 }
@@ -216,9 +217,13 @@ void StartTask_OLED(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-    display_mail = osMailGet(ADC_ValueHandle,0);
+    display_mail = osMailGet(ADC_ValueHandle,10);
     if(display_mail.status == osEventMail)
       oled_show_RC_data(display_mail.value.p);
+    
+    display_mail = osMailGet(RC_Offest_buffHandle,10);
+    if(display_mail.status == osEventMail)
+      oled_show_offest_data(display_mail.value.p);
     osDelay(1);
   }
   /* USER CODE END StartTask_OLED */
@@ -228,9 +233,14 @@ void StartTask_OLED(void const * argument)
 void StartTask_KEY(void const * argument)
 {
   /* USER CODE BEGIN StartTask_KEY */
+  uint8_t i = 0;
+  uint16_t err;
+  for(i =0;i<4;i++)
+    RC_offest[i] = -100;
   /* Infinite loop */
   for(;;)
   {
+    osMailPut(RC_Offest_buffHandle,RC_offest);
     osDelay(1);
   }
   /* USER CODE END StartTask_KEY */

@@ -17,8 +17,8 @@ void oled_dis_data(int P,int R,int Y,int H);
 void oled_dis_str(void);
 void Draw_BMP(unsigned char x0,unsigned char y0,unsigned char x1,unsigned char y1,unsigned char BMP[100][100]);
  void Draw_line(unsigned char x0,unsigned char y0,unsigned char x1,unsigned char *data);
-void oled_show_RC_data(uint16_t *data);
-void oled_show_offest_data(uint16_t *data);
+void oled_show_RC_data(int16_t *data);
+void oled_show_offest_data(int16_t *data);
 
 
 
