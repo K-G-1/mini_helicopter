@@ -2615,4 +2615,23 @@
       </Doc>
       <Doc>
         <Name>..\HARDWARE\delay\delay.c</Name>
-        <ColumnNumber>16</Col
+        <ColumnNumber>16</ColumnNumber>
+        <TopLine>33</TopLine>
+        <CurrentLine>46</CurrentLine>
+        <Folding>1</Folding>
+        <ContractedFolders></ContractedFolders>
+        <PaneID>0</PaneID>
+      </Doc>
+      <Doc>
+        <Name>..\Libraries\CMSIS\Device\ST\STM32F0xx\Source\Templates\arm\startup_stm32f072.s</Name>
+        <ColumnNumber>23</ColumnNumber>
+        <TopLine>121</TopLine>
+        <CurrentLine>126</CurrentLine>
+        <Folding>1</Folding>
+        <ContractedFolders></ContractedFolders>
+        <PaneID>0</PaneID>
+      </Doc>
+    </MDIGroup>
+  </MDIGroups>
+
+</ProjectGui>
