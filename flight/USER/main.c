@@ -39,8 +39,11 @@ void param_init()
 }
 int main(void)
 {	 
+   
     u8 sta;
-                                                                                                                                                            int t=0;
+                                                                                                                                                            
+    int t=0;
+    NVIC_SetVectorTable(0x8002800,0);
     delay_init();	    	 //延时函数初始化	  
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断优先级分组为组2：2位抢占优先级，2位响应优先级
     Jtag_disable();

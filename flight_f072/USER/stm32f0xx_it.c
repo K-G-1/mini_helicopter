@@ -53,7 +53,28 @@ extern volatile uint32_t sysTickUptime,SYS_Time;
   */
 void NMI_Handler(void)
 {
+  /* This interrupt is generated when HSE clock fails */
+
+  if (RCC_GetITStatus(RCC_IT_CSS) != RESET)
+  {
+    /* At this stage: HSE, PLL are disabled (but no change on PLL config) and HSI
+       is selected as system clock source */
+
+    /* Enable HSE */
+    RCC_HSEConfig(RCC_HSE_ON);
+
+    /* Enable HSE Ready and PLL Ready interrupts */
+    RCC_ITConfig(RCC_IT_HSERDY | RCC_IT_PLLRDY, ENABLE);
+
+    /* Clear Clock Security System interrupt pending bit */
+    RCC_ClearITPendingBit(RCC_IT_CSS);
+
+    /* Once HSE clock recover, the HSERDY interrupt is generated and in the RCC ISR
+       routine the system clock will be reconfigured to its previous state (before
+       HSE clock failure) */
+  }
 }
+
 
 /**
   * @brief  This function handles Hard Fault exception.

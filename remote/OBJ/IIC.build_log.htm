@@ -3,79 +3,56 @@
 <pre>
 <h1>µVision Build Log</h1>
 <h2>Tool Versions:</h2>
-IDE-Version: ¦ÌVision V5.14.0.0
-Copyright (C) 2015 ARM Ltd and ARM Germany GmbH. All rights reserved.
+IDE-Version: ¦ÌVision V5.26.2.0
+Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
 License Information: ti 20607, rfgyuhj, LIC=EPP8T-R3S85-9X4UW-Q58UG-13VTV-UCM1K
  
 Tool Versions:
-Toolchain:       MDK-ARM Professional  Version: 5.14.0.0
+Toolchain:       MDK-ARM Professional  Version: 5.26.2.0
 Toolchain Path:  D:\Keil_v5\ARM\ARMCC\Bin
-C Compiler:      Armcc.exe V5.05 update 1 (build 106)
-Assembler:       Armasm.exe V5.05 update 1 (build 106)
-Linker/Locator:  ArmLink.exe V5.05 update 1 (build 106)
-Library Manager: ArmAr.exe V5.05 update 1 (build 106)
-Hex Converter:   FromElf.exe V5.05 update 1 (build 106)
-CPU DLL:         SARMCM3.DLL V5.14.0.0
-Dialog DLL:      DCM.DLL V1.13.1.0
-Target DLL:      UL2CM3.DLL V1.155.0.0
-Dialog DLL:      TCM.DLL V1.14.4.0
+C Compiler:      Armcc.exe V5.06 update 6 (build 750)
+Assembler:       Armasm.exe V5.06 update 6 (build 750)
+Linker/Locator:  ArmLink.exe V5.06 update 6 (build 750)
+Library Manager: ArmAr.exe V5.06 update 6 (build 750)
+Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
+CPU DLL:         SARMCM3.DLL V5.26.2.0
+Dialog DLL:      DCM.DLL V1.17.2.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.5.0
+Dialog DLL:      TCM.DLL V1.36.1.0
  
 <h2>Project:</h2>
 G:\Keil\STM32F1\mini_helicopter\remote\USER\IIC.uvprojx
-Project File Date:  10/20/2018
+Project File Date:  10/23/2018
 
 <h2>Output:</h2>
+*** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'IIC'
 compiling main.c...
 main.c(40): warning:  #223-D: function "oled_show_offest_data" declared implicitly
       oled_show_offest_data(Offest_data);
-main.c(18): warning:  #177-D: variable "sta" was declared but never referenced
+main.c(18): warning:  #177-D: variable "sta"  was declared but never referenced
       u8 sta;
-main.c(19): warning:  #177-D: variable "cnt" was declared but never referenced
+main.c(19): warning:  #177-D: variable "cnt"  was declared but never referenced
       uint16_t cnt;
 main.c: 3 warnings, 0 errors
-compiling stm32f10x_it.c...
-compiling system_stm32f10x.c...
-compiling led.c...
-compiling timer3.c...
-compiling 24l01.c...
-compiling spi.c...
-compiling adc.c...
-..\HARDWARE\ADC\adc.c(93): warning:  #940-D: missing return statement at end of non-void function "Get_Adc_Average"
-  }      
-..\HARDWARE\ADC\adc.c: 1 warning, 0 errors
-compiling IIC.c...
-..\HARDWARE\IIC\IIC.c(198): warning:  #177-D: variable "temp" was declared but never referenced
-  unsigned char temp;
-..\HARDWARE\IIC\IIC.c: 1 warning, 0 errors
-compiling oled.c...
-compiling key.c...
-compiling delay.c...
-compiling sys.c...
-compiling usart.c...
-..\SYSTEM\usart\usart.c(133): warning:  #550-D: variable "com_data" was set but never used
-        u8 com_data;
-..\SYSTEM\usart\usart.c: 1 warning, 0 errors
-compiling core_cm3.c...
-assembling startup_stm32f10x_hd.s...
-compiling misc.c...
-compiling stm32f10x_fsmc.c...
-compiling stm32f10x_gpio.c...
-compiling stm32f10x_rcc.c...
-compiling stm32f10x_usart.c...
-compiling stm32f10x_tim.c...
-compiling stm32f10x_spi.c...
-compiling stm32f10x_adc.c...
 linking...
-Program Size: Code=15414 RO-data=2418 RW-data=60 ZI-data=1668  
+Program Size: Code=13442 RO-data=2410 RW-data=60 ZI-data=1636  
 FromELF: creating hex file...
-"..\OBJ\IIC.axf" - 0 Error(s), 6 Warning(s).
+"..\OBJ\IIC.axf" - 0 Error(s), 3 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: Keil
+                http://www.keil.com/pack/Keil.STM32F1xx_DFP.2.2.0.pack
+                Keil.STM32F1xx_DFP.2.2.0
+                STMicroelectronics STM32F1 Series Device Support, Drivers and Examples
 
 <h2>Collection of Component include folders:</h2>
-  G:\Keil\STM32F1\mini_helicopter\remote\USER\RTE
-  D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.0.0
+  .\RTE\_IIC
+  D:\Keil_v5\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

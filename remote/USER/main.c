@@ -24,9 +24,9 @@ int main(void)
     Adc_Init();
     
     
-    NRF24L01_Init();
-    delay_ms(1000);
-    
+//    NRF24L01_Init();
+//    delay_ms(1000);
+//    
 //    while(NRF24L01_Check() != 0)
 //    {
 //        LED1 = 0;
@@ -47,6 +47,7 @@ int main(void)
         delay_ms(100);
 
         LED0 = !LED0;
+
     }
 }
 

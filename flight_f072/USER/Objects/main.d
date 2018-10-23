@@ -33,3 +33,5 @@
 .\objects\main.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h
 .\objects\main.o: ..\HARDWARE\LED\LED.h
 .\objects\main.o: ..\HARDWARE\delay\delay.h
+.\objects\main.o: ..\HARDWARE\IIC\IIC.h
+.\objects\main.o: ..\HARDWARE\6050\mpu6050.h

@@ -35,3 +35,4 @@
 ..\obj\mpu6050.o: ..\SYSTEM\delay\delay.h
 ..\obj\mpu6050.o: ..\HARDWARE\IIC\IIC.h
 ..\obj\mpu6050.o: ..\HARDWARE\Algorithm\Algorithm_filter\Algorithm_filter.h
+..\obj\mpu6050.o: ..\HARDWARE\param\param.h
