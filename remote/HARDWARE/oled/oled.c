@@ -54,7 +54,7 @@ void OLED_CLS(void)
 void OLED_Init(void)
 {
 	IIC_Init();
-//	delay_ms(100);//初始化之前的延时很重要！
+	delay_ms(100);//初始化之前的延时很重要！
 	
 	OLED_WrCmd(0xAE); //display off
     OLED_WrCmd(0x20); //Set Memory Addressing Mode    

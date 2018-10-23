@@ -13,11 +13,11 @@
 //Copyright(C) 广州市星翼电子科技有限公司 2009-2019
 //All rights reserved									  
 ////////////////////////////////////////////////////////////////////////////////// 
-#define LED0 PBout(12)// PB5
-#define LED1 PBout(13)// PE5	
-#define LED2 PBout(14)// PE5
+#define LED0 PAout(15)// PB5
+#define LED1 PBout(3)// PE5	
+
 
 void LED_Init(void);//初始化
-
+void Jtag_disable();
 		 				    
 #endif

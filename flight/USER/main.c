@@ -43,7 +43,7 @@ int main(void)
     u8 sta;
                                                                                                                                                             
     int t=0;
-    NVIC_SetVectorTable(0x8002800,0);
+//    NVIC_SetVectorTable(0x8002800,0);
     delay_init();	    	 //延时函数初始化	  
     NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);//设置中断优先级分组为组2：2位抢占优先级，2位响应优先级
     Jtag_disable();
@@ -59,6 +59,7 @@ int main(void)
     }
     LED2 = 1;
     NRF24L01_RX_Mode();
+	Jtag_disable();
     NRF_IRQ_INIT();
     
     
@@ -77,7 +78,7 @@ int main(void)
 	tim2_init(1000-1,72-1);
 	tim4_init(1000-1,7200-1);
 #endif	
-
+	Jtag_disable();
 	pwm_init(1200-1,72-1); //1Khz
     Moto_PwmRflash(0,0,0,0);
     

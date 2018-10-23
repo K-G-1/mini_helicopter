@@ -227,12 +227,14 @@ void CONTROL(float rol, float pit, float yaw)
 	if(Moto_duty[2]<=0) Moto_duty[2] = 0;
 	if(Moto_duty[3]<=0) Moto_duty[3] = 0;
 	
-	if(ARMED)
-    
-		Moto_PwmRflash(Moto_duty[0],Moto_duty[1],Moto_duty[2],Moto_duty[3]);
-	else 
-	{
+//	if(ARMED)
+//    
+//		Moto_PwmRflash(Moto_duty[0],Moto_duty[1],Moto_duty[2],Moto_duty[3]);
+//	else 
+//	{
 
-		Moto_PwmRflash(0,0,0,0);
-	}
+//		Moto_PwmRflash(0,0,0,0);
+//	}
+	Moto_duty[0] = Moto_duty[1] = Moto_duty[2] = Moto_duty[3] = date_THROTTLE;
+	Moto_PwmRflash(date_THROTTLE,date_THROTTLE,date_THROTTLE,date_THROTTLE);	
 }

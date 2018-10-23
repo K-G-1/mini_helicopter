@@ -35,12 +35,12 @@ void NRF24L01_Init(void)
  	GPIO_SetBits(GPIOA,GPIO_Pin_4);//上拉				
  	
 
-	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_1;	//PG8 7 推挽 	  
- 	GPIO_Init(GPIOA, &GPIO_InitStructure);//初始化指定IO
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0;	//PG8 7 推挽 	  
+ 	GPIO_Init(GPIOB, &GPIO_InitStructure);//初始化指定IO
   
-	GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_0;   
+	GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_1;   
 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPD; //PB1 输入  
-	GPIO_Init(GPIOA, &GPIO_InitStructure);
+	GPIO_Init(GPIOB, &GPIO_InitStructure);
 
 	GPIO_ResetBits(GPIOA,GPIO_Pin_0|GPIO_Pin_1);//PG6,7,8上拉					 
 		 
@@ -146,7 +146,7 @@ u8 NRF24L01_TxPacket(u8 *txbuf)
 	NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
 	if(sta&MAX_TX)//达到最大重发次数
 	{
-        LED2 = !LED2;
+        LED1 = !LED1;
 		NRF24L01_Write_Reg(FLUSH_TX,0xff);//清除TX FIFO寄存器 
 		return MAX_TX; 
 	}

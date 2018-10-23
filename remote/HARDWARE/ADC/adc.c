@@ -89,7 +89,7 @@ u16 Get_Adc_Average(u8 times)
         temp = temp*0.244f ;//(1000/4096)
         RC_ADC_Buff[t] = temp +1000;
     }
-    
+    RC_ADC_Buff[0] = 2500 - RC_ADC_Buff[0];
 } 	 
 
 
