@@ -50,7 +50,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "gpio.h"
 /* USER CODE BEGIN 0 */
-
+#include "cmsis_os.h"
 /* USER CODE END 0 */
 
 /*----------------------------------------------------------------------------*/
@@ -78,36 +78,33 @@ void MX_GPIO_Init(void)
   __HAL_RCC_GPIOB_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(Nrf_CE_GPIO_Port, Nrf_CE_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, NRF_CE_Pin|LED1_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(Nrf_CSN_GPIO_Port, Nrf_CSN_Pin, GPIO_PIN_SET);
-
-  /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
+  HAL_GPIO_WritePin(NRF_CSN_GPIO_Port, NRF_CSN_Pin, GPIO_PIN_SET);
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(LED2_GPIO_Port, LED2_Pin, GPIO_PIN_RESET);
 
   /*Configure GPIO pins : PAPin PAPin */
-  GPIO_InitStruct.Pin = Nrf_CE_Pin|LED1_Pin;
+  GPIO_InitStruct.Pin = NRF_CE_Pin|LED1_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-  /*Configure GPIO pin : PtPin */
-  GPIO_InitStruct.Pin = Nrf_IRQ_Pin;
-  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
-  GPIO_InitStruct.Pull = GPIO_PULLUP;
-  HAL_GPIO_Init(Nrf_IRQ_GPIO_Port, &GPIO_InitStruct);
-
   /*Configure GPIO pins : PBPin PBPin */
-  GPIO_InitStruct.Pin = Nrf_CSN_Pin|LED2_Pin;
+  GPIO_InitStruct.Pin = NRF_CSN_Pin|LED2_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_PULLUP;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_HIGH;
   HAL_GPIO_Init(GPIOB, &GPIO_InitStruct);
+
+  /*Configure GPIO pin : PtPin */
+  GPIO_InitStruct.Pin = NRF_IRQ_Pin;
+  GPIO_InitStruct.Mode = GPIO_MODE_INPUT;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  HAL_GPIO_Init(NRF_IRQ_GPIO_Port, &GPIO_InitStruct);
 
   /*Configure GPIO pins : PBPin PBPin PBPin PBPin */
   GPIO_InitStruct.Pin = KEY1_Pin|KEY2_Pin|KEY3_Pin|KEY4_Pin;
@@ -118,7 +115,65 @@ void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 2 */
+#define Key1 HAL_GPIO_ReadPin(KEY1_GPIO_Port,KEY1_Pin)
+#define Key2 HAL_GPIO_ReadPin(KEY2_GPIO_Port,KEY2_Pin)
+#define Key3 HAL_GPIO_ReadPin(KEY3_GPIO_Port,KEY3_Pin)
+#define Key4 HAL_GPIO_ReadPin(KEY4_GPIO_Port,KEY4_Pin)
 
+uint8_t key_status = 0xff;
+extern int16_t RC_offest[4];
+uint8_t key_press = 0;
+extern osSemaphoreId Data_saveHandle;
+void KEY_Scan(uint8_t mode )
+{
+    if(mode == 1)
+    {
+      key_press = 1;
+    }
+    if(key_press == 1 &&(Key1 == 1||Key2 ==1 ||Key3 ==1 ||Key4 ==1))
+    {
+      osDelay(50);
+      key_press = 0;
+      if(Key1 == 1)
+      {
+        key_status ++;
+        if(key_status >=4)
+          key_status = 0;
+      }
+      else if(Key2 == 1)
+      {
+            key_status = 0xff;;
+            osSemaphoreRelease(Data_saveHandle);
+      }
+      
+      else if(Key3 == 1)
+      {
+            RC_offest[key_status] ++;
+      }
+      
+      else if(Key4 == 1)
+      {
+            RC_offest[key_status] --;
+      }
+    }else if(Key1 == 0&&Key2 ==0&&Key3==0&&Key4==0)
+        key_press = 1;
+    
+    offest_Limit();
+}
+
+
+void offest_Limit(void)
+{
+    uint8_t i = 0;
+    for(i = 0;i<4;i++)
+    {
+        if(RC_offest[i]<-100)
+          RC_offest[i] = -100;
+        else if(RC_offest[i] >100)
+          RC_offest[i] = 100;
+        
+    }
+}
 /* USER CODE END 2 */
 
 /**

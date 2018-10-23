@@ -175,8 +175,9 @@ uint16_t Get_Adc_Average(uint8_t times)
     {
         temp = temp_val[t] /times;
         temp = temp*0.244f ;//(1000/4096)
-        RC_ADC_Buff[t] = temp +1000;
+        RC_ADC_Buff[t] = 2000 - temp ;
     }
+    return 0;
     
 } 	 
 

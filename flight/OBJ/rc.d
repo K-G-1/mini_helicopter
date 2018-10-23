@@ -3,7 +3,7 @@
 ..\obj\rc.o: ..\SYSTEM\sys\sys.h
 ..\obj\rc.o: ..\USER\stm32f10x.h
 ..\obj\rc.o: ..\CORE\core_cm3.h
-..\obj\rc.o: G:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\rc.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\rc.o: ..\USER\system_stm32f10x.h
 ..\obj\rc.o: ..\USER\stm32f10x_conf.h
 ..\obj\rc.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -31,3 +31,4 @@
 ..\obj\rc.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 ..\obj\rc.o: ..\STM32F10x_FWLib\inc\misc.h
 ..\obj\rc.o: ..\HARDWARE\LED\LED.h
+..\obj\rc.o: ..\HARDWARE\Algorithm\Algorithm_math\Algorithm_math.h

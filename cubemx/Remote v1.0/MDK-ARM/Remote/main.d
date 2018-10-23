@@ -27,8 +27,6 @@ remote\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 remote\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
 remote\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
 remote\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
-remote\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
-remote\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 remote\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 remote\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pcd.h
 remote\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_ll_usb.h
@@ -51,7 +49,8 @@ remote\main.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 remote\main.o: ../Inc/adc.h
 remote\main.o: ../Inc/i2c.h
 remote\main.o: ../Inc/spi.h
-remote\main.o: ../Inc/tim.h
 remote\main.o: ../Inc/usart.h
 remote\main.o: ../Inc/usb.h
 remote\main.o: ../Inc/gpio.h
+remote\main.o: ..\Src\oled\oled.h
+remote\main.o: ../Inc/stmflash.h

@@ -238,3 +238,17 @@ void oled_show_offest_data(int16_t *data)
 	OLED_P6x8data(64,7,*(data+3));
 	
 }
+void change_offest(uint8_t y)
+{
+    static uint16_t y_old = 0xff;
+    if(y >=0 && y!= y_old)
+    {
+        if(y != 0xff)
+          OLED_P6x8Str(56,4+y,"[     ]");
+      
+        OLED_P6x8Str(56,4+y_old,"        ");
+    }
+
+    y_old = y;
+}
+

@@ -4,7 +4,7 @@
 	
 
 /***************************************************/
-#define PARAM_ADDR            0X0800F000
+#define PARAM_ADDR            0X0800FC00
 #define save_gyro_x           PARAM_ADDR + 0x00
 #define save_gyro_y           PARAM_ADDR + 0x02
 #define save_gyro_z           PARAM_ADDR + 0x04

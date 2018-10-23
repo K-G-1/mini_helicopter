@@ -147,7 +147,7 @@ int main(void)
     {
       HAL_GPIO_TogglePin(LED3_GPIO_Port,LED3_Pin);
     }
-//    if(HAL_GPIO_ReadPin(USART_TX_GPIO_Port,USART_TX_Pin))
+//    if(HAL_GPIO_ReadPin(NRF_IRQ_GPIO_Port,NRF_IRQ_Pin))
 //    {
 //      HAL_GPIO_TogglePin(LED3_GPIO_Port,LED3_Pin);
 //      HAL_Delay(1000);

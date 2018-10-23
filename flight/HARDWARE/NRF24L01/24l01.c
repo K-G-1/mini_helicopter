@@ -13,9 +13,9 @@
 #define FrameHeaderL_Addr		1u
 #define FuncWord_Addr	2u
 #define THR_Addr     	3u
-#define YAW_Addr	 	6u
-#define ROL_Addr		8u
-#define PIT_Addr		10u
+#define YAW_Addr	 	5u
+#define ROL_Addr		9u
+#define PIT_Addr		7u
     
 const u8 TX_ADDRESS[TX_ADR_WIDTH]={0xAA,0xBB,0xCC,0x00,0x01}; //∑¢ÀÕµÿ÷∑
 const u8 RX_ADDRESS[RX_ADR_WIDTH]={0xAA,0xBB,0xCC,0x00,0x01};
@@ -270,7 +270,7 @@ void EXTI0_IRQHandler(void)
 
 void ReceiveData(u8 *rxbuf)
 {
-    uint8_t FrameHeader[2] = {0,0};
+  uint8_t FrameHeader[2] = {0,0};
 	uint8_t FuncWord = 0;
 
 	FrameHeader[0] = rxbuf[FrameHeaderH_Addr];
@@ -290,13 +290,13 @@ void ReceiveData(u8 *rxbuf)
 		case 0x03:
 			break;
 		case 0x02:
-			Rc_Data.THROTTLE = ((uint16_t)rxbuf[THR_Addr] << 8) \
+			RX_Data.THROTTLE = ((uint16_t)rxbuf[THR_Addr] << 8) \
 								  + (uint16_t)rxbuf[THR_Addr + 1];	
-			Rc_Data.YAW      = ((uint16_t)rxbuf[YAW_Addr] << 8) \
+			RX_Data.YAW      = ((uint16_t)rxbuf[YAW_Addr] << 8) \
 								  + (uint16_t)rxbuf[YAW_Addr + 1];
-			Rc_Data.ROLL     = ((uint16_t)rxbuf[ROL_Addr] << 8) \
+			RX_Data.ROLL     = ((uint16_t)rxbuf[ROL_Addr] << 8) \
 								  + (uint16_t)rxbuf[ROL_Addr + 1];
-			Rc_Data.PITCH    = ((uint16_t)rxbuf[PIT_Addr] << 8) \
+			RX_Data.PITCH    = ((uint16_t)rxbuf[PIT_Addr] << 8) \
 								  + (uint16_t)rxbuf[PIT_Addr + 1];		
 			break;
 		default :

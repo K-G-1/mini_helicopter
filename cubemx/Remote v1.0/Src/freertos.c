@@ -55,6 +55,9 @@
 #include "adc.h"
 #include "oled.h"
 #include "usart.h"
+#include "24l01.h"
+#include "gpio.h"
+#include "stmflash.h"
 /* USER CODE END Includes */
 
 /* Variables -----------------------------------------------------------------*/
@@ -64,6 +67,9 @@ osThreadId myTask_NrfHandle;
 osThreadId myTask_LEDHandle;
 osThreadId myTask_OLEDHandle;
 osThreadId myTask_KeyHandle;
+osThreadId Param_TaskHandle;
+osSemaphoreId NRF_statusHandle;
+osSemaphoreId Data_saveHandle;
 
 /* USER CODE BEGIN Variables */
 osMailQId ADC_ValueHandle;
@@ -72,6 +78,8 @@ osMailQId RC_Offest_buffHandle;
 
 extern uint16_t RC_ADC_Buff[4];
 int16_t RC_offest[4];
+extern  uint8_t Tx_buff[30] ;
+extern uint8_t key_status;
 /* USER CODE END Variables */
 
 /* Function prototypes -------------------------------------------------------*/
@@ -81,6 +89,7 @@ void StartTask_NRF(void const * argument);
 void StartTask_LED(void const * argument);
 void StartTask_OLED(void const * argument);
 void StartTask_KEY(void const * argument);
+void Start_Param_Task(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -100,6 +109,15 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_MUTEX */
   /* add mutexes, ... */
   /* USER CODE END RTOS_MUTEX */
+
+  /* Create the semaphores(s) */
+  /* definition and creation of NRF_status */
+  osSemaphoreDef(NRF_status);
+  NRF_statusHandle = osSemaphoreCreate(osSemaphore(NRF_status), 1);
+
+  /* definition and creation of Data_save */
+  osSemaphoreDef(Data_save);
+  Data_saveHandle = osSemaphoreCreate(osSemaphore(Data_save), 1);
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
@@ -133,6 +151,10 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of myTask_Key */
   osThreadDef(myTask_Key, StartTask_KEY, osPriorityNormal, 0, 128);
   myTask_KeyHandle = osThreadCreate(osThread(myTask_Key), NULL);
+
+  /* definition and creation of Param_Task */
+  osThreadDef(Param_Task, Start_Param_Task, osPriorityLow, 0, 128);
+  Param_TaskHandle = osThreadCreate(osThread(Param_Task), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -174,11 +196,15 @@ void StartDefaultTask(void const * argument)
 void StartTask_ADC(void const * argument)
 {
   /* USER CODE BEGIN StartTask_ADC */
+  uint8_t i = 0;
   /* Infinite loop */
   for(;;)
   {
     Get_Adc_Average(10);
+    for (i = 0;i<4 ;i++)
+      RC_ADC_Buff[i] += RC_offest[i];
     osMailPut(ADC_ValueHandle,RC_ADC_Buff);
+    osMailPut(ADC_ValueHandle,Nrf_TX_BuffHandle);
     osDelay(10);
   }
   /* USER CODE END StartTask_ADC */
@@ -188,10 +214,28 @@ void StartTask_ADC(void const * argument)
 void StartTask_NRF(void const * argument)
 {
   /* USER CODE BEGIN StartTask_NRF */
+  osEvent TX_mail;
+  
+  NRF24L01_Init();
+  while(NRF24L01_Check() != 0)
+  { 
+    HAL_GPIO_WritePin(LED1_GPIO_Port,LED2_Pin,GPIO_PIN_RESET);
+    osDelay(100);
+  }
+  NRF24L01_TX_Mode();
+  HAL_GPIO_WritePin(LED2_GPIO_Port,LED2_Pin,GPIO_PIN_SET);
   /* Infinite loop */
   for(;;)
   {
-    osDelay(1);
+    nrf_sand_rc();
+    
+    if(NRF24L01_TxPacket(Tx_buff) == TX_OK)
+    {
+      osSemaphoreRelease(NRF_statusHandle);
+    }
+    
+    
+    osDelay(100);
   }
   /* USER CODE END StartTask_NRF */
 }
@@ -203,6 +247,14 @@ void StartTask_LED(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+    if(osSemaphoreWait(NRF_statusHandle,0x10) == osOK)
+    {
+      osSemaphoreRelease(NRF_statusHandle);
+      HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);
+    }
+    
+    
+    HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);
     osDelay(1);
   }
   /* USER CODE END StartTask_LED */
@@ -224,6 +276,17 @@ void StartTask_OLED(void const * argument)
     display_mail = osMailGet(RC_Offest_buffHandle,10);
     if(display_mail.status == osEventMail)
       oled_show_offest_data(display_mail.value.p);
+    
+    if(osSemaphoreWait(NRF_statusHandle,0xff) == osOK)
+    {
+      OLED_P6x8Str(72,0,"connected");
+    }
+    else 
+    {
+      OLED_P6x8Str(72,0," vanished");
+    }
+    change_offest(key_status);
+
     osDelay(1);
   }
   /* USER CODE END StartTask_OLED */
@@ -235,15 +298,33 @@ void StartTask_KEY(void const * argument)
   /* USER CODE BEGIN StartTask_KEY */
   uint8_t i = 0;
   uint16_t err;
-  for(i =0;i<4;i++)
-    RC_offest[i] = -100;
+
   /* Infinite loop */
   for(;;)
   {
+    KEY_Scan(1);
     osMailPut(RC_Offest_buffHandle,RC_offest);
-    osDelay(1);
+    osDelay(100);
   }
   /* USER CODE END StartTask_KEY */
+}
+
+/* Start_Param_Task function */
+void Start_Param_Task(void const * argument)
+{
+  /* USER CODE BEGIN Start_Param_Task */
+  STMFLASH_Read(0x0800FC00,(uint16_t*)RC_offest,4);
+  /* Infinite loop */
+  for(;;)
+  {
+    if(osSemaphoreWait(Data_saveHandle,10) == osOK)
+    {
+      STMFLASH_Write(0x0800FC00,(uint16_t*)RC_offest,4);
+    }
+    
+    osDelay(1);
+  }
+  /* USER CODE END Start_Param_Task */
 }
 
 /* USER CODE BEGIN Application */

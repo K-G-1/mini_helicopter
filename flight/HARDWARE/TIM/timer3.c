@@ -166,6 +166,7 @@ void TIM4_IRQHandler(void)
         //标志位改变
         TIM4_times ++;
         //遥控器部分
+        RC_Receive_Anl();
         Deblocking();
         mode_contrl();
         //姿态部分

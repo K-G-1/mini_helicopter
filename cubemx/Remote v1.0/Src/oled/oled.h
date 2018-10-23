@@ -20,7 +20,7 @@ void Draw_BMP(unsigned char x0,unsigned char y0,unsigned char x1,unsigned char y
 void oled_show_RC_data(int16_t *data);
 void oled_show_offest_data(int16_t *data);
 
-
+void change_offest(uint8_t y);
 
 
 #endif

@@ -69,7 +69,8 @@
 void MX_GPIO_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-
+void KEY_Scan(uint8_t mode );
+void offest_Limit(void);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus

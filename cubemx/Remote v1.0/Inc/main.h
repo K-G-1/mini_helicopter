@@ -59,12 +59,12 @@
 
 /* Private define ------------------------------------------------------------*/
 
-#define Nrf_CE_Pin GPIO_PIN_4
-#define Nrf_CE_GPIO_Port GPIOA
-#define Nrf_IRQ_Pin GPIO_PIN_0
-#define Nrf_IRQ_GPIO_Port GPIOB
-#define Nrf_CSN_Pin GPIO_PIN_1
-#define Nrf_CSN_GPIO_Port GPIOB
+#define NRF_CE_Pin GPIO_PIN_4
+#define NRF_CE_GPIO_Port GPIOA
+#define NRF_CSN_Pin GPIO_PIN_0
+#define NRF_CSN_GPIO_Port GPIOB
+#define NRF_IRQ_Pin GPIO_PIN_1
+#define NRF_IRQ_GPIO_Port GPIOB
 #define LED1_Pin GPIO_PIN_15
 #define LED1_GPIO_Port GPIOA
 #define LED2_Pin GPIO_PIN_3

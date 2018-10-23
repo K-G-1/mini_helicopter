@@ -53,20 +53,20 @@
 #include "adc.h"
 #include "i2c.h"
 #include "spi.h"
-#include "tim.h"
 #include "usart.h"
 #include "usb.h"
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
-
+#include "oled.h"
+#include "stmflash.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-
+uint16_t check = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -114,13 +114,15 @@ int main(void)
   MX_ADC1_Init();
   MX_I2C1_Init();
   MX_SPI1_Init();
-  MX_TIM2_Init();
-  MX_TIM3_Init();
   MX_USB_PCD_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
+  HAL_Delay(1000);
+  OLED_Init();
+  HAL_Delay(1000);
   OLED_Init();
   oled_dis_str();
+  
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in freertos.c) */
@@ -139,7 +141,7 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
- 
+  
   
   }
   /* USER CODE END 3 */

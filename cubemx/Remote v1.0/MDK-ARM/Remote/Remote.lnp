@@ -1,13 +1,14 @@
 --cpu Cortex-M3
 "remote\startup_stm32f103xb.o"
 "remote\oled.o"
+"remote\24l01.o"
+"remote\stmflash.o"
 "remote\main.o"
 "remote\gpio.o"
 "remote\adc.o"
 "remote\freertos.o"
 "remote\i2c.o"
 "remote\spi.o"
-"remote\tim.o"
 "remote\usart.o"
 "remote\usb.o"
 "remote\stm32f1xx_it.o"
@@ -44,6 +45,6 @@
 "remote\timers.o"
 "remote\cmsis_os.o"
 --library_type=microlib --strict --scatter "Remote\Remote.sct"
---summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "Remote.map" -o Remote\Remote.axf

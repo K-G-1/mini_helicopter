@@ -3,7 +3,7 @@
 ..\obj\mpu9250.o: ..\SYSTEM\sys\sys.h
 ..\obj\mpu9250.o: ..\USER\stm32f10x.h
 ..\obj\mpu9250.o: ..\CORE\core_cm3.h
-..\obj\mpu9250.o: G:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\mpu9250.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\mpu9250.o: ..\USER\system_stm32f10x.h
 ..\obj\mpu9250.o: ..\USER\stm32f10x_conf.h
 ..\obj\mpu9250.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h

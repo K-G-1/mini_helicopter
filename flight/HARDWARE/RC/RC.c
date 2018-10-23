@@ -1,13 +1,43 @@
 #include "RC.h"
 #include "LED.h"
+#include "Algorithm_math.h"
+
+
 
 u16 Rc_Pwm_In[8];
 T_RC_DATA Rc_Data;//1000~2000
+T_RC_DATA RX_Data;//1000~2000
 u16  RC_Pwm_In_his[8];
 u8 ARMED = 0;
 u8 mode ;
+// 适应回中的摇杆，其中temp_old其实是不需要的
+void RC_Receive_Anl(void)
+{
+   int16_t temp;
+  static uint8_t i  = 0;
+  static int16_t temp_old = 0;
+  i ++;
+  Rc_Data.YAW = RX_Data.YAW;
+  Rc_Data.PITCH = RX_Data.PITCH;
+  Rc_Data.ROLL  = RX_Data.ROLL;
 
-
+  temp = RX_Data.THROTTLE - 1500;
+  if(i >=50)
+  {
+    i = 0;
+    if(temp_old-temp >300 || (temp_old-temp < -300))
+      temp_old = temp;
+    else
+      Rc_Data.THROTTLE += (temp /20);
+    temp_old = temp;
+  }
+//  if(temp >= 0)
+//    Rc_Data.THROTTLE = data_limit(Rc_Data.THROTTLE,RX_Data.THROTTLE,1000);
+//  else 
+//    Rc_Data.THROTTLE = data_limit(Rc_Data.THROTTLE,2000,RX_Data.THROTTLE);
+  Rc_Data.THROTTLE = data_limit(Rc_Data.THROTTLE,2000,1000);
+  
+}
 
 /*    上锁&解锁函数  */
 void Deblocking(void)

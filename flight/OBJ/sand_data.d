@@ -1,10 +1,10 @@
 ..\obj\sand_data.o: ..\HARDWARE\SAND\sand_data.c
 ..\obj\sand_data.o: ..\SYSTEM\usart\usart.h
-..\obj\sand_data.o: G:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+..\obj\sand_data.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\obj\sand_data.o: ..\SYSTEM\sys\sys.h
 ..\obj\sand_data.o: ..\USER\stm32f10x.h
 ..\obj\sand_data.o: ..\CORE\core_cm3.h
-..\obj\sand_data.o: G:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\sand_data.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\sand_data.o: ..\USER\system_stm32f10x.h
 ..\obj\sand_data.o: ..\USER\stm32f10x_conf.h
 ..\obj\sand_data.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h

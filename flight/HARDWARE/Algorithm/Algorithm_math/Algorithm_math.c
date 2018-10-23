@@ -76,10 +76,11 @@ void array_assign(s16 *array,s16 value)
 *             lowerlimit 下限
 输出参数：    无
 *******************************************************************************/
-void data_limit(float data,float toplimit,float lowerlimit)
+float  data_limit(float data,float toplimit,float lowerlimit)
 {
   if(data > toplimit)  data = toplimit;
   else if(data < lowerlimit) data = lowerlimit;
+  return data;
 }
 
 
