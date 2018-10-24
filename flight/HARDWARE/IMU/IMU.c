@@ -83,8 +83,8 @@ void Prepare_6050_Data()
     sensor.acc.temp.y = sensor.acc.origin.y - sensor.acc.quiet.y;
     sensor.acc.temp.z = sensor.acc.origin.z ;
     
-    sensor.gyro.temp.x = (sensor.gyro.origin.y - sensor.gyro.quiet.y);
-    sensor.gyro.temp.y = -(sensor.gyro.origin.x - sensor.gyro.quiet.x);
+    sensor.gyro.temp.x = (sensor.gyro.origin.x - sensor.gyro.quiet.x);
+    sensor.gyro.temp.y = (sensor.gyro.origin.y - sensor.gyro.quiet.y);
     sensor.gyro.temp.z = (sensor.gyro.origin.z - sensor.gyro.quiet.z);
 ////////    
     sensor.gyro.averag.x = LPF_1st(sensor.gyro.averag.x ,sensor.gyro.temp.x,0.1f);

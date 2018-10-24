@@ -157,34 +157,18 @@
         <Bp>
           <Number>0</Number>
           <Type>0</Type>
-          <LineNumber>32</LineNumber>
+          <LineNumber>80</LineNumber>
           <EnabledFlag>1</EnabledFlag>
-          <Address>134235406</Address>
+          <Address>134233244</Address>
           <ByteObject>0</ByteObject>
           <HtxType>0</HtxType>
           <ManyObjects>0</ManyObjects>
           <SizeOfObject>0</SizeOfObject>
           <BreakByAccess>0</BreakByAccess>
           <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\HARDWARE\RC\RC.c</Filename>
+          <Filename>..\HARDWARE\Control\control.c</Filename>
           <ExecCommand></ExecCommand>
-          <Expression>\\flight\../HARDWARE/RC/RC.c\32</Expression>
-        </Bp>
-        <Bp>
-          <Number>1</Number>
-          <Type>0</Type>
-          <LineNumber>28</LineNumber>
-          <EnabledFlag>1</EnabledFlag>
-          <Address>134235354</Address>
-          <ByteObject>0</ByteObject>
-          <HtxType>0</HtxType>
-          <ManyObjects>0</ManyObjects>
-          <SizeOfObject>0</SizeOfObject>
-          <BreakByAccess>0</BreakByAccess>
-          <BreakIfRCount>1</BreakIfRCount>
-          <Filename>..\HARDWARE\RC\RC.c</Filename>
-          <ExecCommand></ExecCommand>
-          <Expression>\\flight\../HARDWARE/RC/RC.c\28</Expression>
+          <Expression>\\flight\../HARDWARE/Control/control.c\80</Expression>
         </Bp>
       </Breakpoint>
       <WatchWindow1>

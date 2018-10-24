@@ -64,7 +64,7 @@ void CONTROL(float rol, float pit, float yaw)
 	{
 		//*****************外环PID**************************//
 		//俯仰计算//
-		pit= pit + (float)(Rc_Data.PITCH - Rc_Data.pitch_offset)/20.0f;
+		pit= (float)(Rc_Data.PITCH - Rc_Data.pitch_offset)/20.0f - pit;
 		ctrl.pitch.shell.increment += pit;   //俯仰方向误差积分
 			
 			//积分限幅
@@ -77,7 +77,7 @@ void CONTROL(float rol, float pit, float yaw)
 		pitch_old = pit; //储存 俯仰偏差
 		
 		//横滚计算//
-		rol= rol + (float)(Rc_Data.ROLL - Rc_Data.roll_offset)/20.0f;
+		rol= (float)(Rc_Data.ROLL - Rc_Data.roll_offset)/20.0f  - rol;
 		ctrl.roll.shell.increment += rol;  //横滚方向误差积分
 			
 			//积分限幅
@@ -123,7 +123,7 @@ void CONTROL(float rol, float pit, float yaw)
 	ctrl.ctrlRate ++;	
 	//********************内环(角速度环)PID*********************************//
 
-	ctrl.roll.core.kp_out = ctrl.roll.core.kp * (ctrl.roll.shell.pid_out + sensor.gyro.averag.x ); 
+	ctrl.roll.core.kp_out = ctrl.roll.core.kp * ( -ctrl.roll.shell.pid_out + sensor.gyro.averag.x); 
 	ctrl.roll.core.increment += (ctrl.roll.shell.pid_out+ sensor.gyro.averag.x  ) ;
 			//积分限幅
 		if(ctrl.roll.core.increment > ctrl.roll.core.increment_max)
@@ -133,7 +133,7 @@ void CONTROL(float rol, float pit, float yaw)
 	ctrl.roll.core.ki_out	= ctrl.roll.core.ki * ctrl.roll.core.increment ;
 	ctrl.roll.core.kd_out = ctrl.roll.core.kd * (sensor.gyro.averag.x  - sensor.gyro.histor.x);
 	
-	ctrl.pitch.core.kp_out = ctrl.pitch.core.kp * (ctrl.pitch.shell.pid_out+ sensor.gyro.averag.y  ) ;
+	ctrl.pitch.core.kp_out = ctrl.pitch.core.kp * (-ctrl.pitch.shell.pid_out +  sensor.gyro.averag.y  ) ;
 	ctrl.pitch.core.increment += (ctrl.pitch.shell.pid_out+ sensor.gyro.averag.y  ) ;
 			//积分限幅
 		if(ctrl.pitch.core.increment > ctrl.pitch.core.increment_max)

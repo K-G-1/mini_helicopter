@@ -175,7 +175,7 @@ void TIM4_IRQHandler(void)
         Get_Attitude();
         
         //PID¿ØÖÆ²¿·Ö
-        CONTROL(angle.pitch,angle.roll,angle.yaw);
+        CONTROL(angle.roll,angle.pitch,angle.yaw);
         
         if(TIM4_times % 5==0)
         {
