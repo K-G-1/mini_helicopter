@@ -99,36 +99,37 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_I2C1_Init();
-  MX_TIM7_Init();
-  MX_TIM2_Init();
-  MX_SPI1_Init();
+//  MX_TIM7_Init();
+//  MX_TIM2_Init();
+//  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-//  while(mpu6050_init() != 0)
-//  {
-//    HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);
-//    HAL_Delay(1000);
-//  }
-//  Get_6050_offest();
-//  
-
-  NRF24L01_Init();
-  __HAL_SPI_ENABLE(&hspi1);
-  HAL_Delay(1000);
-  while(NRF24L01_Check() != 0)
+  HAL_Delay(100);
+  while(mpu6050_init() != 0)
   {
-      HAL_GPIO_WritePin(LED3_GPIO_Port,LED3_Pin,GPIO_PIN_RESET);
-      HAL_Delay(100);
+    HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);
+    HAL_Delay(1000);
   }
-  HAL_GPIO_WritePin(LED3_GPIO_Port,LED3_Pin,GPIO_PIN_SET);
-  NRF24L01_TX_Mode();
+  Get_6050_offest();
   
-  
-//  HAL_TIM_Base_Start_IT(&htim2);
-  HAL_TIM_Base_Start_IT(&htim7);
-  
-  Tx_buff[0] = 0xaa;
-  Tx_buff[1] = 0xab;
-  Tx_buff[2] = 0xac;
+
+//  NRF24L01_Init();
+//  __HAL_SPI_ENABLE(&hspi1);
+//  HAL_Delay(1000);
+//  while(NRF24L01_Check() != 0)
+//  {
+//      HAL_GPIO_WritePin(LED3_GPIO_Port,LED3_Pin,GPIO_PIN_RESET);
+//      HAL_Delay(100);
+//  }
+//  HAL_GPIO_WritePin(LED3_GPIO_Port,LED3_Pin,GPIO_PIN_SET);
+//  NRF24L01_RX_Mode();
+//  
+//  
+////  HAL_TIM_Base_Start_IT(&htim2);
+//  HAL_TIM_Base_Start_IT(&htim7);
+//  
+//  Tx_buff[0] = 0xaa;
+//  Tx_buff[1] = 0xab;
+//  Tx_buff[2] = 0xac;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -139,19 +140,19 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-    
-//        READ_MPU6050();
-//        Prepare_6050_Data();
-    
-    if(NRF24L01_TxPacket(Tx_buff) != 0xff)
-    {
-      HAL_GPIO_TogglePin(LED3_GPIO_Port,LED3_Pin);
-    }
-//    if(HAL_GPIO_ReadPin(NRF_IRQ_GPIO_Port,NRF_IRQ_Pin))
+//    
+////        READ_MPU6050();
+////        Prepare_6050_Data();
+//    
+//    if(NRF24L01_RxPacket(Tx_buff) == 0)
 //    {
 //      HAL_GPIO_TogglePin(LED3_GPIO_Port,LED3_Pin);
-//      HAL_Delay(1000);
 //    }
+////    if(HAL_GPIO_ReadPin(NRF_IRQ_GPIO_Port,NRF_IRQ_Pin))
+////    {
+////      HAL_GPIO_TogglePin(LED3_GPIO_Port,LED3_Pin);
+////      HAL_Delay(1000);
+////    }
     HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);
     HAL_Delay(1000);
   }
