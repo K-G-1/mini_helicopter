@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xB</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;             ../Drivers/STM32F1xx_HAL_Driver/Inc;             ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;             ../Drivers/CMSIS/Device/ST/STM32F1xx/Include;             ../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Inc;   ../Drivers/STM32F1xx_HAL_Driver/Inc;   ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;   ../Drivers/CMSIS/Device/ST/STM32F1xx/Include;   ../Drivers/CMSIS/Include;   ..\Src\Algorithm\Algorithm_filter;   ..\Src\Algorithm\Algorithm_math;   ..\Inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -403,6 +403,26 @@
               <FilePath>..\Src\mpu6050.c</FilePath>
             </File>
             <File>
+              <FileName>Algorithm_filter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\Algorithm\Algorithm_filter\Algorithm_filter.c</FilePath>
+            </File>
+            <File>
+              <FileName>Algorithm_math.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\Algorithm\Algorithm_math\Algorithm_math.c</FilePath>
+            </File>
+            <File>
+              <FileName>IMU.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\IMU.c</FilePath>
+            </File>
+            <File>
+              <FileName>sand_data.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\sand_data.c</FilePath>
+            </File>
+            <File>
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Src/main.c</FilePath>
@@ -441,6 +461,26 @@
               <FileName>stm32f1xx_hal_msp.c</FileName>
               <FileType>1</FileType>
               <FilePath>../Src/stm32f1xx_hal_msp.c</FilePath>
+            </File>
+            <File>
+              <FileName>RC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\RC.c</FilePath>
+            </File>
+            <File>
+              <FileName>stmflash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\stmflash.c</FilePath>
+            </File>
+            <File>
+              <FileName>param.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\param.c</FilePath>
+            </File>
+            <File>
+              <FileName>control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\control.c</FilePath>
             </File>
           </Files>
         </Group>

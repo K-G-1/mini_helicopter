@@ -1,6 +1,5 @@
 flight_103\24l01.o: ..\Src\24l01.c
-flight_103\24l01.o: ../Inc/24l01.h
-flight_103\24l01.o: ../Inc/spi.h
+flight_103\24l01.o: ../Inc/RC.h
 flight_103\24l01.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal.h
 flight_103\24l01.o: ../Inc/stm32f1xx_hal_conf.h
 flight_103\24l01.o: ../Inc/main.h
@@ -30,3 +29,5 @@ flight_103\24l01.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
 flight_103\24l01.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 flight_103\24l01.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 flight_103\24l01.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
+flight_103\24l01.o: ../Inc/24l01.h
+flight_103\24l01.o: ../Inc/spi.h

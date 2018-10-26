@@ -47,7 +47,7 @@ uint8_t mpu6050_init(void)
 
 void READ_MPU6050(void)
 {
-//    HAL_I2C_Mem_Read(&hi2c1,MPU_6050_ADDR,MPU_ACCEL_XOUTH_REG,I2C_MEMADD_SIZE_8BIT,mpu6050_buffer,14,0x80);
+    HAL_I2C_Mem_Read(&hi2c1,MPU_6050_ADDR,MPU_ACCEL_XOUTH_REG,I2C_MEMADD_SIZE_8BIT,mpu6050_buffer,14,0x80);
   sensor.acc.origin.x=	((int16_t)mpu6050_buffer[0]<<8)|mpu6050_buffer[1];             //读取计算X轴数据
   sensor.acc.origin.y =	((int16_t)mpu6050_buffer[2]<<8)|mpu6050_buffer[3];             //读取计算Y轴数据
   sensor.acc.origin.z =	((int16_t)mpu6050_buffer[4]<<8)|mpu6050_buffer[5];             //读取计算Z轴数据

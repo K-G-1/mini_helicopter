@@ -78,6 +78,7 @@ uint8_t NRF24L01_RxPacket(uint8_t *rxbuf);				//接收一个包的数据
 
 
 void nrf_sand_rc(void);
+void ReceiveData(uint8_t *rxbuf);
 #endif
 
 

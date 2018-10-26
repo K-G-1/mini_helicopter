@@ -1,4 +1,4 @@
-
+#include "RC.h"
 #include "24l01.h"
 //24L01操作线
 #define NRF24L01_CE_L    HAL_GPIO_WritePin(NRF_CE_GPIO_Port,NRF_CE_Pin,GPIO_PIN_RESET);//24L01片选信号
@@ -29,7 +29,16 @@ uint8_t SPI1_ReadWriteByte(uint8_t TxData)
 	return rxdata;	
 
 }
+#define ReceiveFrameHeaderH	0xAA
+#define ReceiveFrameHeaderL	0xAA
 
+#define FrameHeaderH_Addr		0u
+#define FrameHeaderL_Addr		1u
+#define FuncWord_Addr	2u
+#define THR_Addr     	3u
+#define YAW_Addr	 	5u
+#define ROL_Addr		9u
+#define PIT_Addr		7u
     
 const uint8_t TX_ADDRESS[TX_ADR_WIDTH]={0xAA,0xBB,0xCC,0x00,0x01}; //发送地址
 const uint8_t RX_ADDRESS[RX_ADR_WIDTH]={0xAA,0xBB,0xCC,0x00,0x01};
@@ -235,15 +244,12 @@ void NRF24L01_TX_Mode(void)
 	NRF24L01_CE_H;//CE为高,10us后启动发送
 }
 
- uint8_t Tx_buff[30] ;
+ uint8_t Tx_buff[30],Rx_buff[30];
  uint16_t RC_ADC_Buff[4] ;
 
 
 void nrf_sand_rc()
-{
-
-    
-    
+{ 
     Tx_buff[0] = 0xaa;
     Tx_buff[1] = 0xaa;
     Tx_buff[2] = 0x02;
@@ -259,13 +265,46 @@ void nrf_sand_rc()
     
     Tx_buff[9] = RC_ADC_Buff[3]>>8;
     Tx_buff[10] = RC_ADC_Buff[3];
-    
-    
-    
-    
-    
+ 
 }
 
+
+
+void ReceiveData(uint8_t *rxbuf)
+{
+  uint8_t FrameHeader[2] = {0,0};
+	uint8_t FuncWord = 0;
+
+	FrameHeader[0] = rxbuf[FrameHeaderH_Addr];
+	FrameHeader[1] = rxbuf[FrameHeaderL_Addr];
+	
+	FuncWord = rxbuf[FuncWord_Addr];
+	
+	if((FrameHeader[0] != ReceiveFrameHeaderH) || (FrameHeader[1] != ReceiveFrameHeaderL))
+	{
+		return;
+	}
+	
+	switch(FuncWord)
+	{
+		case 0x01:
+			break;
+		case 0x03:
+			break;
+		case 0x02:
+			RX_Data.THROTTLE = ((uint16_t)rxbuf[THR_Addr] << 8) \
+								  + (uint16_t)rxbuf[THR_Addr + 1];	
+			RX_Data.YAW      = ((uint16_t)rxbuf[YAW_Addr] << 8) \
+								  + (uint16_t)rxbuf[YAW_Addr + 1];
+			RX_Data.ROLL     = ((uint16_t)rxbuf[ROL_Addr] << 8) \
+								  + (uint16_t)rxbuf[ROL_Addr + 1];
+			RX_Data.PITCH    = ((uint16_t)rxbuf[PIT_Addr] << 8) \
+								  + (uint16_t)rxbuf[PIT_Addr + 1];		
+			break;
+		default :
+			break;
+	}
+}
 
 
 

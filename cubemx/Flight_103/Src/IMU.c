@@ -1,6 +1,5 @@
-#include "IMU.h"
 #include "math.h"
-
+#include "imu.h"
 #include "mpu6050.h"
 #include "Algorithm_math.h"
 #include "Algorithm_filter.h"
@@ -124,7 +123,7 @@ float Kp= 35.0f;
 float Ki= 0.02f;
 //#define Kp 0.5f                        // 比例增益支配收敛率accelerometer/magnetometer  
 //#define Ki 0.002f                     // 积分增益支配执政速率陀螺仪的衔接gyroscopeases  //KP,KI需要调的
-#define halfT 0.0025f                 // 采样周期的一半  本程序 2.5MS 采集一次  所以 halfT是1.25MS
+#define halfT 0.001f                 // 采样周期的一半  本程序 2.5MS 采集一次  所以 halfT是1.25MS
 
 /**************************************
  * 函数名：Get_Attitude

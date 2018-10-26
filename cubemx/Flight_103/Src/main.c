@@ -48,6 +48,7 @@
 /* USER CODE BEGIN Includes */
 #include "mpu6050.h"
 #include "24l01.h"
+#include "sand_data.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
@@ -66,6 +67,7 @@ void SystemClock_Config(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
+uint8_t aRxBuffer[10];
 
 /* USER CODE END 0 */
 
@@ -103,7 +105,9 @@ int main(void)
   MX_TIM3_Init();
   MX_TIM4_Init();
   MX_I2C1_Init();
+  MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
+  
 //  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);   
 //  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);  
 //  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);  
@@ -113,7 +117,23 @@ int main(void)
       HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);
       HAL_Delay(1000);
   }
+  Get_6050_offest();
   
+  
+  NRF24L01_Init();
+  while(NRF24L01_Check()!= 0)
+  {
+    HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);
+      HAL_Delay(500);
+  }
+  
+  NRF24L01_RX_Mode();
+  
+  
+  HAL_TIM_Base_Start_IT(&htim4);
+  HAL_TIM_Base_Start_IT(&htim2);
+
+  HAL_UART_Receive_IT(&huart1, (uint8_t *)aRxBuffer, 1);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -124,8 +144,8 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
-    HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
-    HAL_Delay(1000);
+    //必须要有，不然有的时候不会产生接受中断
+    __HAL_UART_ENABLE_IT(&huart1, UART_IT_RXNE);
   }
   /* USER CODE END 3 */
 
@@ -182,7 +202,13 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
 
+      
+      Data_Receive_Prepare(aRxBuffer[0]);
+      HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);
+}
 /* USER CODE END 4 */
 
 /**

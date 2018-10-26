@@ -35,3 +35,4 @@ flight_103\main.o: ../Inc/usart.h
 flight_103\main.o: ../Inc/gpio.h
 flight_103\main.o: ../Inc/mpu6050.h
 flight_103\main.o: ../Inc/24l01.h
+flight_103\main.o: ../Inc/sand_data.h

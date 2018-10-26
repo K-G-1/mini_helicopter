@@ -51,6 +51,7 @@
 
 /* USER CODE END Includes */
 
+extern TIM_HandleTypeDef htim2;
 extern TIM_HandleTypeDef htim3;
 extern TIM_HandleTypeDef htim4;
 
@@ -60,6 +61,7 @@ extern TIM_HandleTypeDef htim4;
 
 extern void _Error_Handler(char *, int);
 
+void MX_TIM2_Init(void);
 void MX_TIM3_Init(void);
 void MX_TIM4_Init(void);
                     
@@ -68,6 +70,7 @@ void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
 
 /* USER CODE BEGIN Prototypes */
 void USER_PWM_SetDutyRatio(TIM_HandleTypeDef *htim,uint32_t Channel,uint8_t value);
+void Moto_PwmRflash(TIM_HandleTypeDef *htim,uint16_t Moto1PWM,uint16_t Moto2PWM,uint16_t Moto3PWM,uint16_t Moto4PWM);
 /* USER CODE END Prototypes */
 
 #ifdef __cplusplus
