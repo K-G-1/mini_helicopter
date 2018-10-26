@@ -22,7 +22,7 @@ extern int IRQ_timeout;
 
 void param_init()
 {
-    Rc_Data.THROTTLE = 1100;
+    Rc_Data.THROTTLE = 1000;
     Rc_Data.PITCH = 1500;
     Rc_Data.ROLL = 1500;
     Rc_Data.YAW = 1500;
@@ -35,7 +35,7 @@ void param_init()
     Read_PID_shell();
     Read_PID_core();
     mode = 1;
-    ARMED =1 ;
+ 
 }
 int main(void)
 {	 
@@ -63,7 +63,7 @@ int main(void)
     NRF_IRQ_INIT();
     
     
-	Jtag_disable();
+    Jtag_disable();
     IIC_Init();
 #if USE_IMU_DEVICE
     while(mpu6050_init())

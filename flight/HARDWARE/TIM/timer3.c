@@ -177,7 +177,7 @@ void TIM4_IRQHandler(void)
         //PID¿ØÖÆ²¿·Ö
         CONTROL(angle.roll,angle.pitch,angle.yaw);
         
-        if(TIM4_times % 5==0)
+        if(ARMED&& TIM4_times % 5==0)
         {
              LED0 =!LED0;
         }
@@ -191,6 +191,8 @@ void TIM4_IRQHandler(void)
             sand_RC_data();
             sand_Motor_data();
         }
+        else if(!ARMED && TIM4_times %100 == 0)
+          LED0 =!LED0;
         
 #else
 		PWM_cnt++;

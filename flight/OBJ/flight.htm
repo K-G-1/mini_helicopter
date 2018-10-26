@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\OBJ\flight.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\OBJ\flight.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Wed Oct 24 17:03:47 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sat Oct 27 02:20:05 2018
 <BR><P>
 <H3>Maximum Stack Usage =        312 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -234,7 +234,7 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_sys_exit
 </UL>
 
-<P><STRONG><a name="[5b]"></a>param_init</STRONG> (Thumb, 50 bytes, Stack size 8 bytes, main.o(.text))
+<P><STRONG><a name="[5b]"></a>param_init</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, main.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = param_init &rArr; Read_PID_shell &rArr; __aeabi_fdiv
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Read_PID_shell
@@ -521,7 +521,7 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f10x_hd.o(RESET)
 </UL>
-<P><STRONG><a name="[2b]"></a>TIM4_IRQHandler</STRONG> (Thumb, 158 bytes, Stack size 8 bytes, timer3.o(.text))
+<P><STRONG><a name="[2b]"></a>TIM4_IRQHandler</STRONG> (Thumb, 208 bytes, Stack size 8 bytes, timer3.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 312<LI>Call Chain = TIM4_IRQHandler &rArr; Get_Attitude &rArr; IMUupdate1 &rArr; atan2 &rArr; atan &rArr; __kernel_poly &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;sand_RC_data
@@ -792,17 +792,17 @@ Global Symbols
 
 <P><STRONG><a name="[175]"></a>PID_Param_init</STRONG> (Thumb, 106 bytes, Stack size 0 bytes, control.o(.text), UNUSED)
 
-<P><STRONG><a name="[95]"></a>CONTROL</STRONG> (Thumb, 2264 bytes, Stack size 40 bytes, control.o(.text))
+<P><STRONG><a name="[95]"></a>CONTROL</STRONG> (Thumb, 1514 bytes, Stack size 40 bytes, control.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = CONTROL &rArr; __aeabi_fmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[6e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Moto_PwmRflash
 <LI><a href="#[c5]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfrcmple
 <LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fmul
-<LI><a href="#[c6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_cfcmple
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_i2f
 <LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fdiv
 <LI><a href="#[b3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fsub
+<LI><a href="#[c3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_frsub
 <LI><a href="#[b4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_fadd
 </UL>
 <BR>[Called By]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM4_IRQHandler
@@ -818,7 +818,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM4_IRQHandler
 </UL>
 
-<P><STRONG><a name="[90]"></a>Deblocking</STRONG> (Thumb, 214 bytes, Stack size 0 bytes, rc.o(.text))
+<P><STRONG><a name="[90]"></a>Deblocking</STRONG> (Thumb, 204 bytes, Stack size 0 bytes, rc.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[2b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;TIM4_IRQHandler
 </UL>
 
@@ -858,7 +858,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[6e]"></a>Moto_PwmRflash</STRONG> (Thumb, 22 bytes, Stack size 8 bytes, pwm.o(.text))
+<P><STRONG><a name="[6e]"></a>Moto_PwmRflash</STRONG> (Thumb, 24 bytes, Stack size 8 bytes, pwm.o(.text))
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = Moto_PwmRflash
 </UL>
 <BR>[Called By]<UL><LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONTROL
@@ -2628,7 +2628,6 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[c7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;FL_ABS
 <LI><a href="#[c4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;data_limit
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VariableParameter
-<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONTROL
 </UL>
 
 <P><STRONG><a name="[147]"></a>_fcmple</STRONG> (Thumb, 104 bytes, Stack size 16 bytes, fleqf.o(x$fpl$fleqf), UNUSED)
@@ -2695,11 +2694,12 @@ Global Symbols
 <BR><BR>[Calls]<UL><LI><a href="#[14a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__fpl_fcmple_InfNaN
 </UL>
 
-<P><STRONG><a name="[c3]"></a>__aeabi_frsub</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, faddsub_clz.o(x$fpl$frsb), UNUSED)
+<P><STRONG><a name="[c3]"></a>__aeabi_frsub</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, faddsub_clz.o(x$fpl$frsb))
 <BR><BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SIN
 <LI><a href="#[c8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;COS
 <LI><a href="#[bf]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;VariableParameter
 <LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Q_rsqrt
+<LI><a href="#[95]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;CONTROL
 </UL>
 
 <P><STRONG><a name="[14b]"></a>_frsb</STRONG> (Thumb, 20 bytes, Stack size 0 bytes, faddsub_clz.o(x$fpl$frsb), UNUSED)

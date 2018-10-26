@@ -2,7 +2,7 @@
 #define __mpu9250_H__
 #include "sys.h"
 #include "imu.h"
-
+#include "stdint.h"
 #define USE_IMU_DEVICE 1	//0:9250 1:6050
 
 #define RtA 		57.324841f		//  180/3.1415  弧度转化为角度		
@@ -155,7 +155,7 @@ struct _short{
 				short y;
 				short z;};				
 struct _int16{
-         int16_t x;
+       int16_t x;
 	     int16_t y;
 	     int16_t z;};	
 

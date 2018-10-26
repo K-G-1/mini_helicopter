@@ -22,7 +22,7 @@ void RC_Receive_Anl(void)
   Rc_Data.ROLL  = 3000- RX_Data.ROLL;
 
   temp = RX_Data.THROTTLE - 1500;
-  if(i >=50)
+  if(i >=20)
   {
     i = 0;
     if(temp_old-temp >300 || (temp_old-temp < -300))
@@ -52,17 +52,17 @@ void Deblocking(void)
 	 /*    |     \   |          |  /      |    */
 	 /*     —————————            —————————     */
 	 /*   油门拉到最低         摇杆推到左上角  */
-   if(ARMED && Rc_Data.ROLL >= 1800 && Rc_Data.PITCH <= 1200 && Rc_Data.THROTTLE <= 1200 &&  Rc_Data.YAW <= 1200)		
+   if(!ARMED && Rc_Data.ROLL >= 1800 && Rc_Data.PITCH >= 1800 && Rc_Data.THROTTLE <= 1200 &&  Rc_Data.YAW >= 1800)		
 	 {  
 			time1++; 
 	 }	
 	 else 
 		 time1=0;
-	 if(time1>30 && ARMED) 
+	 if(time1>30 && !ARMED) 
 	 { 
-			ARMED = 0; 
+			ARMED = 1; 
 			time1 = 0;
-			LED1=0;
+
 	 }
    /*               遥控解锁                 */
 	 /*     —————————            —————————     */
@@ -72,18 +72,18 @@ void Deblocking(void)
 	 /*    |   /     |          |      \  |    */
 	 /*     —————————            —————————     */
 	 /*   油门拉到最低         摇杆推到右上角  */
-   if(!ARMED && Rc_Data.YAW >= 1800 && Rc_Data.PITCH <= 1200 && Rc_Data.THROTTLE <= 1200 &&  Rc_Data.ROLL <= 1200)		
+   if(ARMED && Rc_Data.YAW <= 1200 && Rc_Data.PITCH >= 1800 && Rc_Data.THROTTLE <= 1200 &&  Rc_Data.ROLL <= 1200)		
 		{
 			time2++; 
 			
 		}	
 	 else 
 		 time2=0;
-	 if(time2>=30 && !ARMED)
+	 if(time2>=30 && ARMED)
 	 {
-		  ARMED = 1; 
+		  ARMED = 0; 
 			time2 = 0;
-		  LED1=1;
+
 	 }
 
 }
