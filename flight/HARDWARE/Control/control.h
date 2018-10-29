@@ -4,6 +4,7 @@
 #include "sys.h"
 
 struct _pid{
+  float error;
         float kp;
 			  float ki;
 	      float kd;

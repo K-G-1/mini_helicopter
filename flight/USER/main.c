@@ -79,7 +79,7 @@ int main(void)
 	tim4_init(1000-1,7200-1);
 #endif	
 	Jtag_disable();
-	pwm_init(1200-1,72-1); //1Khz
+	pwm_init(4000-1,1-1); //1Khz
     Moto_PwmRflash(0,0,0,0);
     
     param_init();

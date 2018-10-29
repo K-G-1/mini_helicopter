@@ -56,13 +56,13 @@ void PID_Param_init(void)
 void CONTROL(float rol, float pit, float yaw)
 {
 	static float roll_old,pitch_old;
-//	float Yawtemp1;
+	static float Yawtemp1;
 	
 
 		//*****************外环PID**************************//
 		//俯仰计算//
-		pit= pit -(float)(Rc_Data.PITCH - Rc_Data.pitch_offset)/20.0f ;
-		ctrl.pitch.shell.increment += pit;   //俯仰方向误差积分
+		ctrl.pitch.shell.error = pit -(float)(Rc_Data.PITCH - Rc_Data.pitch_offset)/20.0f ;
+		ctrl.pitch.shell.increment += ctrl.pitch.shell.error;   //俯仰方向误差积分
 			
 			//积分限幅
 		if(ctrl.pitch.shell.increment > ctrl.pitch.shell.increment_max)
@@ -70,12 +70,12 @@ void CONTROL(float rol, float pit, float yaw)
 		else if(ctrl.pitch.shell.increment < -ctrl.pitch.shell.increment_max)
 				ctrl.pitch.shell.increment = -ctrl.pitch.shell.increment_max; 
 		
-		ctrl.pitch.shell.pid_out = ctrl.pitch.shell.kp * pit + ctrl.pitch.shell.ki * ctrl.pitch.shell.increment + ctrl.pitch.shell.kd * (pit - pitch_old);
+		ctrl.pitch.shell.pid_out = ctrl.pitch.shell.kp * ctrl.pitch.shell.error + ctrl.pitch.shell.ki * ctrl.pitch.shell.increment + ctrl.pitch.shell.kd * sensor.gyro.averag.y;
 		pitch_old = pit; //储存 俯仰偏差
 		
 		//横滚计算//
-		rol= rol - (float)(Rc_Data.ROLL - Rc_Data.roll_offset)/20.0f  ;
-		ctrl.roll.shell.increment += rol;  //横滚方向误差积分
+		ctrl.roll.shell.error= rol - (float)(Rc_Data.ROLL - Rc_Data.roll_offset)/20.0f  ;
+		ctrl.roll.shell.increment += ctrl.roll.shell.error;  //横滚方向误差积分
 			
 			//积分限幅
 		if(ctrl.roll.shell.increment > ctrl.roll.shell.increment_max)
@@ -83,17 +83,19 @@ void CONTROL(float rol, float pit, float yaw)
 		else if(ctrl.roll.shell.increment < -ctrl.roll.shell.increment_max)
 				ctrl.roll.shell.increment = -ctrl.roll.shell.increment_max;	 
      
-      ctrl.roll.shell.pid_out  = ctrl.roll.shell.kp * rol + ctrl.roll.shell.ki * ctrl.roll.shell.increment + ctrl.roll.shell.kd * (rol - roll_old);
+      ctrl.roll.shell.pid_out  = ctrl.roll.shell.kp * ctrl.roll.shell.error + ctrl.roll.shell.ki * ctrl.roll.shell.increment + ctrl.roll.shell.kd * sensor.gyro.averag.x;
    
     
 		roll_old = rol;  //储存 横滚偏差
 
 		//航向计算////////////
-		if(sensor.gyro.averag.z >= 200 || sensor.gyro.averag.z<= -200)   
-      ctrl.yaw.shell.pid_out = ctrl.yaw.shell.kp * (Rc_Data.YAW - Rc_Data.yaw_offset)/20 + ctrl.yaw.shell.kd * sensor.gyro.averag.z;	
-    else
-      ctrl.yaw.shell.pid_out = ctrl.yaw.shell.kp * (Rc_Data.YAW - Rc_Data.yaw_offset)/20;
-		
+    ctrl.yaw.shell.error = -(yaw - Yawtemp1) - (Rc_Data.YAW - Rc_Data.yaw_offset)/20 ;
+    ctrl.yaw.shell.kp_out = ctrl.yaw.shell.kp * ctrl.yaw.shell.error;
+    ctrl.yaw.shell.kd_out = ctrl.yaw.shell.kd * sensor.gyro.averag.z;
+    ctrl.yaw.shell.pid_out = ctrl.yaw.shell.kp_out + ctrl.yaw.shell.kd_out;
+		if(!ARMED)
+      Yawtemp1 = yaw;
+    
 //		Yaw_offest_tem=Yaw_offest + (Rc_Data.YAW - Rc_Data.yaw_offset)/20 ;
 //		if(Yaw_offest_tem<0)
 //			Yaw_offest_tem=Yaw_offest_tem+360;
@@ -180,7 +182,7 @@ void CONTROL(float rol, float pit, float yaw)
 	
 	if(ARMED)
     
-		Moto_PwmRflash(Moto_duty[0],Moto_duty[1],Moto_duty[2],Moto_duty[3]);
+		Moto_PwmRflash(Moto_duty[0] * 4,Moto_duty[1]*4,Moto_duty[2]*4,Moto_duty[3]*4);
 	else 
 	{
 
