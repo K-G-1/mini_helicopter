@@ -1,0 +1,1491 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+H:\程序与AD图\MCU程序\keil ARM\平衡车\Prj\平衡车.uvproj
+Project File Date:  06/26/2015
+
+<h2>Output:</h2>
+Build target 'STM32_CAR'
+assembling startup_stm32f10x_hd.s...
+compiling main.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+..\App\main.c(18): warning:  #951-D: return type of function "main" must be "int"
+..\App\main.c:   void main(void)
+..\App\main.c:        ^
+..\App\main.c: ..\App\main.c: 2 warnings, 18 errors
+compiling core_cm3.c...
+compiling system_stm32f10x.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\CMSIS\system_stm32f10x.c: 1 warning, 18 errors
+compiling misc.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\misc.c: 1 warning, 18 errors
+compiling stm32f10x_adc.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_adc.c: 1 warning, 18 errors
+compiling stm32f10x_bkp.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_bkp.c: 1 warning, 18 errors
+compiling stm32f10x_can.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_can.c: 1 warning, 18 errors
+compiling stm32f10x_cec.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_cec.c: 1 warning, 18 errors
+compiling stm32f10x_crc.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_crc.c: 1 warning, 18 errors
+compiling stm32f10x_dac.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_dac.c: 1 warning, 18 errors
+compiling stm32f10x_dbgmcu.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_dbgmcu.c: 1 warning, 18 errors
+compiling stm32f10x_dma.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_dma.c: 1 warning, 18 errors
+compiling stm32f10x_exti.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_exti.c: 1 warning, 18 errors
+compiling stm32f10x_flash.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_flash.c: 1 warning, 18 errors
+compiling stm32f10x_fsmc.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_fsmc.c: 1 warning, 18 errors
+compiling stm32f10x_gpio.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_gpio.c: 1 warning, 18 errors
+compiling stm32f10x_i2c.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_i2c.c: 1 warning, 18 errors
+compiling stm32f10x_iwdg.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_iwdg.c: 1 warning, 18 errors
+compiling stm32f10x_pwr.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_pwr.c: 1 warning, 18 errors
+compiling stm32f10x_rcc.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_rcc.c: 1 warning, 18 errors
+compiling stm32f10x_rtc.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_rtc.c: 1 warning, 18 errors
+compiling stm32f10x_sdio.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_sdio.c: 1 warning, 18 errors
+compiling stm32f10x_spi.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_spi.c: 1 warning, 18 errors
+compiling stm32f10x_tim.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_tim.c: 1 warning, 18 errors
+compiling stm32f10x_usart.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_usart.c: 1 warning, 18 errors
+compiling stm32f10x_wwdg.c...
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(23): error:  #256: invalid redeclaration of type name "s32" (declared at line 487 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  s32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                        ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(27): error:  #256: invalid redeclaration of type name "sc32" (declared at line 491 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef signed long  const sc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(31): error:  #256: invalid redeclaration of type name "vs32" (declared at line 495 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  vs32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(35): error:  #256: invalid redeclaration of type name "vsc32" (declared at line 499 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile signed long  const vsc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                       ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(39): error:  #256: invalid redeclaration of type name "u32" (declared at line 503 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  u32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(43): error:  #256: invalid redeclaration of type name "uc32" (declared at line 507 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef unsigned long  const uc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(47): error:  #256: invalid redeclaration of type name "vu32" (declared at line 511 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  vu32;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                   ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(51): error:  #256: invalid redeclaration of type name "vuc32" (declared at line 515 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef volatile unsigned long  const vuc32;  /* Read Only */
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                         ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "RESET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #101: "SET" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "FlagStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                          ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(57): error:  #256: invalid redeclaration of type name "ITStatus" (declared at line 519 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {RESET = 0, SET = !RESET} FlagStatus, ITStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                      ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "DISABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #101: "ENABLE" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(59): error:  #256: invalid redeclaration of type name "FunctionalState" (declared at line 521 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {DISABLE = 0, ENABLE = !DISABLE} FunctionalState;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "ERROR" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                 ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #101: "SUCCESS" has already been declared in the current scope
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                            ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h(62): error:  #256: invalid redeclaration of type name "ErrorStatus" (declared at line 524 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:   typedef enum {ERROR = 0, SUCCESS = !ERROR} ErrorStatus;
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_type.h:                                              ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h(147): warning:  #47-D: incompatible redefinition of macro "HSE_Value" (declared at line 528 of "..\CMSIS\stm32f10x.h")
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:   #define HSE_Value    ((u32)8000000) /* Value of the External oscillator in Hz*/
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h:           ^
+D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x\stm32f10x_conf.h: ..\FWlib\src\stm32f10x_wwdg.c: 1 warning, 18 errors
+Target not created

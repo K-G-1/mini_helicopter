@@ -235,7 +235,7 @@ void StartTask_NRF(void const * argument)
     }
     
     
-    osDelay(100);
+    osDelay(5);
   }
   /* USER CODE END StartTask_NRF */
 }
@@ -322,7 +322,7 @@ void Start_Param_Task(void const * argument)
       STMFLASH_Write(0x0800FC00,(uint16_t*)RC_offest,4);
     }
     
-    osDelay(1);
+    osDelay(100);
   }
   /* USER CODE END Start_Param_Task */
 }

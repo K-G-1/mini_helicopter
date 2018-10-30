@@ -200,15 +200,15 @@ void Draw_BMP(unsigned char x0,unsigned char y0,unsigned char x1,unsigned char y
 /**********************************************************/
 void oled_dis_str(void)
 {
-	OLED_P6x8Str(0,0,"Pitch:");
-	OLED_P6x8Str(0,1,"Roll :");
-	OLED_P6x8Str(0,2,"Yaw  :");
-	OLED_P6x8Str(0,3,"Thr  :");
+	OLED_P6x8Str(0,2,"Pitch:");
+	OLED_P6x8Str(0,3,"Roll :");
+	OLED_P6x8Str(0,1,"Yaw  :");
+	OLED_P6x8Str(0,0,"Thr  :");
     
-    OLED_P6x8Str(0,4,"P offest:");
-	OLED_P6x8Str(0,5,"R offest:");
-	OLED_P6x8Str(0,6,"Y offest:");
-	OLED_P6x8Str(0,7,"T offest:");
+    OLED_P6x8Str(0,6,"P offest:");
+	OLED_P6x8Str(0,7,"R offest:");
+	OLED_P6x8Str(0,5,"Y offest:");
+	OLED_P6x8Str(0,4,"T offest:");
     
 }
 

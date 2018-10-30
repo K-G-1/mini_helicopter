@@ -86,6 +86,11 @@ void TIM2_IRQHandler(void)
         
 //实际测试时，IRQ引脚中断没有作用，这就相当于每10ms检测一次       
         IRQ_timeout++;
+    
+        //遥控器部分
+        RC_Receive_Anl();
+        Deblocking();
+        mode_contrl();
         if(IRQ_timeout > 10)
         {
             IRQ_timeout = 0;
@@ -159,21 +164,30 @@ void TIM2_IRQHandler(void)
 
 void TIM4_IRQHandler(void)
 {
+  u8 sta = 0;
 	if( TIM_GetITStatus(TIM4 ,TIM_IT_Update)==SET)
 	{
         
 #if USE_IMU_DEVICE
         //标志位改变
         TIM4_times ++;
-        //遥控器部分
-        RC_Receive_Anl();
-        Deblocking();
-        mode_contrl();
+        
         //姿态部分
         READ_6050();
         Prepare_6050_Data();
         Get_Attitude();
-        
+        //
+    
+        sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
+        NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
+        if(sta&RX_OK)//接收到数据
+        {
+            NRF24L01_Read_Buf(RD_RX_PLOAD,Rx_buff,RX_PLOAD_WIDTH);//读取数据
+            NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+            ReceiveData(Rx_buff);
+            LED1 =!LED1;
+            
+        }
         //PID控制部分
         CONTROL(angle.roll,angle.pitch,angle.yaw);
         
@@ -193,6 +207,8 @@ void TIM4_IRQHandler(void)
         }
         else if(!ARMED && TIM4_times %100 == 0)
           LED0 =!LED0;
+        
+        
         
 #else
 		PWM_cnt++;

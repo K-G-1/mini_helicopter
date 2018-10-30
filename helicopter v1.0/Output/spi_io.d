@@ -1,0 +1,20 @@
+..\output\spi_io.o: ..\App\SPI_IO.c
+..\output\spi_io.o: ..\App\SPI_IO.h
+..\output\spi_io.o: ..\CMSIS\stm32f10x.h
+..\output\spi_io.o: ..\CMSIS\core_cm3.h
+..\output\spi_io.o: D:\Program Files (x86)\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\output\spi_io.o: ..\CMSIS\system_stm32f10x.h
+..\output\spi_io.o: ..\App\stm32f10x_conf.h
+..\output\spi_io.o: ..\FWlib\inc\stm32f10x_adc.h
+..\output\spi_io.o: ..\CMSIS\stm32f10x.h
+..\output\spi_io.o: ..\FWlib\inc\stm32f10x_dma.h
+..\output\spi_io.o: ..\FWlib\inc\stm32f10x_exti.h
+..\output\spi_io.o: ..\FWlib\inc\stm32f10x_flash.h
+..\output\spi_io.o: ..\FWlib\inc\stm32f10x_gpio.h
+..\output\spi_io.o: ..\FWlib\inc\stm32f10x_i2c.h
+..\output\spi_io.o: ..\FWlib\inc\stm32f10x_pwr.h
+..\output\spi_io.o: ..\FWlib\inc\stm32f10x_rcc.h
+..\output\spi_io.o: ..\FWlib\inc\stm32f10x_rtc.h
+..\output\spi_io.o: ..\FWlib\inc\stm32f10x_tim.h
+..\output\spi_io.o: ..\FWlib\inc\stm32f10x_usart.h
+..\output\spi_io.o: ..\FWlib\inc\misc.h

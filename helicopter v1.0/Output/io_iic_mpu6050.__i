@@ -1,0 +1,1 @@
+-c --cpu Cortex-M3 -g -O0 --apcs=interwork -I..\App -I..\CMSIS -I..\FWlib\inc -I..\FWlib\src -I "D:\Program Files (x86)\Keil\ARM\INC" -I "D:\Program Files (x86)\Keil\ARM\INC\ST\STM32F10x" -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD -o "..\Output\io_iic_mpu6050.o" --omf_browse "..\Output\io_iic_mpu6050.crf" --depend "..\Output\io_iic_mpu6050.d" "..\App\io_iic_mpu6050.c"

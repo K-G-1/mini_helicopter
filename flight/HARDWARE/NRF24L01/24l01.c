@@ -55,7 +55,7 @@ void NRF24L01_Init(void)
     SPI_InitStructure.SPI_CPOL = SPI_CPOL_Low;		//时钟悬空低
     SPI_InitStructure.SPI_CPHA = SPI_CPHA_1Edge;	//数据捕获于第1个时钟沿
     SPI_InitStructure.SPI_NSS = SPI_NSS_Soft;		//NSS信号由软件控制
-    SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_8;		//定义波特率预分频的值:波特率预分频值为16
+    SPI_InitStructure.SPI_BaudRatePrescaler = SPI_BaudRatePrescaler_16;		//定义波特率预分频的值:波特率预分频值为16
     SPI_InitStructure.SPI_FirstBit = SPI_FirstBit_MSB;	//数据传输从MSB位开始
     SPI_InitStructure.SPI_CRCPolynomial = 7;	//CRC值计算的多项式
     SPI_Init(SPI1, &SPI_InitStructure);  //根据SPI_InitStruct中指定的参数初始化外设SPIx寄存器
@@ -247,16 +247,16 @@ void NRF24L01_INT_RX_Mode(u8 *rxbuf)
 {
     u8 sta;
 
-    sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
-	NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,0x40); //清除TX_DS或MAX_RT中断标志
-    if(sta&RX_OK)//接收到数据
-	{
-		NRF24L01_Read_Buf(RD_RX_PLOAD,rxbuf,RX_PLOAD_WIDTH);//读取数据
-		NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
-        ReceiveData(rxbuf);
-        LED1 =!LED1;
-        IRQ_timeout = 0;
-	}
+  sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
+  NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,0x40); //清除TX_DS或MAX_RT中断标志
+  if(sta&RX_OK)//接收到数据
+  {
+    NRF24L01_Read_Buf(RD_RX_PLOAD,rxbuf,RX_PLOAD_WIDTH);//读取数据
+    NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+    ReceiveData(rxbuf);
+    LED1 =!LED1;
+    IRQ_timeout = 0;
+  }
 }
 
 void EXTI0_IRQHandler(void)

@@ -61,7 +61,7 @@ void CONTROL(float rol, float pit, float yaw)
 
 		//*****************外环PID**************************//
 		//俯仰计算//
-		ctrl.pitch.shell.error = pit -(float)(Rc_Data.PITCH - Rc_Data.pitch_offset)/20.0f ;
+		ctrl.pitch.shell.error = pit -(float)(Rc_Data.PITCH - Rc_Data.pitch_offset)/25.0f ;
 		ctrl.pitch.shell.increment += ctrl.pitch.shell.error;   //俯仰方向误差积分
 			
 			//积分限幅
@@ -74,7 +74,7 @@ void CONTROL(float rol, float pit, float yaw)
 		pitch_old = pit; //储存 俯仰偏差
 		
 		//横滚计算//
-		ctrl.roll.shell.error= rol - (float)(Rc_Data.ROLL - Rc_Data.roll_offset)/20.0f  ;
+		ctrl.roll.shell.error= rol - (float)(Rc_Data.ROLL - Rc_Data.roll_offset)/25.0f  ;
 		ctrl.roll.shell.increment += ctrl.roll.shell.error;  //横滚方向误差积分
 			
 			//积分限幅
@@ -89,7 +89,7 @@ void CONTROL(float rol, float pit, float yaw)
 		roll_old = rol;  //储存 横滚偏差
 
 		//航向计算////////////
-    ctrl.yaw.shell.error = -(yaw - Yawtemp1) - (Rc_Data.YAW - Rc_Data.yaw_offset)/20 ;
+    ctrl.yaw.shell.error = 0 - (Rc_Data.YAW - Rc_Data.yaw_offset)/20 ;
     ctrl.yaw.shell.kp_out = ctrl.yaw.shell.kp * ctrl.yaw.shell.error;
     ctrl.yaw.shell.kd_out = ctrl.yaw.shell.kd * sensor.gyro.averag.z;
     ctrl.yaw.shell.pid_out = ctrl.yaw.shell.kp_out + ctrl.yaw.shell.kd_out;

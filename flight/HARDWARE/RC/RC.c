@@ -22,13 +22,13 @@ void RC_Receive_Anl(void)
   Rc_Data.ROLL  = 3000- RX_Data.ROLL;
 
   temp = RX_Data.THROTTLE - 1500;
-  if(i >=20)
+  if(i >=15)
   {
     i = 0;
     if(temp_old-temp >300 || (temp_old-temp < -300))
       temp_old = temp;
     else
-      Rc_Data.THROTTLE += (temp /10);
+      Rc_Data.THROTTLE += (temp /15);
     temp_old = temp;
   }
 //  if(temp >= 0)
