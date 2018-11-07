@@ -78,9 +78,11 @@ int PWM_cnt = 0;
 int PWM_value = 0;
 extern int IRQ_timeout;
 extern u8 Rx_buff[33];
+extern u8 Tx_buff[33];
 void TIM2_IRQHandler(void)
 {
     u8 sta = 0;
+  uint8_t PA0_status = 0;
 	if( TIM_GetITStatus(TIM2 ,TIM_IT_Update)==SET)
 	{
         
@@ -95,16 +97,18 @@ void TIM2_IRQHandler(void)
         {
             IRQ_timeout = 0;
 
+            PA0_status = GPIO_ReadOutputDataBit(GPIOA,GPIO_Pin_0);
             sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
             NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
-            if(sta&RX_OK)//接收到数据
-            {
-                NRF24L01_Read_Buf(RD_RX_PLOAD,Rx_buff,RX_PLOAD_WIDTH);//读取数据
-                NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
-                ReceiveData(Rx_buff);
-                LED1 =!LED1;
-                
-            }
+            NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+//            if(sta&RX_OK)//接收到数据
+//            {
+//                NRF24L01_Read_Buf(RD_RX_PLOAD,Rx_buff,RX_PLOAD_WIDTH);//读取数据
+//                NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+//                ReceiveData(Rx_buff);
+//                LED1 =!LED1;
+//                
+//            }
         }
         
 #if USE_IMU_DEVICE
@@ -178,16 +182,16 @@ void TIM4_IRQHandler(void)
         Get_Attitude();
         //
     
-        sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
-        NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
-        if(sta&RX_OK)//接收到数据
-        {
-            NRF24L01_Read_Buf(RD_RX_PLOAD,Rx_buff,RX_PLOAD_WIDTH);//读取数据
-            NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
-            ReceiveData(Rx_buff);
-            LED1 =!LED1;
-            
-        }
+//        sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
+//        NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
+//        if(sta&RX_OK)//接收到数据
+//        {
+//            NRF24L01_Read_Buf(RD_RX_PLOAD,Rx_buff,RX_PLOAD_WIDTH);//读取数据
+//            NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+//            ReceiveData(Rx_buff);
+//            LED1 =!LED1;
+//            
+//        }
         //PID控制部分
         CONTROL(angle.roll,angle.pitch,angle.yaw);
         
@@ -207,8 +211,14 @@ void TIM4_IRQHandler(void)
         }
         else if(!ARMED && TIM4_times %100 == 0)
           LED0 =!LED0;
-        
-        
+        if(TIM4_times % 500 == 0)
+        {
+          NRF24L01_CE=0;
+          NRF24L01_TX_Mode();
+          NRF24L01_Write_Buf(WR_TX_PLOAD,Tx_buff,TX_PLOAD_WIDTH);//写数据到TX BUF  32个字节
+          NRF24L01_CE=1;//启动发送
+        }
+         
         
 #else
 		PWM_cnt++;

@@ -18,23 +18,13 @@ void RC_Receive_Anl(void)
   static int16_t temp_old = 0;
   i ++;
   Rc_Data.YAW = RX_Data.YAW;
-  Rc_Data.PITCH = 3000- RX_Data.PITCH;
-  Rc_Data.ROLL  = 3000- RX_Data.ROLL;
+  Rc_Data.PITCH = RX_Data.PITCH;
+  Rc_Data.ROLL  = RX_Data.ROLL;
 
   temp = RX_Data.THROTTLE - 1500;
-  if(i >=1)
-  {
-    i = 0;
-    if(temp_old-temp >300 || (temp_old-temp < -300))
-      temp_old = temp;
-    else
-      Rc_Data.THROTTLE += (temp /10);
-    temp_old = temp;
-  }
-//  if(temp >= 0)
-//    Rc_Data.THROTTLE = data_limit(Rc_Data.THROTTLE,RX_Data.THROTTLE,1000);
-//  else 
-//    Rc_Data.THROTTLE = data_limit(Rc_Data.THROTTLE,2000,RX_Data.THROTTLE);
+   Rc_Data.THROTTLE += (temp /50);
+  
+ 
   Rc_Data.THROTTLE = data_limit(Rc_Data.THROTTLE,2000,1000);
   
 }

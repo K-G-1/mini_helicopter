@@ -34,3 +34,4 @@
 ..\obj\control.o: ..\HARDWARE\9250\mpu9250.h
 ..\obj\control.o: ..\HARDWARE\IMU\imu.h
 ..\obj\control.o: ..\HARDWARE\PWM\pwm.h
+..\obj\control.o: ..\HARDWARE\Algorithm\Algorithm_math\Algorithm_math.h

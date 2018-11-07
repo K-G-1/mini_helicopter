@@ -366,6 +366,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
       {
         sand_Motor_data();
       }
+      else if (tim4_cnt %17 ==0)
+      {
+        sand_RC_data();
+      }
       if(tim4_cnt % 20 == 0 && ARMED)
         HAL_GPIO_TogglePin(LED0_GPIO_Port,LED0_Pin);
       
@@ -376,21 +380,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     
     if(htim->Instance == TIM2)
     {
-      sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
-      NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
-      if(sta&RX_OK)//接收到数据
-      {
-          NRF24L01_Read_Buf(RD_RX_PLOAD,Rx_buff,RX_PLOAD_WIDTH);//读取数据
-          NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
-          ReceiveData(Rx_buff);
-          RC_Receive_Anl();
-          
-          Deblocking();
-        
-        
-          sand_RC_data();
-          HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);
-      }
+      
     }
 }   
 

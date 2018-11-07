@@ -12,10 +12,10 @@
 #define FrameHeaderH_Addr		0u
 #define FrameHeaderL_Addr		1u
 #define FuncWord_Addr	2u
-#define THR_Addr     	3u
-#define YAW_Addr	 	5u
-#define ROL_Addr		9u
-#define PIT_Addr		7u
+#define THR_Addr     	2u
+#define YAW_Addr	 	4u
+#define ROL_Addr		8u
+#define PIT_Addr		6u
     
 const u8 TX_ADDRESS[TX_ADR_WIDTH]={0xAA,0xBB,0xCC,0x00,0x01}; //发送地址
 const u8 RX_ADDRESS[RX_ADR_WIDTH]={0xAA,0xBB,0xCC,0x00,0x01};
@@ -73,12 +73,13 @@ void NRF_IRQ_INIT(void)
     GPIO_InitTypeDef GPIO_InitStructure;
     EXTI_InitTypeDef EXTI_InitStructure;
  	NVIC_InitTypeDef NVIC_InitStructure;
-    
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_AFIO,ENABLE);   //使能GPIOB的时钟并开启复用时钟
     //GPIOE.2 中断线以及中断初始化配置   下降沿触发
-  	GPIO_EXTILineConfig(GPIO_PortSourceGPIOB,GPIO_PinSource0);
+  	GPIO_EXTILineConfig(GPIO_PortSourceGPIOA,GPIO_PinSource0);
     
     GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_0;   
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; //PB1 输入  
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; //PB1 输入 
+    GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;   //配置GPIO速率  
     GPIO_Init(GPIOA, &GPIO_InitStructure);
     
     
@@ -96,7 +97,7 @@ void NRF_IRQ_INIT(void)
   	NVIC_InitStructure.NVIC_IRQChannelCmd = ENABLE;								//使能外部中断通道
   	NVIC_Init(&NVIC_InitStructure); 
     
-//    GPIO_SetBits(GPIOA,GPIO_Pin_0);//PB0上拉
+    GPIO_SetBits(GPIOA,GPIO_Pin_0);//PB0上拉
 }
 //检测24L01是否存在
 //返回值:0，成功;1，失败	
@@ -211,14 +212,29 @@ u8 NRF24L01_RxPacket(u8 *rxbuf)
 void NRF24L01_RX_Mode(void)
 {
 	NRF24L01_CE=0;	  
-  	NRF24L01_Write_Buf(NRF_WRITE_REG+RX_ADDR_P0,(u8*)RX_ADDRESS,RX_ADR_WIDTH);//写RX节点地址
-	  
-  	NRF24L01_Write_Reg(NRF_WRITE_REG+EN_AA,0x01);    //使能通道0的自动应答    
-  	NRF24L01_Write_Reg(NRF_WRITE_REG+EN_RXADDR,0x01);//使能通道0的接收地址  	 
-  	NRF24L01_Write_Reg(NRF_WRITE_REG+RF_CH,40);	     //设置RF通信频率		  
-  	NRF24L01_Write_Reg(NRF_WRITE_REG+RX_PW_P0,RX_PLOAD_WIDTH);//选择通道0的有效数据宽度 	    
-  	NRF24L01_Write_Reg(NRF_WRITE_REG+RF_SETUP,0x0f);//设置TX发射参数,0db增益,2Mbps,低噪声增益开启   
-  	NRF24L01_Write_Reg(NRF_WRITE_REG+CONFIG, 0x0f);//配置基本工作模式的参数;PWR_UP,EN_CRC,16BIT_CRC,接收模式 
+//  NRF24L01_Write_Buf(NRF_WRITE_REG+TX_ADDR,(u8*)TX_ADDRESS,TX_ADR_WIDTH);//写TX节点地址 
+//  NRF24L01_Write_Buf(NRF_WRITE_REG+RX_ADDR_P0,(u8*)RX_ADDRESS,RX_ADR_WIDTH);//写RX节点地址
+
+//  NRF24L01_Write_Reg(NRF_WRITE_REG+EN_AA,0x01);    //使能通道0的自动应答    
+//  NRF24L01_Write_Reg(NRF_WRITE_REG+EN_RXADDR,0x01);//使能通道0的接收地址  	 
+//  NRF24L01_Write_Reg(NRF_WRITE_REG+RF_CH,40);	     //设置RF通信频率		  
+//  NRF24L01_Write_Reg(NRF_WRITE_REG+RX_PW_P0,RX_PLOAD_WIDTH);//选择通道0的有效数据宽度 	    
+//  NRF24L01_Write_Reg(NRF_WRITE_REG+RF_SETUP,0x0f);//设置TX发射参数,0db增益,2Mbps,低噪声增益开启   
+//  NRF24L01_Write_Reg(NRF_WRITE_REG+CONFIG, 0x0f);//配置基本工作模式的参数;PWR_UP,EN_CRC,16BIT_CRC,接收模式 
+ ///// 
+  	NRF24L01_Write_Reg(NRF_WRITE_REG+SETUP_AW, 0x03); //配置通信地址的长度，默认值时0x03,即地址长度为5字节
+    NRF24L01_Write_Buf(NRF_WRITE_REG+TX_ADDR,(uint8_t*)TX_ADDRESS,TX_ADR_WIDTH); //写TX节点地址 
+    NRF24L01_Write_Buf(NRF_WRITE_REG+RX_ADDR_P0,(uint8_t*)RX_ADDRESS,RX_ADR_WIDTH); //设置TX节点地址,主要为了使能ACK
+    NRF24L01_Write_Reg(NRF_WRITE_REG+SETUP_RETR,0x1A); //设置自动重发间隔时间:500us + 86us;最大自动重发次数:10次 0x1A
+    
+    NRF24L01_Write_Reg(NRF_WRITE_REG+EN_RXADDR,0x01);//使能通道0的接收地址  
+    NRF24L01_Write_Reg(NRF_WRITE_REG+EN_AA,0x01); //使能通道0自动应答
+    NRF24L01_Write_Reg(NRF_WRITE_REG+RX_PW_P0,RX_PLOAD_WIDTH);//选择通道0的有效数据宽度  
+    NRF24L01_Write_Buf(NRF_WRITE_REG+RX_ADDR_P0,(uint8_t*)RX_ADDRESS,RX_ADR_WIDTH); //写RX节点地址
+    NRF24L01_Write_Reg(NRF_WRITE_REG+RF_CH,40); //设置RF通道为40hz(1-64Hz都可以)
+    NRF24L01_Write_Reg(NRF_WRITE_REG+RF_SETUP,0x0f); //设置TX发射参数,0db增益,2Mbps,低噪声增益关闭 （注意：低噪声增益关闭/开启直接影响通信,要开启都开启，要关闭都关闭0x0f）
+    NRF24L01_Write_Reg(NRF_WRITE_REG+CONFIG,0x0F);//配置为接收模式
+		NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,0X7E); //清除所有中断,防止一进去接收模式就触发中断
   	NRF24L01_CE = 1; //CE为高,进入接收模式 
 }						 
 //该函数初始化NRF24L01到TX模式
@@ -237,7 +253,7 @@ void NRF24L01_TX_Mode(void)
   	NRF24L01_Write_Reg(NRF_WRITE_REG+SETUP_RETR,0x1a);//设置自动重发间隔时间:500us + 86us;最大自动重发次数:10次
   	NRF24L01_Write_Reg(NRF_WRITE_REG+RF_CH,40);       //设置RF通道为40
     NRF24L01_Write_Reg(NRF_WRITE_REG+RX_PW_P0,RX_PLOAD_WIDTH);
-  	NRF24L01_Write_Reg(NRF_WRITE_REG+RF_SETUP,0x07);  //设置TX发射参数,0db增益,2Mbps,低噪声增益开启   
+  	NRF24L01_Write_Reg(NRF_WRITE_REG+RF_SETUP,0x0f);  //设置TX发射参数,0db增益,2Mbps,低噪声增益开启   
   	NRF24L01_Write_Reg(NRF_WRITE_REG+CONFIG,0x0e);    //配置基本工作模式的参数;PWR_UP,EN_CRC,16BIT_CRC,接收模式,开启所有中断
 	NRF24L01_CE=1;//CE为高,10us后启动发送
 }
@@ -248,49 +264,55 @@ void NRF24L01_INT_RX_Mode(u8 *rxbuf)
     u8 sta;
 
   sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
-  NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,0x40); //清除TX_DS或MAX_RT中断标志
+  
+  if(sta&TX_OK)
+  {
+
+    NRF24L01_RX_Mode();
+    NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,TX_OK); //清除TX_DS或MAX_RT中断标志
+    NRF24L01_Write_Reg(FLUSH_TX,0xff);//清除RX FIFO寄存器 
+  }
   if(sta&RX_OK)//接收到数据
   {
+    
     NRF24L01_Read_Buf(RD_RX_PLOAD,rxbuf,RX_PLOAD_WIDTH);//读取数据
     NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+    NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,RX_OK); //清除TX_DS或MAX_RT中断标志
     ReceiveData(rxbuf);
     LED1 =!LED1;
     IRQ_timeout = 0;
+  }
+  if(sta & MAX_TX)                                  
+  {				
+    NRF24L01_RX_Mode();
+    NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,MAX_TX); //清除TX_DS或MAX_RT中断标志
+    NRF24L01_Write_Reg(FLUSH_TX,0xff);//清除RX FIFO寄存器 
   }
 }
 
 void EXTI0_IRQHandler(void)
 {
+  uint8_t PA0_status = 0;
+  PA0_status = GPIO_ReadOutputDataBit(GPIOA,GPIO_Pin_0);
+  if(EXTI_GetITStatus(EXTI_Line0) != RESET )
+	{
+
     NRF24L01_INT_RX_Mode(Rx_buff);
 
     EXTI_ClearITPendingBit(EXTI_Line0); 
+  }
+    
 }
 
 
 
 void ReceiveData(u8 *rxbuf)
 {
-  uint8_t FrameHeader[2] = {0,0};
-	uint8_t FuncWord = 0;
-
-	FrameHeader[0] = rxbuf[FrameHeaderH_Addr];
-	FrameHeader[1] = rxbuf[FrameHeaderL_Addr];
-	
-	FuncWord = rxbuf[FuncWord_Addr];
-	
-	if((FrameHeader[0] != ReceiveFrameHeaderH) || (FrameHeader[1] != ReceiveFrameHeaderL))
-	{
-		return;
-	}
-	
-	switch(FuncWord)
-	{
-		case 0x01:
-			break;
-		case 0x03:
-			break;
-		case 0x02:
-			RX_Data.THROTTLE = ((uint16_t)rxbuf[THR_Addr] << 8) \
+  if(*(rxbuf+11) != 0xa5)
+    return;
+  if(*rxbuf & 0x01)//当数据包是由遥控器的ADC采样完成时触发发送时 
+  {
+      RX_Data.THROTTLE = ((uint16_t)rxbuf[THR_Addr] << 8) \
 								  + (uint16_t)rxbuf[THR_Addr + 1];	
 			RX_Data.YAW      = ((uint16_t)rxbuf[YAW_Addr] << 8) \
 								  + (uint16_t)rxbuf[YAW_Addr + 1];
@@ -298,9 +320,6 @@ void ReceiveData(u8 *rxbuf)
 								  + (uint16_t)rxbuf[ROL_Addr + 1];
 			RX_Data.PITCH    = ((uint16_t)rxbuf[PIT_Addr] << 8) \
 								  + (uint16_t)rxbuf[PIT_Addr + 1];		
-			break;
-		default :
-			break;
-	}
+  }
 }
 

@@ -4,12 +4,18 @@
 #include "sys.h"
 
 struct _pid{
-  float error;
+        float Exp;
+        float error;
+        float increment;
+        float increment_max;
+        float differ;
+        float PreErr;
+  
         float kp;
 			  float ki;
 	      float kd;
-	      float increment;
-	      float increment_max;
+	      
+	      
 	      float kp_out;
 			  float ki_out;
 	      float kd_out;

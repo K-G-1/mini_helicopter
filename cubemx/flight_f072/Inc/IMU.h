@@ -1,6 +1,6 @@
 #ifndef __IMU_H_
 #define	__IMU_H_
-#include "stm32f1xx_hal.h"
+#include "stm32f0xx_hal.h"
 
 
 #define RtA 		57.324841f		//  180/3.1415  弧度转化为角度		

@@ -34,11 +34,11 @@ uint8_t SPI1_ReadWriteByte(uint8_t TxData)
 
 #define FrameHeaderH_Addr		0u
 #define FrameHeaderL_Addr		1u
-#define FuncWord_Addr	2u
-#define THR_Addr     	3u
-#define YAW_Addr	 	5u
-#define ROL_Addr		9u
-#define PIT_Addr		7u
+
+#define THR_Addr     	2u
+#define YAW_Addr	 	4u
+#define ROL_Addr		8u
+#define PIT_Addr		6u
     
 const uint8_t TX_ADDRESS[TX_ADR_WIDTH]={0xAA,0xBB,0xCC,0x00,0x01}; //发送地址
 const uint8_t RX_ADDRESS[RX_ADR_WIDTH]={0xAA,0xBB,0xCC,0x00,0x01};
@@ -272,38 +272,75 @@ void nrf_sand_rc()
 
 void ReceiveData(uint8_t *rxbuf)
 {
-  uint8_t FrameHeader[2] = {0,0};
-	uint8_t FuncWord = 0;
+//  uint8_t FrameHeader[2] = {0,0};
+//	uint8_t FuncWord = 0;
 
-	FrameHeader[0] = rxbuf[FrameHeaderH_Addr];
-	FrameHeader[1] = rxbuf[FrameHeaderL_Addr];
-	
-	FuncWord = rxbuf[FuncWord_Addr];
-	
-	if((FrameHeader[0] != ReceiveFrameHeaderH) || (FrameHeader[1] != ReceiveFrameHeaderL))
-	{
-		return;
-	}
-	
-	switch(FuncWord)
-	{
-		case 0x01:
-			break;
-		case 0x03:
-			break;
-		case 0x02:
-			RX_Data.THROTTLE = ((uint16_t)rxbuf[THR_Addr] << 8) \
-								  + (uint16_t)rxbuf[THR_Addr + 1];	
+//	FrameHeader[0] = rxbuf[FrameHeaderH_Addr];
+//	FrameHeader[1] = rxbuf[FrameHeaderL_Addr];
+//	
+//	FuncWord = rxbuf[FuncWord_Addr];
+//	
+//	if((FrameHeader[0] != ReceiveFrameHeaderH) || (FrameHeader[1] != ReceiveFrameHeaderL))
+//	{
+//		return;
+//	}
+//	
+//	switch(FuncWord)
+//	{
+//		case 0x01:
+//			break;
+//		case 0x03:
+//			break;
+//		case 0x02:
+//			RX_Data.THROTTLE = ((uint16_t)rxbuf[THR_Addr] << 8) \
+//								  + (uint16_t)rxbuf[THR_Addr + 1];	
+//			RX_Data.YAW      = ((uint16_t)rxbuf[YAW_Addr] << 8) \
+//								  + (uint16_t)rxbuf[YAW_Addr + 1];
+//			RX_Data.ROLL     = ((uint16_t)rxbuf[ROL_Addr] << 8) \
+//								  + (uint16_t)rxbuf[ROL_Addr + 1];
+//			RX_Data.PITCH    = ((uint16_t)rxbuf[PIT_Addr] << 8) \
+//								  + (uint16_t)rxbuf[PIT_Addr + 1];		
+//			break;
+//		default :
+//			break;
+//	}
+  
+  
+  if(*(rxbuf+11) != 0xa5)
+    return;
+  if(*rxbuf & 0x01)//当数据包是由遥控器的ADC采样完成时触发发送时 
+  {
+      RX_Data.THROTTLE = ((uint16_t)rxbuf[THR_Addr] << 8) \
+								  + (uint16_t)rxbuf[THR_Addr - 1];	
 			RX_Data.YAW      = ((uint16_t)rxbuf[YAW_Addr] << 8) \
 								  + (uint16_t)rxbuf[YAW_Addr + 1];
 			RX_Data.ROLL     = ((uint16_t)rxbuf[ROL_Addr] << 8) \
 								  + (uint16_t)rxbuf[ROL_Addr + 1];
 			RX_Data.PITCH    = ((uint16_t)rxbuf[PIT_Addr] << 8) \
 								  + (uint16_t)rxbuf[PIT_Addr + 1];		
-			break;
-		default :
-			break;
-	}
+  }
+  
+}
+
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  uint8_t sta;
+  sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
+  NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
+  if(sta&RX_OK)//接收到数据
+  {
+      NRF24L01_Read_Buf(RD_RX_PLOAD,Rx_buff,RX_PLOAD_WIDTH);//读取数据
+      NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+      ReceiveData(Rx_buff);
+      RC_Receive_Anl();
+      
+      Deblocking();
+    
+    
+
+      HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);
+  }
 }
 
 

@@ -2,7 +2,7 @@
 #include "RC.h"
 #include "mpu9250.h"
 #include "pwm.h"
-
+#include "Algorithm_math.h"
 
 struct _ctrl ctrl;
 
@@ -55,74 +55,87 @@ void PID_Param_init(void)
 }
 void CONTROL(float rol, float pit, float yaw)
 {
-	static float roll_old,pitch_old;
-	static float Yawtemp1;
-	
+  
+  //roll方向的角度环PID
+	ctrl.roll.shell.Exp = (float)((Rc_Data.ROLL - 1500 )/12.0f);                                                                      //期望
+  ctrl.roll.shell.error = ctrl.roll.shell.Exp + rol;                                                                                //误差
+  ctrl.roll.shell.increment += ctrl.roll.shell.error;                                                                               //积分
+  ctrl.roll.shell.differ = ctrl.roll.shell.error - ctrl.roll.shell.PreErr;                                                          //微分
+  
+  ctrl.roll.shell.increment = data_limit(ctrl.roll.shell.increment,ctrl.roll.shell.increment_max,-ctrl.roll.shell.increment_max);   //积分限幅
+  ctrl.roll.shell.PreErr = ctrl.roll.shell.error;
+  
+  ctrl.roll.shell.kp_out = ctrl.roll.shell.kp * ctrl.roll.shell.error;
+  ctrl.roll.shell.ki_out = ctrl.roll.shell.ki * ctrl.roll.shell.increment;
+  ctrl.roll.shell.kd_out = ctrl.roll.shell.kd * ctrl.roll.shell.differ;
+  
+  ctrl.roll.shell.pid_out = ctrl.roll.shell.kp_out + ctrl.roll.shell.ki_out + ctrl.roll.shell.kd_out;
 
-		//*****************外环PID**************************//
-		//俯仰计算//
-		ctrl.pitch.shell.error = pit -(float)(Rc_Data.PITCH - Rc_Data.pitch_offset)/25.0f ;
-		ctrl.pitch.shell.increment += ctrl.pitch.shell.error;   //俯仰方向误差积分
-			
-			//积分限幅
-		if(ctrl.pitch.shell.increment > ctrl.pitch.shell.increment_max)
-				ctrl.pitch.shell.increment = ctrl.pitch.shell.increment_max;
-		else if(ctrl.pitch.shell.increment < -ctrl.pitch.shell.increment_max)
-				ctrl.pitch.shell.increment = -ctrl.pitch.shell.increment_max; 
-		
-		ctrl.pitch.shell.pid_out = ctrl.pitch.shell.kp * ctrl.pitch.shell.error + ctrl.pitch.shell.ki * ctrl.pitch.shell.increment + ctrl.pitch.shell.kd * sensor.gyro.averag.y;
-		pitch_old = pit; //储存 俯仰偏差
-		
-		//横滚计算//
-		ctrl.roll.shell.error= rol - (float)(Rc_Data.ROLL - Rc_Data.roll_offset)/25.0f  ;
-		ctrl.roll.shell.increment += ctrl.roll.shell.error;  //横滚方向误差积分
-			
-			//积分限幅
-		if(ctrl.roll.shell.increment > ctrl.roll.shell.increment_max)
-				ctrl.roll.shell.increment = ctrl.roll.shell.increment_max;
-		else if(ctrl.roll.shell.increment < -ctrl.roll.shell.increment_max)
-				ctrl.roll.shell.increment = -ctrl.roll.shell.increment_max;	 
-     
-      ctrl.roll.shell.pid_out  = ctrl.roll.shell.kp * ctrl.roll.shell.error + ctrl.roll.shell.ki * ctrl.roll.shell.increment + ctrl.roll.shell.kd * sensor.gyro.averag.x;
-   
-    
-		roll_old = rol;  //储存 横滚偏差
-
-		//航向计算////////////
-    ctrl.yaw.shell.error = 0 - (Rc_Data.YAW - Rc_Data.yaw_offset)/20 ;
-    ctrl.yaw.shell.kp_out = ctrl.yaw.shell.kp * ctrl.yaw.shell.error;
-    ctrl.yaw.shell.kd_out = ctrl.yaw.shell.kd * sensor.gyro.averag.z;
-    ctrl.yaw.shell.pid_out = ctrl.yaw.shell.kp_out + ctrl.yaw.shell.kd_out;
-		if(!ARMED)
-      Yawtemp1 = yaw;
-    
-//		Yaw_offest_tem=Yaw_offest + (Rc_Data.YAW - Rc_Data.yaw_offset)/20 ;
-//		if(Yaw_offest_tem<0)
-//			Yaw_offest_tem=Yaw_offest_tem+360;
-//		else if(Yaw_offest_tem>360)
-//			Yaw_offest_tem=Yaw_offest_tem-360;
-//    else Yaw_offest_tem=Yaw_offest_tem;
-//			
-//			
-//		Yawtemp1=Yaw_offest_tem-yaw;
-//		if(yaw<Yaw_offest_tem)
-//		Yawtemp1=360-Yaw_offest_tem+yaw;		
-//		
-//			Yawtemp2=Yawtemp1;
-//    if(Yawtemp1>180)
-//		 Yawtemp2=Yawtemp1-360;
-//		
-//		ctrl.yaw.shell.increment += (-Yawtemp2);
-//		//积分限幅    
-//		if(ctrl.yaw.shell.increment > ctrl.yaw.shell.increment_max)
-//				ctrl.yaw.shell.increment = ctrl.yaw.shell.increment_max;
-//		else if(ctrl.yaw.shell.increment < -ctrl.yaw.shell.increment_max)
-//				ctrl.yaw.shell.increment = -ctrl.yaw.shell.increment_max;
-//		  
-//		
-//    ctrl.yaw.shell.pid_out = ctrl.yaw.shell.kp * (-Yawtemp2) +ctrl.yaw.shell.ki * ctrl.yaw.shell.increment+ ctrl.yaw.shell.kd * (yaw - yaw_old);		
-		ctrl.ctrlRate = 0;
-
+  //pitch方向的角度环PID
+	ctrl.pitch.shell.Exp = (float)((Rc_Data.PITCH - 1500 )/12.0f);                                                                      //期望
+  ctrl.pitch.shell.error = ctrl.pitch.shell.Exp - pit;                                                                                //误差
+  ctrl.pitch.shell.increment += ctrl.pitch.shell.error;                                                                               //积分
+  ctrl.pitch.shell.differ = ctrl.pitch.shell.error - ctrl.pitch.shell.PreErr;                                                          //微分
+  
+  ctrl.pitch.shell.increment = data_limit(ctrl.pitch.shell.increment,ctrl.pitch.shell.increment_max,-ctrl.pitch.shell.increment_max);   //积分限幅
+  ctrl.pitch.shell.PreErr = ctrl.pitch.shell.error;
+  
+  ctrl.pitch.shell.kp_out = ctrl.pitch.shell.kp * ctrl.pitch.shell.error;
+  ctrl.pitch.shell.ki_out = ctrl.pitch.shell.ki * ctrl.pitch.shell.increment;
+  ctrl.pitch.shell.kd_out = ctrl.pitch.shell.kd * ctrl.pitch.shell.differ;
+  
+  ctrl.pitch.shell.pid_out = ctrl.pitch.shell.kp_out + ctrl.pitch.shell.ki_out + ctrl.pitch.shell.kd_out;
+  
+  //
+  ctrl.yaw.shell.Exp = (float)((Rc_Data.YAW - 1500 )/12.0f);                                                                      //期望
+  ctrl.yaw.shell.error = ctrl.yaw.shell.Exp ;                                                                                     //误差
+  ctrl.yaw.shell.pid_out = ctrl.yaw.shell.kp * ctrl.yaw.shell.error;
+ /************************************************/ 
+  //roll方向的角速度环PID
+  ctrl.roll.core.Exp = ctrl.roll.shell.pid_out;                                                                                   //期望
+  ctrl.roll.core.error = ctrl.roll.core.Exp + (sensor.gyro.radian.x * RtA);                                                       //误差
+  ctrl.roll.core.increment += ctrl.roll.core.error;                                                                               //积分
+  ctrl.roll.core.differ = ctrl.roll.core.error - ctrl.roll.core.PreErr;                                                           //微分
+  
+  ctrl.roll.core.increment = data_limit(ctrl.roll.core.increment,ctrl.roll.core.increment_max,-ctrl.roll.core.increment_max);     //积分限幅
+  ctrl.roll.core.PreErr = ctrl.roll.core.error;
+  
+  ctrl.roll.core.kp_out = ctrl.roll.core.kp * ctrl.roll.core.error;
+  ctrl.roll.core.ki_out = ctrl.roll.core.ki * ctrl.roll.core.increment;
+  ctrl.roll.core.kd_out = ctrl.roll.core.kd * ctrl.roll.core.differ;
+  
+  ctrl.roll.core.pid_out = ctrl.roll.core.kp_out + ctrl.roll.core.ki_out + ctrl.roll.core.kd_out;
+  
+  //pitch方向的角速度度环PID
+  ctrl.pitch.core.Exp = ctrl.pitch.shell.pid_out;                                                                                   //期望
+  ctrl.pitch.core.error = ctrl.pitch.core.Exp + (sensor.gyro.radian.y * RtA);                                                       //误差
+  ctrl.pitch.core.increment += ctrl.pitch.core.error;                                                                               //积分
+  ctrl.pitch.core.differ = ctrl.pitch.core.error - ctrl.pitch.core.PreErr;                                                           //微分
+  
+  ctrl.pitch.core.increment = data_limit(ctrl.pitch.core.increment,ctrl.pitch.core.increment_max,-ctrl.pitch.core.increment_max);     //积分限幅
+  ctrl.pitch.core.PreErr = ctrl.pitch.core.error;
+  
+  ctrl.pitch.core.kp_out = ctrl.pitch.core.kp * ctrl.pitch.core.error;
+  ctrl.pitch.core.ki_out = ctrl.pitch.core.ki * ctrl.pitch.core.increment;
+  ctrl.pitch.core.kd_out = ctrl.pitch.core.kd * ctrl.pitch.core.differ;
+  
+  ctrl.pitch.core.pid_out = ctrl.pitch.core.kp_out + ctrl.pitch.core.ki_out + ctrl.pitch.core.kd_out;
+  
+  //YAW的角速度环，与上面有些不同，因为没有磁力计
+  ctrl.yaw.core.Exp = ctrl.yaw.shell.pid_out ;                                                                                   //期望
+  ctrl.yaw.core.error = ctrl.yaw.core.Exp + (sensor.gyro.radian.z * RtA);                                                       //误差
+  ctrl.yaw.core.increment += ctrl.yaw.core.error;                                                                               //积分
+  ctrl.yaw.core.differ = ctrl.yaw.core.error - ctrl.yaw.core.PreErr;                                                           //微分
+  
+  ctrl.yaw.core.increment = data_limit(ctrl.yaw.core.increment,ctrl.yaw.core.increment_max,-ctrl.yaw.core.increment_max);     //积分限幅
+  ctrl.yaw.core.PreErr = ctrl.yaw.core.error;
+  
+  ctrl.yaw.core.kp_out = ctrl.yaw.core.kp * ctrl.yaw.core.error;
+  ctrl.yaw.core.ki_out = ctrl.yaw.core.ki * ctrl.yaw.core.increment;
+  ctrl.yaw.core.kd_out = ctrl.yaw.core.kd * ctrl.yaw.core.differ;
+  
+  ctrl.yaw.core.pid_out = ctrl.yaw.core.kp_out + ctrl.yaw.core.ki_out + ctrl.yaw.core.kd_out;
+  
 /*         控制采用X模式          */
 /*           2     1              */
 /*            \   /               */ 
@@ -138,10 +151,10 @@ void CONTROL(float rol, float pit, float yaw)
 		if(mode ==1||mode== 0 )
 		{
 				date_THROTTLE	= Rc_Data.THROTTLE -1000;///cos(angle.roll/57.3)/cos(angle.pitch/57.3);  //油门倾角补偿，防止因倾斜高度下降太快		
-				Moto_duty[0] = date_THROTTLE  + ctrl.yaw.shell.pid_out - ctrl.roll.shell.pid_out - ctrl.pitch.shell.pid_out; 
-				Moto_duty[1] = date_THROTTLE  - ctrl.yaw.shell.pid_out + ctrl.roll.shell.pid_out - ctrl.pitch.shell.pid_out;
-				Moto_duty[2] = date_THROTTLE  + ctrl.yaw.shell.pid_out + ctrl.roll.shell.pid_out + ctrl.pitch.shell.pid_out;
-				Moto_duty[3] = date_THROTTLE  - ctrl.yaw.shell.pid_out - ctrl.roll.shell.pid_out + ctrl.pitch.shell.pid_out; 	
+				Moto_duty[0] = date_THROTTLE  + ctrl.yaw.core.pid_out - ctrl.roll.core.pid_out - ctrl.pitch.core.pid_out; 
+				Moto_duty[1] = date_THROTTLE  - ctrl.yaw.core.pid_out + ctrl.roll.core.pid_out - ctrl.pitch.core.pid_out;
+				Moto_duty[2] = date_THROTTLE  + ctrl.yaw.core.pid_out + ctrl.roll.core.pid_out + ctrl.pitch.core.pid_out;
+				Moto_duty[3] = date_THROTTLE  - ctrl.yaw.core.pid_out - ctrl.roll.core.pid_out + ctrl.pitch.core.pid_out; 	
       
 //        Moto_duty[0] = date_THROTTLE  + ctrl.yaw.shell.pid_out ; 
 //				Moto_duty[1] = date_THROTTLE  - ctrl.yaw.shell.pid_out ;

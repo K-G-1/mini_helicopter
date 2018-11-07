@@ -51,6 +51,7 @@
 
 #define NRF_IRQ_Pin GPIO_PIN_0
 #define NRF_IRQ_GPIO_Port GPIOA
+#define NRF_IRQ_EXTI_IRQn EXTI0_IRQn
 #define NRF_CSN_Pin GPIO_PIN_1
 #define NRF_CSN_GPIO_Port GPIOA
 #define NRF_CE_Pin GPIO_PIN_4

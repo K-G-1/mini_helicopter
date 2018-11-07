@@ -34,7 +34,7 @@ u8 mpu6050_init(void)
     
     res=IIC_ADD_read(MPU_6050_ADDR,MPU_DEVICE_ID_REG);
     
-    if(res==0x68)//器件ID正确
+  if(res==0x68)//器件ID正确
 	{
 		return 0;
  	}else 

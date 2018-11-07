@@ -31,9 +31,19 @@ void param_init()
     Rc_Data.roll_offset = 1500;
     Rc_Data.yaw_offset = 1500;
 
+  
     Read_Acc_Gyro_offest();
     Read_PID_shell();
     Read_PID_core();
+  
+    ctrl.pitch.shell.increment_max = 100;
+    ctrl.pitch.core.increment_max = 100;
+    
+    ctrl.roll.shell.increment_max = 100;
+    ctrl.roll.core.increment_max = 100;
+  
+    ctrl.yaw.shell.increment_max = 100;
+    ctrl.yaw.core.increment_max = 100;
     mode = 1;
  
 }
@@ -59,8 +69,7 @@ int main(void)
     }
     LED2 = 1;
     NRF24L01_RX_Mode();
-	Jtag_disable();
-    NRF_IRQ_INIT();
+    
     
     
     Jtag_disable();
@@ -78,8 +87,10 @@ int main(void)
 	tim2_init(1000-1,72-1);
 	tim4_init(1000-1,7200-1);
 #endif	
-	Jtag_disable();
-	pwm_init(1000-1,3-1); //1Khz
+    Jtag_disable();
+    NRF_IRQ_INIT();
+    Jtag_disable();
+    pwm_init(1000-1,3-1); //1Khz
     Moto_PwmRflash(0,0,0,0);
     
     param_init();

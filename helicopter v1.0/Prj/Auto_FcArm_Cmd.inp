@@ -1,3 +1,0 @@
-..\App\usart1.c,
-..\App\usart2.c 
-TO startup_stm32f10x_md NOPRINT

@@ -98,12 +98,12 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_TIM7_Init();
+  MX_TIM2_Init();
+  MX_SPI1_Init();
   MX_I2C1_Init();
-//  MX_TIM7_Init();
-//  MX_TIM2_Init();
-//  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
-  HAL_Delay(100);
+  HAL_Delay(1000);
   while(mpu6050_init() != 0)
   {
     HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);

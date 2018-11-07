@@ -18,19 +18,21 @@ void RC_Receive_Anl(void)
   static int16_t temp_old = 0;
   i ++;
   Rc_Data.YAW = RX_Data.YAW;
-  Rc_Data.PITCH = 3000- RX_Data.PITCH;
-  Rc_Data.ROLL  = 3000- RX_Data.ROLL;
+  Rc_Data.PITCH = RX_Data.PITCH;
+  Rc_Data.ROLL  = RX_Data.ROLL;
 
   temp = RX_Data.THROTTLE - 1500;
-  if(i >=15)
-  {
-    i = 0;
-    if(temp_old-temp >300 || (temp_old-temp < -300))
-      temp_old = temp;
-    else
-      Rc_Data.THROTTLE += (temp /15);
-    temp_old = temp;
-  }
+  if(temp >=50 || temp <=-50)
+    Rc_Data.THROTTLE += (temp /100);
+//  if(i >=15)
+//  {
+//    i = 0;
+//    if(temp_old-temp >300 || (temp_old-temp < -300))
+//      temp_old = temp;
+//    else
+//      Rc_Data.THROTTLE += (temp /15);
+//    temp_old = temp;
+//  }
 //  if(temp >= 0)
 //    Rc_Data.THROTTLE = data_limit(Rc_Data.THROTTLE,RX_Data.THROTTLE,1000);
 //  else 
@@ -44,7 +46,7 @@ void Deblocking(void)
 {
 	 static vs8 flag=1;
 	 static vs16 time1=0,time2=0;
-	 /*               遥控上锁                 */
+	 /*               遥控解锁                 */
 	 /*     —————————            —————————     */
 	 /*    |         |          |         |    */
 	 /*    |         |          |         |    */
@@ -52,7 +54,7 @@ void Deblocking(void)
 	 /*    |     \   |          |  /      |    */
 	 /*     —————————            —————————     */
 	 /*   油门拉到最低         摇杆推到左上角  */
-   if(!ARMED && Rc_Data.ROLL >= 1800 && Rc_Data.PITCH >= 1800 && Rc_Data.THROTTLE <= 1200 &&  Rc_Data.YAW >= 1800)		
+   if(!ARMED && Rc_Data.ROLL <= 1200 && Rc_Data.PITCH <=1200 && Rc_Data.THROTTLE <= 1200 &&  Rc_Data.YAW >= 1800)		
 	 {  
 			time1++; 
 	 }	
@@ -64,7 +66,7 @@ void Deblocking(void)
 			time1 = 0;
 
 	 }
-   /*               遥控解锁                 */
+   /*               遥控上锁                 */
 	 /*     —————————            —————————     */
 	 /*    |         |          |         |    */
 	 /*    |         |          |         |    */
@@ -72,7 +74,7 @@ void Deblocking(void)
 	 /*    |   /     |          |      \  |    */
 	 /*     —————————            —————————     */
 	 /*   油门拉到最低         摇杆推到右上角  */
-   if(ARMED && Rc_Data.YAW <= 1200 && Rc_Data.PITCH >= 1800 && Rc_Data.THROTTLE <= 1200 &&  Rc_Data.ROLL <= 1200)		
+   if(ARMED && Rc_Data.YAW <= 1200 && Rc_Data.PITCH <=1200 && Rc_Data.THROTTLE <= 1200 &&  Rc_Data.ROLL >=1800)		
 		{
 			time2++; 
 			

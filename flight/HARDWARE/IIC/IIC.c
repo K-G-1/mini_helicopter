@@ -21,8 +21,8 @@ void IIC_Init(void)
 u16 IIC_Start(void)
 {
 	SDA_OUT();     //sda线输出
-	IIC_SDA=1;	  	  
-	IIC_SCL=1;
+	SDA_H;	  	  
+	SCL_H;
 	delay_us(4);
  	SDA_IN();
     if(!SDA_READ) 
@@ -68,7 +68,7 @@ u8 IIC_Wait_Ack(void)
 		}
 	}
     SDA_OUT();
-	IIC_SCL=0;//时钟输出0 	   
+	SCL_L;//时钟输出0 	   
 	return 0;  
 } 
 //产生ACK应答
@@ -104,7 +104,7 @@ void IIC_Send_Byte(u8 txd)
 {                        
     u8 t;   
 	SDA_OUT(); 	    
-    IIC_SCL=0;//拉低时钟开始数据传输
+    SCL_L;//拉低时钟开始数据传输
     for(t=0;t<8;t++)
     {              
         if(txd&0x80)
@@ -114,9 +114,9 @@ void IIC_Send_Byte(u8 txd)
         else SDA_L;
         txd<<=1; 	  
 		delay_us(2);   //对TEA5767这三个延时都是必须的
-		IIC_SCL=1;
+		SCL_H;
 		delay_us(2); 
-		IIC_SCL=0;	
+		SCL_L;	
 		delay_us(2);
     }	 
 } 
@@ -129,9 +129,9 @@ u8 IIC_Read_Byte(void)
     SDA_H;
     for(i=0;i<8;i++ )
 	{
-        IIC_SCL=0; 
+        SCL_L; 
         delay_us(2);
-	    IIC_SCL=1;
+	    SCL_H;
         receive<<=1;
         if(SDA_READ)
 					receive++;   
