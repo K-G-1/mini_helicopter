@@ -1,11 +1,6 @@
 
 #include "24l01.h"
-//24L01操作线
-#define NRF24L01_CE_L    HAL_GPIO_WritePin(NRF_CE_GPIO_Port,NRF_CE_Pin,GPIO_PIN_RESET);//24L01片选信号
-#define NRF24L01_CE_H    HAL_GPIO_WritePin(NRF_CE_GPIO_Port,NRF_CE_Pin,GPIO_PIN_SET);//24L01片选信号
-#define NRF24L01_CSN_L   HAL_GPIO_WritePin(NRF_CSN_GPIO_Port,NRF_CSN_Pin,GPIO_PIN_RESET);//SPI片选信号	
-#define NRF24L01_CSN_H   HAL_GPIO_WritePin(NRF_CSN_GPIO_Port,NRF_CSN_Pin,GPIO_PIN_SET);//SPI片选信号
-#define NRF24L01_IRQ     HAL_GPIO_ReadPin(NRF_IRQ_GPIO_Port,NRF_IRQ_Pin)//IRQ主机数据输入
+#include "cmsis_os.h"
 
 //SPIx 读写一个字节
 //TxData:要写入的字节
@@ -163,9 +158,7 @@ uint8_t NRF24L01_TxPacket(uint8_t *txbuf)
 {
 	uint8_t sta;
   
-	NRF24L01_CE_L;
-  	NRF24L01_Write_Buf(WR_TX_PLOAD,txbuf,TX_PLOAD_WIDTH);//写数据到TX BUF  32个字节
- 	NRF24L01_CE_H;//启动发送
+	
 //  osDelay(100);
 	while(NRF24L01_IRQ != 0 );//等待发送完成
 	sta=NRF24L01_Read_Reg(NRF_READ_REG + STATUS);  //读取状态寄存器的值	   
@@ -197,7 +190,51 @@ uint8_t NRF24L01_RxPacket(uint8_t *rxbuf)
 		return 0; 
 	}	   
 	return 1;//没收到任何数据
-}					    
+}				
+
+///
+void NRF24L01_Mode(uint8_t mode)
+{
+	if(mode == IT_TX)
+	{
+		NRF24L01_CE_L;
+		NRF24L01_Write_Reg(NRF_WRITE_REG+CONFIG,IT_TX);
+		NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,0X7E); //清除所有中断,防止一进去发送模式就触发中断	
+		NRF24L01_CE_H;
+//		Delay_us(15);
+	}
+	else
+	{
+		NRF24L01_CE_L;
+		NRF24L01_Write_Reg(NRF_WRITE_REG+CONFIG,IT_RX);//配置为接收模式
+		NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,0X7E); //清除所有中断,防止一进去接收模式就触发中断
+		NRF24L01_CE_H;
+
+	}		
+}
+
+void NRF24L01_config(void)
+{
+  NRF24L01_CE_L;
+  
+  NRF24L01_Write_Reg(NRF_WRITE_REG+SETUP_AW, 0x03); //配置通信地址的长度，默认值时0x03,即地址长度为5字节
+  NRF24L01_Write_Buf(NRF_WRITE_REG+TX_ADDR,(uint8_t*)TX_ADDRESS,TX_ADR_WIDTH); //写TX节点地址 
+  NRF24L01_Write_Buf(NRF_WRITE_REG+RX_ADDR_P0,(uint8_t*)TX_ADDRESS,RX_ADR_WIDTH); //设置TX节点地址,主要为了使能ACK
+  NRF24L01_Write_Reg(NRF_WRITE_REG+SETUP_RETR,0x1A); //设置自动重发间隔时间:500us + 86us;最大自动重发次数:10次 0x1A
+
+  NRF24L01_Write_Reg(NRF_WRITE_REG+EN_RXADDR,0x01);//使能通道0的接收地址  
+  NRF24L01_Write_Reg(NRF_WRITE_REG+EN_AA,0x01); //使能通道0自动应答
+  NRF24L01_Write_Reg(NRF_WRITE_REG+RX_PW_P0,RX_PLOAD_WIDTH);//选择通道0的有效数据宽度  
+  NRF24L01_Write_Buf(NRF_WRITE_REG+RX_ADDR_P0,(uint8_t*)RX_ADDRESS,RX_ADR_WIDTH); //写RX节点地址
+  NRF24L01_Write_Reg(NRF_WRITE_REG+RF_CH,40); //设置RF通道为40hz(1-64Hz都可以)
+  NRF24L01_Write_Reg(NRF_WRITE_REG+RF_SETUP,0x0f); //设置TX发射参数,0db增益,2Mbps,低噪声增益关闭 （注意：低噪声增益关闭/开启直接影响通信,要开启都开启，要关闭都关闭0x0f）
+  
+  
+  NRF24L01_Mode(IT_RX);
+  NRF24L01_CE_H;
+}
+
+
 //该函数初始化NRF24L01到RX模式
 //设置RX地址,写RX数据宽度,选择RF频道,波特率和LNA HCURR
 //当CE变高后,即进入RX模式,并可以接收数据了		   
@@ -235,37 +272,61 @@ void NRF24L01_TX_Mode(void)
 	NRF24L01_CE_H;//CE为高,10us后启动发送
 }
 
- uint8_t Tx_buff[30] ;
+ uint8_t Tx_buff[33] ;
+uint8_t Rx_buff[33] ;
 extern  uint16_t RC_ADC_Buff[4] ;
 
 
 void nrf_sand_rc()
 {
 
-    
-    
-    Tx_buff[0] = 0xaa;
+    static uint8_t DATA_ID = 0;
+    DATA_ID ++;
+    Tx_buff[0] = 0x01;
     Tx_buff[1] = 0xaa;
-    Tx_buff[2] = 0x02;
     
-    Tx_buff[3] = RC_ADC_Buff[0]>>8;
-    Tx_buff[4] = RC_ADC_Buff[0];
+    Tx_buff[2] = RC_ADC_Buff[0]>>8;
+    Tx_buff[3] = RC_ADC_Buff[0];
     
-    Tx_buff[5] = RC_ADC_Buff[1]>>8;
-    Tx_buff[6] = RC_ADC_Buff[1];
+    Tx_buff[4] = RC_ADC_Buff[1]>>8;
+    Tx_buff[5] = RC_ADC_Buff[1];
     
-    Tx_buff[7] = RC_ADC_Buff[2]>>8;
-    Tx_buff[8] = RC_ADC_Buff[2];
+    Tx_buff[6] = RC_ADC_Buff[2]>>8;
+    Tx_buff[7] = RC_ADC_Buff[2];
     
-    Tx_buff[9] = RC_ADC_Buff[3]>>8;
-    Tx_buff[10] = RC_ADC_Buff[3];
+    Tx_buff[8] = RC_ADC_Buff[3]>>8;
+    Tx_buff[9] = RC_ADC_Buff[3];
     
-    
-    
-    
-    
+    Tx_buff[10] = DATA_ID;
+  Tx_buff[11] = 0xa5;
+ 
 }
-
-
+extern uint8_t IRQ_timeout;
+extern osSemaphoreId NRF_statusHandle;
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	uint8_t sta;
+  IRQ_timeout = 0;
+	sta=NRF24L01_Read_Reg(NRF_READ_REG + STATUS);  //读取状态寄存器的值	   
+	NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
+	if(sta&MAX_TX)//达到最大重发次数
+	{
+    NRF24L01_Mode(IT_RX);
+		NRF24L01_Write_Reg(FLUSH_TX,0xff);//清除TX FIFO寄存器 
+	}
+	if(sta&TX_OK)//发送完成
+	{
+    NRF24L01_Mode(IT_RX);
+		NRF24L01_Write_Reg(FLUSH_TX,0xff);//清除TX FIFO寄存器 
+    osSemaphoreRelease(NRF_statusHandle);
+	}
+  
+  if(sta & RX_OK)
+  {
+    HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);
+    NRF24L01_Read_Buf(RD_RX_PLOAD,Rx_buff,RX_PLOAD_WIDTH);//读取数据
+		NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+  }
+}
 
 

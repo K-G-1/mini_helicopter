@@ -57,6 +57,7 @@
 #include "24l01.h"
 #include "rc.h"
 #include "control.h"
+#include "adc.h"
 /* USER CODE END 0 */
 
 TIM_HandleTypeDef htim2;
@@ -351,8 +352,11 @@ void USER_PWM_SetDutyRatio(TIM_HandleTypeDef *htim,uint32_t Channel,uint8_t valu
 }
 
 int tim4_cnt = 0;
+int tim2_cnt = 0;
 static uint8_t sta;
 extern uint8_t Rx_buff[30];
+uint16_t BAT_Value;
+extern int IRQ_timeout;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     if(htim->Instance == TIM4)
@@ -386,21 +390,22 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     
     if(htim->Instance == TIM2)
     {
-      sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
-      NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
-      if(sta&RX_OK)//接收到数据
+      IRQ_timeout++;
+      tim2_cnt ++;
+        
+      if(IRQ_timeout>= 10)
       {
-          NRF24L01_Read_Buf(RD_RX_PLOAD,Rx_buff,RX_PLOAD_WIDTH);//读取数据
-          NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
-          ReceiveData(Rx_buff);
-          RC_Receive_Anl();
-          
-          Deblocking();
-        
-        
-          sand_RC_data();
-          HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);
+        IRQ_timeout = 0;
+        sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
+        NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
+        NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
       }
+      if(tim2_cnt >= 100)
+      {
+        tim2_cnt = 0;
+        BAT_Value = Get_Adc(ADC_CHANNEL_3);
+        NRF_sand_BAT(BAT_Value);
+      }    
     }
 }   
 

@@ -3,6 +3,12 @@
 #include "stm32f1xx_hal.h"
 
 struct _pid{
+          float Exp;
+        float error;
+
+        float differ;
+        float PreErr;
+  
         float kp;
 			  float ki;
 	      float kd;

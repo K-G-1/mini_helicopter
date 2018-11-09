@@ -63,8 +63,15 @@
 #define RX_ADR_WIDTH    5   	//5字节的地址宽度
 #define TX_PLOAD_WIDTH  32  	//32字节的用户数据宽度
 #define RX_PLOAD_WIDTH  32  	//32字节的用户数据宽度
-									   	   
 
+#define  IT_TX 0x0E //发送模式
+#define  IT_RX 0x0F //接收模式
+//24L01操作线
+#define NRF24L01_CE_L    HAL_GPIO_WritePin(NRF_CE_GPIO_Port,NRF_CE_Pin,GPIO_PIN_RESET);//24L01片选信号
+#define NRF24L01_CE_H    HAL_GPIO_WritePin(NRF_CE_GPIO_Port,NRF_CE_Pin,GPIO_PIN_SET);//24L01片选信号
+#define NRF24L01_CSN_L   HAL_GPIO_WritePin(NRF_CSN_GPIO_Port,NRF_CSN_Pin,GPIO_PIN_RESET);//SPI片选信号	
+#define NRF24L01_CSN_H   HAL_GPIO_WritePin(NRF_CSN_GPIO_Port,NRF_CSN_Pin,GPIO_PIN_SET);//SPI片选信号
+#define NRF24L01_IRQ     HAL_GPIO_ReadPin(NRF_IRQ_GPIO_Port,NRF_IRQ_Pin)//IRQ主机数据输入
 void NRF24L01_Init(void);						//初始化
 void NRF24L01_RX_Mode(void);					//配置为接收模式
 void NRF24L01_TX_Mode(void);					//配置为发送模式

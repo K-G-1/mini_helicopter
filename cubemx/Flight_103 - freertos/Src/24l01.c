@@ -1,11 +1,9 @@
 #include "RC.h"
 #include "24l01.h"
-//24L01操作线
-#define NRF24L01_CE_L    HAL_GPIO_WritePin(NRF_CE_GPIO_Port,NRF_CE_Pin,GPIO_PIN_RESET);//24L01片选信号
-#define NRF24L01_CE_H    HAL_GPIO_WritePin(NRF_CE_GPIO_Port,NRF_CE_Pin,GPIO_PIN_SET);//24L01片选信号
-#define NRF24L01_CSN_L   HAL_GPIO_WritePin(NRF_CSN_GPIO_Port,NRF_CSN_Pin,GPIO_PIN_RESET);//SPI片选信号	
-#define NRF24L01_CSN_H   HAL_GPIO_WritePin(NRF_CSN_GPIO_Port,NRF_CSN_Pin,GPIO_PIN_SET);//SPI片选信号
-#define NRF24L01_IRQ     HAL_GPIO_ReadPin(NRF_IRQ_GPIO_Port,NRF_IRQ_Pin)//IRQ主机数据输入
+uint8_t Tx_buff[33],Rx_buff[33];
+uint16_t RC_ADC_Buff[4] ;
+
+
 
 //SPIx 读写一个字节
 //TxData:要写入的字节
@@ -34,11 +32,11 @@ uint8_t SPI1_ReadWriteByte(uint8_t TxData)
 
 #define FrameHeaderH_Addr		0u
 #define FrameHeaderL_Addr		1u
-#define FuncWord_Addr	2u
-#define THR_Addr     	3u
-#define YAW_Addr	 	5u
-#define ROL_Addr		9u
-#define PIT_Addr		7u
+
+#define THR_Addr     	2u
+#define YAW_Addr	 	4u
+#define ROL_Addr		8u
+#define PIT_Addr		6u
     
 const uint8_t TX_ADDRESS[TX_ADR_WIDTH]={0xAA,0xBB,0xCC,0x00,0x01}; //发送地址
 const uint8_t RX_ADDRESS[RX_ADR_WIDTH]={0xAA,0xBB,0xCC,0x00,0x01};
@@ -213,14 +211,19 @@ uint8_t NRF24L01_RxPacket(uint8_t *rxbuf)
 void NRF24L01_RX_Mode(void)
 {
 	NRF24L01_CE_L;	  
-  	NRF24L01_Write_Buf(NRF_WRITE_REG+RX_ADDR_P0,(uint8_t*)RX_ADDRESS,RX_ADR_WIDTH);//写RX节点地址
-	  
-  	NRF24L01_Write_Reg(NRF_WRITE_REG+EN_AA,0x01);    //使能通道0的自动应答    
-  	NRF24L01_Write_Reg(NRF_WRITE_REG+EN_RXADDR,0x01);//使能通道0的接收地址  	 
-  	NRF24L01_Write_Reg(NRF_WRITE_REG+RF_CH,40);	     //设置RF通信频率		  
-  	NRF24L01_Write_Reg(NRF_WRITE_REG+RX_PW_P0,RX_PLOAD_WIDTH);//选择通道0的有效数据宽度 	    
-  	NRF24L01_Write_Reg(NRF_WRITE_REG+RF_SETUP,0x0f);//设置TX发射参数,0db增益,2Mbps,低噪声增益开启   
-  	NRF24L01_Write_Reg(NRF_WRITE_REG+CONFIG, 0x0f);//配置基本工作模式的参数;PWR_UP,EN_CRC,16BIT_CRC,接收模式 
+  	NRF24L01_Write_Reg(NRF_WRITE_REG+SETUP_AW, 0x03); //配置通信地址的长度，默认值时0x03,即地址长度为5字节
+    NRF24L01_Write_Buf(NRF_WRITE_REG+TX_ADDR,(uint8_t*)TX_ADDRESS,TX_ADR_WIDTH); //写TX节点地址 
+    NRF24L01_Write_Buf(NRF_WRITE_REG+RX_ADDR_P0,(uint8_t*)RX_ADDRESS,RX_ADR_WIDTH); //设置TX节点地址,主要为了使能ACK
+    NRF24L01_Write_Reg(NRF_WRITE_REG+SETUP_RETR,0x1A); //设置自动重发间隔时间:500us + 86us;最大自动重发次数:10次 0x1A
+    
+    NRF24L01_Write_Reg(NRF_WRITE_REG+EN_RXADDR,0x01);//使能通道0的接收地址  
+    NRF24L01_Write_Reg(NRF_WRITE_REG+EN_AA,0x01); //使能通道0自动应答
+    NRF24L01_Write_Reg(NRF_WRITE_REG+RX_PW_P0,RX_PLOAD_WIDTH);//选择通道0的有效数据宽度  
+    NRF24L01_Write_Buf(NRF_WRITE_REG+RX_ADDR_P0,(uint8_t*)RX_ADDRESS,RX_ADR_WIDTH); //写RX节点地址
+    NRF24L01_Write_Reg(NRF_WRITE_REG+RF_CH,40); //设置RF通道为40hz(1-64Hz都可以)
+    NRF24L01_Write_Reg(NRF_WRITE_REG+RF_SETUP,0x0f); //设置TX发射参数,0db增益,2Mbps,低噪声增益关闭 （注意：低噪声增益关闭/开启直接影响通信,要开启都开启，要关闭都关闭0x0f）
+    NRF24L01_Write_Reg(NRF_WRITE_REG+CONFIG,0x0F);//配置为接收模式
+		NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,0X7E); //清除所有中断,防止一进去接收模式就触发中断
   	NRF24L01_CE_H; //CE为高,进入接收模式 
 }						 
 //该函数初始化NRF24L01到TX模式
@@ -244,8 +247,6 @@ void NRF24L01_TX_Mode(void)
 	NRF24L01_CE_H;//CE为高,10us后启动发送
 }
 
- uint8_t Tx_buff[30],Rx_buff[30];
- uint16_t RC_ADC_Buff[4] ;
 
 
 void nrf_sand_rc()
@@ -269,30 +270,48 @@ void nrf_sand_rc()
 }
 
 
-
+int IRQ_timeout;
 void ReceiveData(uint8_t *rxbuf)
 {
-  uint8_t FrameHeader[2] = {0,0};
-	uint8_t FuncWord = 0;
+//  uint8_t FrameHeader[2] = {0,0};
+//	uint8_t FuncWord = 0;
 
-	FrameHeader[0] = rxbuf[FrameHeaderH_Addr];
-	FrameHeader[1] = rxbuf[FrameHeaderL_Addr];
-	
-	FuncWord = rxbuf[FuncWord_Addr];
-	
-	if((FrameHeader[0] != ReceiveFrameHeaderH) || (FrameHeader[1] != ReceiveFrameHeaderL))
-	{
-		return;
-	}
-	
-	switch(FuncWord)
-	{
-		case 0x01:
-			break;
-		case 0x03:
-			break;
-		case 0x02:
-			RX_Data.THROTTLE = ((uint16_t)rxbuf[THR_Addr] << 8) \
+//	FrameHeader[0] = rxbuf[FrameHeaderH_Addr];
+//	FrameHeader[1] = rxbuf[FrameHeaderL_Addr];
+//	
+//	FuncWord = rxbuf[FuncWord_Addr];
+//	
+//	if((FrameHeader[0] != ReceiveFrameHeaderH) || (FrameHeader[1] != ReceiveFrameHeaderL))
+//	{
+//		return;
+//	}
+//	
+//	switch(FuncWord)
+//	{
+//		case 0x01:
+//			break;
+//		case 0x03:
+//			break;
+//		case 0x02:
+//			RX_Data.THROTTLE = ((uint16_t)rxbuf[THR_Addr] << 8) \
+//								  + (uint16_t)rxbuf[THR_Addr + 1];	
+//			RX_Data.YAW      = ((uint16_t)rxbuf[YAW_Addr] << 8) \
+//								  + (uint16_t)rxbuf[YAW_Addr + 1];
+//			RX_Data.ROLL     = ((uint16_t)rxbuf[ROL_Addr] << 8) \
+//								  + (uint16_t)rxbuf[ROL_Addr + 1];
+//			RX_Data.PITCH    = ((uint16_t)rxbuf[PIT_Addr] << 8) \
+//								  + (uint16_t)rxbuf[PIT_Addr + 1];		
+//			break;
+//		default :
+//			break;
+//	}
+  
+  
+  if(*(rxbuf+11) != 0xa5)
+    return;
+  if(*rxbuf & 0x01)//当数据包是由遥控器的ADC采样完成时触发发送时 
+  {
+      RX_Data.THROTTLE = ((uint16_t)rxbuf[THR_Addr] << 8) \
 								  + (uint16_t)rxbuf[THR_Addr + 1];	
 			RX_Data.YAW      = ((uint16_t)rxbuf[YAW_Addr] << 8) \
 								  + (uint16_t)rxbuf[YAW_Addr + 1];
@@ -300,10 +319,42 @@ void ReceiveData(uint8_t *rxbuf)
 								  + (uint16_t)rxbuf[ROL_Addr + 1];
 			RX_Data.PITCH    = ((uint16_t)rxbuf[PIT_Addr] << 8) \
 								  + (uint16_t)rxbuf[PIT_Addr + 1];		
-			break;
-		default :
-			break;
-	}
+  }
+  
+}
+
+
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+  uint8_t sta;
+
+  sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
+  IRQ_timeout = 0;
+  if(sta&TX_OK)
+  {
+
+    NRF24L01_RX_Mode();
+    NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,TX_OK); //清除TX_DS或MAX_RT中断标志
+    NRF24L01_Write_Reg(FLUSH_TX,0xff);//清除RX FIFO寄存器 
+  }
+  if(sta&RX_OK)//接收到数据
+  {
+    NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,RX_OK); //清除TX_DS或MAX_RT中断标志
+    NRF24L01_Read_Buf(RD_RX_PLOAD,Rx_buff,RX_PLOAD_WIDTH);//读取数据
+    NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+    
+    ReceiveData(Rx_buff);
+    RC_Receive_Anl();
+    HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);
+
+  }
+  if(sta & MAX_TX)                                  
+  {				
+    NRF24L01_RX_Mode();
+    NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,MAX_TX); //清除TX_DS或MAX_RT中断标志
+    NRF24L01_Write_Reg(FLUSH_TX,0xff);//清除RX FIFO寄存器 
+
+  }
 }
 
 

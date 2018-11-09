@@ -224,28 +224,34 @@ void StartMPU_Task(void const * argument)
 void StartNRF_Task(void const * argument)
 {
   /* USER CODE BEGIN StartNRF_Task */
+  extern int IRQ_timeout;
+  extern uint16_t BAT_Value;
   extern uint8_t Rx_buff[30];
   uint8_t sta = 0;
+  uint16_t bat_cnt = 0;
   /* Infinite loop */
   for(;;)
   {
-    sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
-    NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
-    if(sta&RX_OK)//接收到数据
+    bat_cnt ++;
+    IRQ_timeout++;
+    
+    
+    Deblocking();
+    if(bat_cnt >1000)
     {
-        NRF24L01_Read_Buf(RD_RX_PLOAD,Rx_buff,RX_PLOAD_WIDTH);//读取数据
-        NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
-        ReceiveData(Rx_buff);
-        RC_Receive_Anl();
-        
-        Deblocking();
-      
-      
-        sand_RC_data();
-        HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);
+      bat_cnt = 0;
+      BAT_Value = Get_Adc(ADC_CHANNEL_3);
+      NRF_sand_BAT(BAT_Value);
     }
     
-    osDelay(5);
+    if(IRQ_timeout >=1000)
+    {
+      IRQ_timeout = 0 ;
+      sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
+        NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
+        NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+    }
+    osDelay(1);
   }
   /* USER CODE END StartNRF_Task */
 }
@@ -254,7 +260,8 @@ void StartNRF_Task(void const * argument)
 void StartControlTask(void const * argument)
 {
   /* USER CODE BEGIN StartControlTask */
-  PID_Param_init();
+  Read_PID_shell();
+  Read_PID_core();
   /* Infinite loop */
   for(;;)
   {

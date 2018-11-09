@@ -21,6 +21,8 @@ flight_103\sand_data.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_e
 flight_103\sand_data.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h
 flight_103\sand_data.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h
 flight_103\sand_data.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h
+flight_103\sand_data.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h
+flight_103\sand_data.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h
 flight_103\sand_data.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
 flight_103\sand_data.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 flight_103\sand_data.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
@@ -35,6 +37,8 @@ flight_103\sand_data.o: ../Inc/usart.h
 flight_103\sand_data.o: ../Inc/rc.h
 flight_103\sand_data.o: ../Inc/control.h
 flight_103\sand_data.o: ../Inc/param.h
+flight_103\sand_data.o: ../Inc/24l01.h
+flight_103\sand_data.o: ../Inc/spi.h
 flight_103\sand_data.o: ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.h
 flight_103\sand_data.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
 flight_103\sand_data.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h

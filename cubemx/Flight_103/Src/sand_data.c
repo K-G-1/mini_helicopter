@@ -6,7 +6,7 @@
 #include "rc.h"
 #include "control.h"
 #include "param.h"
-
+#include "24l01.h"
 
 
 #define BYTE0(dwTemp)       (*(char *)(&dwTemp))
@@ -22,6 +22,23 @@
 
 
 /*****************************************************************/
+void NRF_sand_BAT(uint16_t bat_value)
+{
+  uint8_t Tx_buff[32]={0};
+  Tx_buff[0]=0xAF;
+  Tx_buff[1]=0x00;
+  
+  Tx_buff[2]=bat_value>>8;
+	Tx_buff[3]=bat_value;
+  
+  Tx_buff[4]= 0x33;
+  
+  NRF24L01_CE_L;
+  NRF24L01_TX_Mode();
+  NRF24L01_Write_Buf(WR_TX_PLOAD,Tx_buff,TX_PLOAD_WIDTH);//写数据到TX BUF  32个字节
+  NRF24L01_CE_H;//启动发送
+  
+}
 void sand_ACC_GYRO_data(void)
 {
 	int16_t sum=0,i=0;

@@ -47,6 +47,7 @@
 #include "24l01.h"
 #include "rc.h"
 #include "control.h"
+#include "ADC.h"
 /* USER CODE END 0 */
 
 TIM_HandleTypeDef htim2;
@@ -179,7 +180,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
     __HAL_RCC_TIM2_CLK_ENABLE();
 
     /* TIM2 interrupt Init */
-    HAL_NVIC_SetPriority(TIM2_IRQn, 2, 3);
+    HAL_NVIC_SetPriority(TIM2_IRQn, 2, 2);
     HAL_NVIC_EnableIRQ(TIM2_IRQn);
   /* USER CODE BEGIN TIM2_MspInit 1 */
 
@@ -194,7 +195,7 @@ void HAL_TIM_Base_MspInit(TIM_HandleTypeDef* tim_baseHandle)
     __HAL_RCC_TIM4_CLK_ENABLE();
 
     /* TIM4 interrupt Init */
-    HAL_NVIC_SetPriority(TIM4_IRQn, 2, 2);
+    HAL_NVIC_SetPriority(TIM4_IRQn, 2, 0);
     HAL_NVIC_EnableIRQ(TIM4_IRQn);
   /* USER CODE BEGIN TIM4_MspInit 1 */
 
@@ -341,8 +342,11 @@ void USER_PWM_SetDutyRatio(TIM_HandleTypeDef *htim,uint32_t Channel,uint8_t valu
 }
 
 int tim4_cnt = 0;
+int tim2_cnt = 0;
 static uint8_t sta;
 extern uint8_t Rx_buff[30];
+extern uint16_t BAT_Value;
+extern int IRQ_timeout;
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
 {
     if(htim->Instance == TIM4)
@@ -380,6 +384,23 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
     
     if(htim->Instance == TIM2)
     {
+      IRQ_timeout++;
+      tim2_cnt ++;
+        
+      if(IRQ_timeout>= 10)
+      {
+        IRQ_timeout = 0;
+        sta=NRF24L01_Read_Reg(STATUS);  //读取状态寄存器的值    	 
+        NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
+        NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+      }
+      
+      if(tim2_cnt >= 5)
+      {
+        tim2_cnt = 0;
+        BAT_Value = Get_Adc(ADC_CHANNEL_3);
+        NRF_sand_BAT(BAT_Value);
+      }
       
     }
 }   

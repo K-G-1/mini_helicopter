@@ -58,6 +58,7 @@
 #include "24l01.h"
 #include "gpio.h"
 #include "stmflash.h"
+#include "24l01.h"
 /* USER CODE END Includes */
 
 /* Variables -----------------------------------------------------------------*/
@@ -78,8 +79,12 @@ osMailQId RC_Offest_buffHandle;
 
 extern uint16_t RC_ADC_Buff[4];
 int16_t RC_offest[4];
-extern  uint8_t Tx_buff[30] ;
+extern  uint8_t Tx_buff[33] ;
 extern uint8_t key_status;
+uint8_t IRQ_timeout = 0;
+
+uint16_t bat_value = 0;
+  float bat_voltage;
 /* USER CODE END Variables */
 
 /* Function prototypes -------------------------------------------------------*/
@@ -169,7 +174,7 @@ void MX_FREERTOS_Init(void) {
 
   /* definition and creation of Nrf_TX_Buff */
   /* what about the sizeof here??? cd native code */
-  osMailQDef(Nrf_TX_Buff, 30, uint16_t);
+  osMailQDef(Nrf_TX_Buff, 4, uint16_t);
   Nrf_TX_BuffHandle = osMailCreate(osMailQ(Nrf_TX_Buff), NULL);
 
   /* definition and creation of RC_Offest_buff */
@@ -204,7 +209,7 @@ void StartTask_ADC(void const * argument)
     for (i = 0;i<4 ;i++)
       RC_ADC_Buff[i] += RC_offest[i];
     osMailPut(ADC_ValueHandle,RC_ADC_Buff);
-    osMailPut(ADC_ValueHandle,Nrf_TX_BuffHandle);
+    osMailPut(Nrf_TX_BuffHandle,RC_ADC_Buff);
     osDelay(10);
   }
   /* USER CODE END StartTask_ADC */
@@ -215,24 +220,40 @@ void StartTask_NRF(void const * argument)
 {
   /* USER CODE BEGIN StartTask_NRF */
   osEvent TX_mail;
-  
+  uint8_t sta;
   NRF24L01_Init();
   while(NRF24L01_Check() != 0)
   { 
     HAL_GPIO_WritePin(LED1_GPIO_Port,LED2_Pin,GPIO_PIN_RESET);
     osDelay(100);
   }
-  NRF24L01_TX_Mode();
+  NRF24L01_config();
   HAL_GPIO_WritePin(LED2_GPIO_Port,LED2_Pin,GPIO_PIN_SET);
   /* Infinite loop */
   for(;;)
   {
-    nrf_sand_rc();
-    
-    if(NRF24L01_TxPacket(Tx_buff) == TX_OK)
+    IRQ_timeout ++;
+    TX_mail = osMailGet(Nrf_TX_BuffHandle,10);
+    if(TX_mail.status == osEventMail)
     {
-      osSemaphoreRelease(NRF_statusHandle);
+
+      nrf_sand_rc();
+      NRF24L01_Mode(IT_TX);
+      NRF24L01_CE_L;
+      NRF24L01_Write_Buf(WR_TX_PLOAD,Tx_buff,TX_PLOAD_WIDTH);//写数据到TX BUF  32个字节
+      NRF24L01_CE_H;//启动发送
     }
+    if(IRQ_timeout>= 20)
+    {
+      sta=NRF24L01_Read_Reg(NRF_READ_REG + STATUS);  //读取状态寄存器的值	   
+      NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,sta); //清除TX_DS或MAX_RT中断标志
+      NRF24L01_Write_Reg(FLUSH_TX,0xff);//清除TX FIFO寄存器 
+      NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除TX FIFO寄存器 
+    }
+//    if(NRF24L01_TxPacket(Tx_buff) == TX_OK)
+//    {
+//      osSemaphoreRelease(NRF_statusHandle);
+//    }
     
     
     osDelay(5);
@@ -254,7 +275,7 @@ void StartTask_LED(void const * argument)
     }
     
     
-    HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);
+    
     osDelay(1);
   }
   /* USER CODE END StartTask_LED */
@@ -264,6 +285,8 @@ void StartTask_LED(void const * argument)
 void StartTask_OLED(void const * argument)
 {
   /* USER CODE BEGIN StartTask_OLED */
+  extern uint8_t Rx_buff[33] ;
+  
   osDelay(1000);
   osEvent display_mail;
   /* Infinite loop */
@@ -286,7 +309,11 @@ void StartTask_OLED(void const * argument)
       OLED_P6x8Str(72,0," vanished");
     }
     change_offest(key_status);
-
+    
+    bat_value = Rx_buff[2]<<8|Rx_buff[3];
+    bat_voltage = (float)(bat_value *2 * 33 *10)/4096;
+    OLED_P6x8data(64,2,bat_voltage);
+    
     osDelay(1);
   }
   /* USER CODE END StartTask_OLED */

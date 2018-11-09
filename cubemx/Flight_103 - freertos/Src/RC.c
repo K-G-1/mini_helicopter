@@ -9,7 +9,7 @@ T_RC_DATA Rc_Data;//1000~2000
 T_RC_DATA RX_Data;//1000~2000
 uint16_t  RC_Pwm_In_his[8];
 uint8_t ARMED = 0;
-uint8_t mode =1;
+uint8_t mode ;
 // 适应回中的摇杆，其中temp_old其实是不需要的
 void RC_Receive_Anl(void)
 {
@@ -18,23 +18,13 @@ void RC_Receive_Anl(void)
   static int16_t temp_old = 0;
   i ++;
   Rc_Data.YAW = RX_Data.YAW;
-  Rc_Data.PITCH = 3000- RX_Data.PITCH;
-  Rc_Data.ROLL  = 3000- RX_Data.ROLL;
+  Rc_Data.PITCH = RX_Data.PITCH;
+  Rc_Data.ROLL  = RX_Data.ROLL;
 
   temp = RX_Data.THROTTLE - 1500;
-  if(i >=1)
-  {
-    i = 0;
-    if(temp_old-temp >300 || (temp_old-temp < -300))
-      temp_old = temp;
-    else
-      Rc_Data.THROTTLE += (temp /5);
-    temp_old = temp;
-  }
-//  if(temp >= 0)
-//    Rc_Data.THROTTLE = data_limit(Rc_Data.THROTTLE,RX_Data.THROTTLE,1000);
-//  else 
-//    Rc_Data.THROTTLE = data_limit(Rc_Data.THROTTLE,2000,RX_Data.THROTTLE);
+   Rc_Data.THROTTLE += (temp /50);
+  
+ 
   Rc_Data.THROTTLE = data_limit(Rc_Data.THROTTLE,2000,1000);
   
 }
@@ -52,13 +42,13 @@ void Deblocking(void)
 	 /*    |     \   |          |  /      |    */
 	 /*     —————————            —————————     */
 	 /*   油门拉到最低         摇杆推到左上角  */
-   if(!ARMED && Rc_Data.ROLL >= 1800 && Rc_Data.PITCH >= 1800 && Rc_Data.THROTTLE <= 1200 &&  Rc_Data.YAW >= 1800)		
+   if(!ARMED && Rc_Data.PITCH <= 1200 && Rc_Data.ROLL <= 1200 && Rc_Data.THROTTLE <= 1200 &&  Rc_Data.YAW >= 1800)		
 	 {  
 			time1++; 
 	 }	
 	 else 
 		 time1=0;
-	 if(time1>5 && !ARMED) 
+	 if(time1>3 && !ARMED) 
 	 { 
 			ARMED = 1; 
 			time1 = 0;
@@ -72,14 +62,14 @@ void Deblocking(void)
 	 /*    |   /     |          |      \  |    */
 	 /*     —————————            —————————     */
 	 /*   油门拉到最低         摇杆推到右上角  */
-   if(ARMED && Rc_Data.YAW <= 1200 && Rc_Data.PITCH >= 1800 && Rc_Data.THROTTLE <= 1300 &&  Rc_Data.ROLL <= 1200)		
+   if(ARMED && Rc_Data.YAW <= 1200 && Rc_Data.PITCH <= 1200 && Rc_Data.THROTTLE <= 1200 &&  Rc_Data.ROLL >=1800)
 		{
 			time2++; 
 			
 		}	
 	 else 
 		 time2=0;
-	 if(time2>=5 && ARMED)
+	 if(time2>=3 && ARMED)
 	 {
 		  ARMED = 0; 
 			time2 = 0;

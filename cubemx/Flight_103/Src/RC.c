@@ -42,15 +42,15 @@ void Deblocking(void)
 	 /*    |     \   |          |  /      |    */
 	 /*     —————————            —————————     */
 	 /*   油门拉到最低         摇杆推到左上角  */
-   if(ARMED && Rc_Data.PITCH >= 1800 && Rc_Data.ROLL <= 1200 && Rc_Data.THROTTLE <= 1200 &&  Rc_Data.YAW <= 1200)		
+   if(!ARMED && Rc_Data.PITCH <= 1200 && Rc_Data.ROLL <= 1200 && Rc_Data.THROTTLE <= 1200 &&  Rc_Data.YAW >= 1800)		
 	 {  
 			time1++; 
 	 }	
 	 else 
 		 time1=0;
-	 if(time1>3 && ARMED) 
+	 if(time1>3 && !ARMED) 
 	 { 
-			ARMED = 0; 
+			ARMED = 1; 
 			time1 = 0;
 
 	 }
@@ -62,16 +62,16 @@ void Deblocking(void)
 	 /*    |   /     |          |      \  |    */
 	 /*     —————————            —————————     */
 	 /*   油门拉到最低         摇杆推到右上角  */
-   if(!ARMED && Rc_Data.YAW >= 1800 && Rc_Data.PITCH >=1800 && Rc_Data.THROTTLE <= 1200 &&  Rc_Data.ROLL >=1800)
+   if(ARMED && Rc_Data.YAW <= 1200 && Rc_Data.PITCH <= 1200 && Rc_Data.THROTTLE <= 1200 &&  Rc_Data.ROLL >=1800)
 		{
 			time2++; 
 			
 		}	
 	 else 
 		 time2=0;
-	 if(time2>=3 && !ARMED)
+	 if(time2>=3 && ARMED)
 	 {
-		  ARMED = 1; 
+		  ARMED = 0; 
 			time2 = 0;
 
 	 }

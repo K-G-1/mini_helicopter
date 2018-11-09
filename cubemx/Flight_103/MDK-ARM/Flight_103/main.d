@@ -20,6 +20,8 @@ flight_103\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_gpio_ex.h
 flight_103\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma.h
 flight_103\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_dma_ex.h
 flight_103\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_cortex.h
+flight_103\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc.h
+flight_103\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h
 flight_103\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
 flight_103\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 flight_103\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_i2c.h
@@ -28,6 +30,7 @@ flight_103\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_spi.h
 flight_103\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim.h
 flight_103\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_tim_ex.h
 flight_103\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
+flight_103\main.o: ../Inc/adc.h
 flight_103\main.o: ../Inc/i2c.h
 flight_103\main.o: ../Inc/spi.h
 flight_103\main.o: ../Inc/tim.h
@@ -36,3 +39,6 @@ flight_103\main.o: ../Inc/gpio.h
 flight_103\main.o: ../Inc/mpu6050.h
 flight_103\main.o: ../Inc/24l01.h
 flight_103\main.o: ../Inc/sand_data.h
+flight_103\main.o: ../Inc/control.h
+flight_103\main.o: ../Inc/RC.h
+flight_103\main.o: ../Inc/param.h

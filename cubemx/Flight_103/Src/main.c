@@ -39,6 +39,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "stm32f1xx_hal.h"
+#include "adc.h"
 #include "i2c.h"
 #include "spi.h"
 #include "tim.h"
@@ -49,13 +50,16 @@
 #include "mpu6050.h"
 #include "24l01.h"
 #include "sand_data.h"
+#include "control.h"
+#include "RC.h"
+#include "param.h"
 /* USER CODE END Includes */
 
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
 /* Private variables ---------------------------------------------------------*/
-
+uint16_t BAT_Value = 0;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -63,7 +67,7 @@ void SystemClock_Config(void);
 
 /* USER CODE BEGIN PFP */
 /* Private function prototypes -----------------------------------------------*/
-
+void param_init();
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
@@ -79,7 +83,7 @@ uint8_t aRxBuffer[10];
 int main(void)
 {
   /* USER CODE BEGIN 1 */
-
+  
   /* USER CODE END 1 */
 
   /* MCU Configuration----------------------------------------------------------*/
@@ -106,8 +110,9 @@ int main(void)
   MX_TIM4_Init();
   MX_I2C1_Init();
   MX_TIM2_Init();
+  MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
-  
+  param_init();
 //  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);   
 //  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);  
 //  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);  
@@ -144,6 +149,7 @@ int main(void)
   /* USER CODE END WHILE */
 
   /* USER CODE BEGIN 3 */
+    
     //必须要有，不然有的时候不会产生接受中断
     __HAL_UART_ENABLE_IT(&huart1, UART_IT_RXNE);
   }
@@ -160,6 +166,7 @@ void SystemClock_Config(void)
 
   RCC_OscInitTypeDef RCC_OscInitStruct;
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
+  RCC_PeriphCLKInitTypeDef PeriphClkInit;
 
     /**Initializes the CPU, AHB and APB busses clocks 
     */
@@ -169,7 +176,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL7;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
     _Error_Handler(__FILE__, __LINE__);
@@ -189,6 +196,13 @@ void SystemClock_Config(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
+  PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV4;
+  if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
+  {
+    _Error_Handler(__FILE__, __LINE__);
+  }
+
     /**Configure the Systick interrupt time 
     */
   HAL_SYSTICK_Config(HAL_RCC_GetHCLKFreq()/1000);
@@ -202,6 +216,34 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void param_init()
+{
+    Rc_Data.THROTTLE = 1000;
+    Rc_Data.PITCH = 1500;
+    Rc_Data.ROLL = 1500;
+    Rc_Data.YAW = 1500;
+    
+    Rc_Data.pitch_offset = 1500;
+    Rc_Data.roll_offset = 1500;
+    Rc_Data.yaw_offset = 1500;
+
+  
+    Read_Acc_Gyro_offest();
+    Read_PID_shell();
+    Read_PID_core();
+  
+    ctrl.pitch.shell.increment_max = 100;
+    ctrl.pitch.core.increment_max = 100;
+    
+    ctrl.roll.shell.increment_max = 100;
+    ctrl.roll.core.increment_max = 100;
+  
+    ctrl.yaw.shell.increment_max = 100;
+    ctrl.yaw.core.increment_max = 100;
+    mode = 1;
+ 
+}
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 

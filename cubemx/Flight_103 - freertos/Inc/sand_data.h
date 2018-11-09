@@ -10,7 +10,7 @@ void sand_RC_data(void);
 void sand_Motor_data(void);
 void sand_PID_shell_data(void);
 void sand_PID_core_data(void);
-
+void NRF_sand_BAT(uint16_t bat_value);
 
 
 void Data_Receive_Prepare(uint8_t data);
