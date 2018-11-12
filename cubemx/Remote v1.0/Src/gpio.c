@@ -125,6 +125,9 @@ void MX_GPIO_Init(void)
 #define Key4 HAL_GPIO_ReadPin(KEY4_GPIO_Port,KEY4_Pin)
 
 uint8_t key_status = 0xff;
+uint8_t fly_mode = 0;
+uint8_t key_use = 0;
+
 extern int16_t RC_offest[4];
 uint8_t key_press = 0;
 extern osSemaphoreId Data_saveHandle;
@@ -134,28 +137,49 @@ void KEY_Scan(uint8_t mode )
     {
       key_press = 1;
     }
-    if(key_press == 1 &&(Key1 == 1||Key2 ==1 ||Key3 ==1 ||Key4 ==1))
+    if( key_press == 1 &&(Key1 == 1||Key2 ==1 ||Key3 ==1 ||Key4 ==1))
     {
       osDelay(50);
       key_press = 0;
-      if(Key1 == 1)
+      
+      if(Key1 == 1 && key_status >= 4)
+      {
+        key_status =0;
+        key_use = 1;
+      }
+      else if(Key1 == 1 )
       {
         key_status ++;
+        key_use = 1;
         if(key_status >=4)
           key_status = 0;
       }
-      else if(Key2 == 1)
+      else if(Key2 == 1 )
       {
-            key_status = 0xff;;
+            key_status = 0xff;
+            key_use = 0;
             osSemaphoreRelease(Data_saveHandle);
       }
       
-      else if(Key3 == 1)
+      
+      else if(Key3 == 1 && key_status ==4 )
+      {
+            fly_mode ++;
+        if(fly_mode >=3)
+        {
+            fly_mode = 0;
+        }
+      }
+      else if(Key3 == 1 && key_use == 1 )
       {
             RC_offest[key_status] ++;
       }
       
-      else if(Key4 == 1)
+      else if(Key4 == 1 && key_use == 0)
+      {  
+          key_status = 4;
+      }
+      else if(Key4 == 1 && key_use == 1)
       {
             RC_offest[key_status] --;
       }

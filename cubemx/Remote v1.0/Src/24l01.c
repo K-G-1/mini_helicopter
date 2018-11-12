@@ -2,6 +2,7 @@
 #include "24l01.h"
 #include "cmsis_os.h"
 
+struct RX_data receive_data;
 //SPIx 读写一个字节
 //TxData:要写入的字节
 //返回值:读取到的字节
@@ -207,7 +208,7 @@ void NRF24L01_Mode(uint8_t mode)
 	{
 		NRF24L01_CE_L;
 		NRF24L01_Write_Reg(NRF_WRITE_REG+CONFIG,IT_RX);//配置为接收模式
-		NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,0X7E); //清除所有中断,防止一进去接收模式就触发中断
+//		NRF24L01_Write_Reg(NRF_WRITE_REG+STATUS,0X7E); //清除所有中断,防止一进去接收模式就触发中断
 		NRF24L01_CE_H;
 
 	}		
@@ -275,7 +276,8 @@ void NRF24L01_TX_Mode(void)
  uint8_t Tx_buff[33] ;
 uint8_t Rx_buff[33] ;
 extern  uint16_t RC_ADC_Buff[4] ;
-
+extern uint8_t key_status;
+extern uint8_t fly_mode;
 
 void nrf_sand_rc()
 {
@@ -283,7 +285,8 @@ void nrf_sand_rc()
     static uint8_t DATA_ID = 0;
     DATA_ID ++;
     Tx_buff[0] = 0x01;
-    Tx_buff[1] = 0xaa;
+    if(key_status == 0xff)
+      Tx_buff[1] = fly_mode;
     
     Tx_buff[2] = RC_ADC_Buff[0]>>8;
     Tx_buff[3] = RC_ADC_Buff[0];
@@ -301,6 +304,31 @@ void nrf_sand_rc()
   Tx_buff[11] = 0xa5;
  
 }
+extern uint16_t bat_value;
+extern float bat_voltage;
+void NRF_Receive_Dal(uint8_t *rx_buf)
+{
+  if(*rx_buf != 0xAF)
+    return ;
+  //
+  receive_data.bat_value = (*(rx_buf + 2)<<8)|(*(rx_buf +3));
+  receive_data.BAT_voltage = (float)(receive_data.bat_value *2 * 33 )/4096;
+  
+  //
+  receive_data.yaw = (*(rx_buf + 4)<<8)|(*(rx_buf +5)) ;
+  receive_data.pitch = (*(rx_buf + 6)<<8)|(*(rx_buf +7));
+  receive_data.roll = (*(rx_buf + 8)<<8)|(*(rx_buf +9));
+  //
+  receive_data.alt_temp = (*(rx_buf + 10)<<8)|(*(rx_buf +11));
+  receive_data.Altitude = receive_data.alt_temp/100;
+  //
+  receive_data.fly_mode = *(rx_buf + 12);
+  
+  //
+  receive_data.Armed = *(rx_buf + 13);
+}
+
+extern osSemaphoreId NRF_RX_OKHandle;
 extern uint8_t IRQ_timeout;
 extern osSemaphoreId NRF_statusHandle;
 void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
@@ -326,6 +354,7 @@ void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
     HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);
     NRF24L01_Read_Buf(RD_RX_PLOAD,Rx_buff,RX_PLOAD_WIDTH);//读取数据
 		NRF24L01_Write_Reg(FLUSH_RX,0xff);//清除RX FIFO寄存器 
+    osSemaphoreRelease(NRF_RX_OKHandle);
   }
 }
 

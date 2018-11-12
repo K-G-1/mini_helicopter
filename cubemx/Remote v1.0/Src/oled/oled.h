@@ -21,7 +21,7 @@ void oled_show_RC_data(int16_t *data);
 void oled_show_offest_data(int16_t *data);
 
 void change_offest(uint8_t y);
-
+void OLED_P6x8_float(unsigned char x,unsigned char y,int ch);
 
 #endif
 

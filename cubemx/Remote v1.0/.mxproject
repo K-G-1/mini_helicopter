@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=G:/Keil/STM32F1/RoboFlyDEMO/RoboFlyDEMO/2¡¢RoboFlyDEMO/Remote v1.0/Inc
+HeaderPath=G:/Keil/STM32F1/mini_helicopter/cubemx/Remote v1.0/Inc
 HeaderFiles=gpio.h;adc.h;FreeRTOSConfig.h;i2c.h;spi.h;tim.h;usart.h;usb.h;stm32f1xx_it.h;stm32f1xx_hal_conf.h;main.h;
-SourcePath=G:/Keil/STM32F1/RoboFlyDEMO/RoboFlyDEMO/2¡¢RoboFlyDEMO/Remote v1.0/Src
+SourcePath=G:/Keil/STM32F1/mini_helicopter/cubemx/Remote v1.0/Src
 SourceFiles=gpio.c;adc.c;freertos.c;i2c.c;spi.c;tim.c;usart.c;usb.c;stm32f1xx_it.c;stm32f1xx_hal_msp.c;main.c;
 
 [PreviousLibFiles]

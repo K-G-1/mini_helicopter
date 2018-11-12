@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xB</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;             ../Drivers/STM32F1xx_HAL_Driver/Inc;             ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;             ../Drivers/CMSIS/Device/ST/STM32F1xx/Include;             ../Drivers/CMSIS/Include;             ..\Src\Algorithm\Algorithm_filter;             ..\Src\Algorithm\Algorithm_math;             ..\Inc;         ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3;         ../Middlewares/Third_Party/FreeRTOS/Source/include;         ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS</IncludePath>
+              <IncludePath>../Inc;  ../Drivers/STM32F1xx_HAL_Driver/Inc;  ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;  ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM3;  ../Drivers/CMSIS/Device/ST/STM32F1xx/Include;  ../Middlewares/Third_Party/FreeRTOS/Source/include;  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;  ../Drivers/CMSIS/Include;  ..\Src\Algorithm\Algorithm_filter;  ..\Src\Algorithm\Algorithm_math</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -398,9 +398,39 @@
               <FilePath>..\Src\24l01.c</FilePath>
             </File>
             <File>
+              <FileName>control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\control.c</FilePath>
+            </File>
+            <File>
+              <FileName>IMU.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\IMU.c</FilePath>
+            </File>
+            <File>
               <FileName>mpu6050.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\mpu6050.c</FilePath>
+            </File>
+            <File>
+              <FileName>param.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\param.c</FilePath>
+            </File>
+            <File>
+              <FileName>RC.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\RC.c</FilePath>
+            </File>
+            <File>
+              <FileName>sand_data.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\sand_data.c</FilePath>
+            </File>
+            <File>
+              <FileName>stmflash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\Src\stmflash.c</FilePath>
             </File>
             <File>
               <FileName>Algorithm_filter.c</FileName>
@@ -411,36 +441,6 @@
               <FileName>Algorithm_math.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\Src\Algorithm\Algorithm_math\Algorithm_math.c</FilePath>
-            </File>
-            <File>
-              <FileName>IMU.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\IMU.c</FilePath>
-            </File>
-            <File>
-              <FileName>sand_data.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\sand_data.c</FilePath>
-            </File>
-            <File>
-              <FileName>RC.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\RC.c</FilePath>
-            </File>
-            <File>
-              <FileName>stmflash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\stmflash.c</FilePath>
-            </File>
-            <File>
-              <FileName>param.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\param.c</FilePath>
-            </File>
-            <File>
-              <FileName>control.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\Src\control.c</FilePath>
             </File>
             <File>
               <FileName>main.c</FileName>

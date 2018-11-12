@@ -71,6 +71,7 @@ osThreadId myTask_KeyHandle;
 osThreadId Param_TaskHandle;
 osSemaphoreId NRF_statusHandle;
 osSemaphoreId Data_saveHandle;
+osSemaphoreId NRF_RX_OKHandle;
 
 /* USER CODE BEGIN Variables */
 osMailQId ADC_ValueHandle;
@@ -123,6 +124,10 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of Data_save */
   osSemaphoreDef(Data_save);
   Data_saveHandle = osSemaphoreCreate(osSemaphore(Data_save), 1);
+
+  /* definition and creation of NRF_RX_OK */
+  osSemaphoreDef(NRF_RX_OK);
+  NRF_RX_OKHandle = osSemaphoreCreate(osSemaphore(NRF_RX_OK), 1);
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
@@ -296,11 +301,11 @@ void StartTask_OLED(void const * argument)
     if(display_mail.status == osEventMail)
       oled_show_RC_data(display_mail.value.p);
     
-    display_mail = osMailGet(RC_Offest_buffHandle,10);
-    if(display_mail.status == osEventMail)
-      oled_show_offest_data(display_mail.value.p);
+//    display_mail = osMailGet(RC_Offest_buffHandle,10);
+//    if(display_mail.status == osEventMail)
+//      oled_show_offest_data(display_mail.value.p);
     
-    if(osSemaphoreWait(NRF_statusHandle,0xff) == osOK)
+    if(osSemaphoreWait(NRF_statusHandle,0x10) == osOK)
     {
       OLED_P6x8Str(72,0,"connected");
     }
@@ -308,13 +313,42 @@ void StartTask_OLED(void const * argument)
     {
       OLED_P6x8Str(72,0," vanished");
     }
+    
+    
+    if(osSemaphoreWait(NRF_RX_OKHandle,0x10) == osOK)
+    {
+      NRF_Receive_Dal(Rx_buff);
+      OLED_P6x8_float(90,2,receive_data.BAT_voltage);
+      OLED_P6x8data (96,6,receive_data.Altitude);
+      
+      OLED_P6x8_float(36,0,receive_data.pitch);
+      OLED_P6x8_float(36,1,receive_data.roll);
+      OLED_P6x8data(36,2,receive_data.yaw / 10);
+      
+      if(receive_data.fly_mode == 1)
+      {
+        OLED_P6x8Str(104,5,"Nor");
+      }
+      else if(receive_data.fly_mode == 2)
+      {
+        OLED_P6x8Str(104,5,"Alt");
+      }
+      else 
+      {
+        OLED_P6x8Str(104,5,"   ");
+      }
+      
+      if(receive_data.Armed == 1)
+      {
+        OLED_P6x8Str(110,4,"Yes");
+      }
+      else{
+        OLED_P6x8Str(110,4,"No ");
+      }
+    }
+    
     change_offest(key_status);
-    
-    bat_value = Rx_buff[2]<<8|Rx_buff[3];
-    bat_voltage = (float)(bat_value *2 * 33 *10)/4096;
-    OLED_P6x8data(64,2,bat_voltage);
-    
-    osDelay(1);
+    osDelay(100);
   }
   /* USER CODE END StartTask_OLED */
 }

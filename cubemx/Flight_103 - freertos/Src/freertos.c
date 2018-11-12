@@ -265,7 +265,7 @@ void StartControlTask(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-    CONTROL(angle.roll,angle.pitch,angle.yaw);
+//    CONTROL(angle.roll,angle.pitch,angle.yaw);
     osDelay(5);
   }
   /* USER CODE END StartControlTask */

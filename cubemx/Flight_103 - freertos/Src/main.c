@@ -115,17 +115,15 @@ int main(void)
   MX_GPIO_Init();
   MX_SPI1_Init();
   MX_USART1_UART_Init();
-  MX_TIM3_Init();
+//  MX_TIM3_Init();
   MX_TIM4_Init();
-  MX_I2C1_Init();
   MX_TIM2_Init();
   MX_ADC1_Init();
+  MX_I2C1_Init();
+  HAL_TIM_MspPostInit(&htim3);
   /* USER CODE BEGIN 2 */
   
-//  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);   
-//  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);  
-//  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);  
-//  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);  
+
   HAL_Delay(100);
   while(mpu6050_init() != 0)
   {
@@ -144,10 +142,16 @@ int main(void)
   HAL_GPIO_WritePin(LED2_GPIO_Port,LED2_Pin,GPIO_PIN_SET);
   NRF24L01_RX_Mode();
   
-//  
-//  HAL_TIM_Base_Start_IT(&htim4);
-//  HAL_TIM_Base_Start_IT(&htim2);
-
+  
+////  HAL_TIM_Base_Start_IT(&htim4);
+////  HAL_TIM_Base_Start_IT(&htim2);
+  HAL_GPIO_WritePin(GPIOB,GPIO_PIN_5,GPIO_PIN_SET);
+//  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_1);   
+//  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_2);  
+//  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_3);  
+//  HAL_TIM_PWM_Start(&htim3, TIM_CHANNEL_4);  
+//  Moto_PwmRflash(&htim3,0,0,0,0);
+  
   HAL_UART_Receive_IT(&huart1, (uint8_t *)aRxBuffer, 1);
   /* USER CODE END 2 */
 

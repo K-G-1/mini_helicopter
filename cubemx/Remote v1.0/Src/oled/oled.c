@@ -143,6 +143,41 @@ void OLED_P6x8data(unsigned char x,unsigned char y,int ch)
 	
 
 }
+
+void OLED_P6x8_float(unsigned char x,unsigned char y,int ch)
+{
+	unsigned char i=0;
+	uint16_t bai,shi,ge;
+	if(ch>=00)
+	{
+		
+		OLED_P6x8Str(x,y," ");
+	}
+	else
+	{
+		ch = -ch;
+		OLED_P6x8Str(x,y,"-");
+	}
+	bai = ch/100%10 +16;
+	shi= ch/10%10   +16;
+	ge = ch%10      +16;
+	
+	if(x>126){x=0;y++;}
+	OLED_Set_Pos(x+6,y);
+
+	for(i=0;i<6;i++)
+	OLED_WrDat(F6x8[bai][i]);
+	OLED_Set_Pos(x+12,y);
+	for(i=0;i<6;i++)
+		OLED_WrDat(F6x8[shi][i]);
+  
+  OLED_P6x8Str(x+18,y,(unsigned char *)".");
+	OLED_Set_Pos(x+24,y);
+	for(i=0;i<6;i++)
+		OLED_WrDat(F6x8[ge][i]);
+	
+
+}
 /*******************功能描述：显示8*16一组标准ASCII字符串	 显示的坐标（x,y），y为页范围0～7****************/
 void OLED_P8x16Str(unsigned char x,unsigned char y,unsigned char ch[])				//一共8页i，即是8行，每两行像是一个数字或一个汉字
 {
@@ -200,15 +235,32 @@ void Draw_BMP(unsigned char x0,unsigned char y0,unsigned char x1,unsigned char y
 /**********************************************************/
 void oled_dis_str(void)
 {
-	OLED_P6x8Str(0,0,"THR  :");
-	OLED_P6x8Str(0,1,"Yaw  :");
-	OLED_P6x8Str(0,2,"Pitch:");
-	OLED_P6x8Str(0,3,"Roll :");
-    
-  OLED_P6x8Str(0,4,"T offest:");
-	OLED_P6x8Str(0,5,"Y offest:");
-	OLED_P6x8Str(0,6,"P offest:");
-	OLED_P6x8Str(0,7,"R offest:");
+
+	
+	OLED_P6x8Str(0,0,"Pitch:");
+	OLED_P6x8Str(0,1,"Roll :");
+  OLED_P6x8Str(0,2,"Yaw  :");
+  
+
+	OLED_P6x8Str(72,1,"TX:     v");
+  OLED_P6x8Str(72,2,"RX:     v");
+  
+  OLED_P6x8Str(0,3,"-----------------");
+  
+	OLED_P6x8Str(0,4,"THR  :");
+	OLED_P6x8Str(0,5,"Yaw  :");
+	OLED_P6x8Str(0,6,"Pitch:");
+	OLED_P6x8Str(0,7,"Roll :");
+  
+  OLED_P6x8Str(72,4,"armed::");
+  OLED_P6x8Str(72,5,"mode:");
+  OLED_P6x8Str(72,6,"ALT:    m");
+
+  
+//  OLED_P6x8Str(0,4,"T offest:");
+//	OLED_P6x8Str(0,5,"Y offest:");
+//	OLED_P6x8Str(0,6,"P offest:");
+//	OLED_P6x8Str(0,7,"R offest:");
     
 }
 
@@ -223,10 +275,10 @@ void oled_dis_data(int P,int R,int Y,int H)
 
 void oled_show_RC_data(int16_t *data)
 {
-	OLED_P6x8data(36,0,*data);
-	OLED_P6x8data(36,1,*(data+1));
-	OLED_P6x8data(36,2,*(data+2));
-	OLED_P6x8data(36,3,*(data+3));
+	OLED_P6x8data(36,4,*data);
+	OLED_P6x8data(36,5,*(data+1));
+	OLED_P6x8data(36,6,*(data+2));
+	OLED_P6x8data(36,7,*(data+3));
 	
 }
 
@@ -238,16 +290,34 @@ void oled_show_offest_data(int16_t *data)
 	OLED_P6x8data(64,7,*(data+3));
 	
 }
+extern uint8_t fly_mode;
 void change_offest(uint8_t y)
 {
     static uint16_t y_old = 0xff;
-    if(y >=0 && y!= y_old)
+    if(y<4)
+      OLED_P6x8Str(36,y+4,">");
+    
+    if(y==4)
     {
-        if(y != 0xff)
-          OLED_P6x8Str(56,4+y,"[     ]");
-      
-        OLED_P6x8Str(56,4+y_old,"        ");
+      OLED_P6x8Str(72,7,">");
+      if(fly_mode == 0)
+        OLED_P6x8Str(78,7,"Nor mode");
+//      else if(fly_mode == 1)
+//        OLED_P6x8Str(78,7,"Alt mode");
+      else if(fly_mode == 2)
+        OLED_P6x8Str(78,7,"Cal mode");
     }
+    else
+    {
+      OLED_P6x8Str(72,7,"         ");
+    }
+//    if(y >=0 && y!= y_old)
+//    {
+//        if(y != 0xff)
+//          OLED_P6x8Str(36,y+4,">");
+//      
+//        OLED_P6x8Str(36,y_old+4,"  ");
+//    }
 
     y_old = y;
 }
