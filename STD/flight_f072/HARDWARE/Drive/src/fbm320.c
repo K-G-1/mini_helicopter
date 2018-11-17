@@ -9,7 +9,7 @@
 * 程序作者：愤怒的小孩
 * 版权所有：西安天际智联信息技术有限公司
 *******************************************************************************************/
-#include "stm32f10x.h"
+#include "stm32f0xx.h"
 #include "fbm320.h"
 #include "iic.h"
 #include "stdio.h"
@@ -133,7 +133,7 @@ void FBM320_Check(void)
 	while(!FBM320_testConnection())
 	{
 		printf("\rFBM320 no connect...\r\n");
-		RGB_LED_Blue();//蓝灯常亮
+//		RGB_LED_Blue();//蓝灯常亮
 	}
 } 
 
@@ -214,7 +214,7 @@ void FBM320_GetAltitude(void) //200Hz
 		  
 		if(Init_Altitude())
 		{
-			BAR_Offset_LED();//气压计校准成功指示灯
+//			BAR_Offset_LED();//气压计校准成功指示灯
 			ALTIUDE_OK = 1;
 		}
 		   

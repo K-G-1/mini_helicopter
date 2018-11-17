@@ -9,7 +9,7 @@
 * 程序作者：愤怒的小孩
 * 版权所有：西安天际智联信息技术有限公司
 *******************************************************************************************/
-#include "stm32f10x.h"
+#include "stm32f0xx.h"
 
 
 #define Moto_PwmMax 1000
@@ -35,19 +35,19 @@ void MOTOR_Init(void)
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;   //定义定时器结构体变量
 	TIM_OCInitTypeDef TIM_OCInitStruct;   //定义输出比较结构体变量
 	
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_GPIOB|RCC_APB2Periph_AFIO,ENABLE);   //GPIOA、B、复用时钟使能
+	RCC_APB2PeriphClockCmd(RCC_AHBPeriph_GPIOA|RCC_AHBPeriph_GPIOB,ENABLE);   //GPIOA、B、复用时钟使能
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE);   //使能TIM3的时钟
-	GPIO_PinRemapConfig(GPIO_PartialRemap_TIM3,ENABLE);
-  GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);
+//	GPIO_PinRemapConfig(GPIO_PartialRemap_TIM3,ENABLE);
+//  GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);
   
   
 	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_4|GPIO_Pin_5;   //配置GPIO第6、7引脚
-	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_AF_PP;   	  //配置GPIO为复用推挽输出
+	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_IN;   	  //配置GPIO为复用推挽输出
 	GPIO_InitStruct.GPIO_Speed=GPIO_Speed_50MHz;  	  //配置GPIO速率
 	GPIO_Init(GPIOB,&GPIO_InitStruct);   //GPIO初始化函数
 	
 	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_0|GPIO_Pin_1;   //配置GPIO第0、1引脚
-	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_AF_PP;   	  //配置GPIO为复用推挽输出
+	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_IN;   	  //配置GPIO为复用推挽输出
 	GPIO_InitStruct.GPIO_Speed=GPIO_Speed_50MHz;   	  //配置GPIO速率
 	GPIO_Init(GPIOB,&GPIO_InitStruct);   //GPIO初始化函数
 	

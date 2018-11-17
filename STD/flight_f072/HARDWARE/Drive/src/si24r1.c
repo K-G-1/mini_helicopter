@@ -9,11 +9,12 @@
 * 程序作者：愤怒的小孩
 * 版权所有：西安天际智联信息技术有限公司
 *******************************************************************************************/
-#include "stm32f10x.h"
+#include "stm32f0xx.h"
 #include "si24r1.h"
 #include "spi.h"
 #include "delay.h"
 #include "led.h"
+#include "usart.h"
 #include "stdio.h"
 #include "stdlib.h"
 #include "paramsave.h"
@@ -29,7 +30,7 @@ uint8_t SI24R1_RX_DATA[RX_PAYLO_WIDTH];//NRF接收缓冲区
 uint8_t TX_ADDRESS[TX_ADR_WIDTH]={0xAA,0xBB,0xCC,0x00,0x01}; //发送地址
 uint8_t RX_ADDRESS[RX_ADR_WIDTH]={0xAA,0xBB,0xCC,0x00,0x01}; //接收地址
 
-
+uint8_t check_buf[5]={0,0,0,0,0};
 /*****************************************************************************
 * 函  数：void SI24R1_Init(void)
 * 功  能：NRF引脚GPIO初始化
@@ -40,28 +41,34 @@ uint8_t RX_ADDRESS[RX_ADR_WIDTH]={0xAA,0xBB,0xCC,0x00,0x01}; //接收地址
 void SI24R1_Init(void)
 {
 	GPIO_InitTypeDef GPIO_InitStruct; 
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB|RCC_APB2Periph_GPIOA,ENABLE);
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOB|RCC_AHBPeriph_GPIOA,ENABLE);
 	
 	/*   配置CSN引脚   */
 	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_1;
-	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_Out_PP;
+	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_OUT;
+  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+  GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStruct.GPIO_Speed=GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA,&GPIO_InitStruct);
 	GPIO_ResetBits(GPIOA,GPIO_Pin_1);
 	
 	/*  配置CE引脚  */
 	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_4;
-	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_Out_PP;
+	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_OUT;
+  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+  GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
 	GPIO_InitStruct.GPIO_Speed=GPIO_Speed_50MHz;
 	GPIO_Init(GPIOA,&GPIO_InitStruct);
 	GPIO_ResetBits(GPIOA,GPIO_Pin_4);
 		
 	SPI_GPIO_Init(); //SPI2初始化
 
-	SI24R1_Check(); //检查SI24R1是否与MCU通信                                    
+	                          
 
 	SI24R1_CSN_HIGH; //失能NRF
 	SI24R1_CE_LOW; 	 //待机模式
+  
+  SI24R1_Check(); //检查SI24R1是否与MCU通信          
 }
 
 /*****************************************************************************
@@ -142,13 +149,14 @@ uint8_t SI24R1_Read_Buf(uint8_t reg, uint8_t *pBuf, uint8_t len)
 {
 	uint8_t status;
 	int i;
-	
+	uint8_t temp = 0;
 	SI24R1_CSN_LOW;
 	status = SPI1_WriteReadByte(reg);
 	for(i = 0;i < len ;i++)
 	{
-		*pBuf = SPI1_WriteReadByte(0xff);
-		pBuf++;
+		pBuf[i] = SPI1_WriteReadByte(0xff);
+
+
 	}
 	SI24R1_CSN_HIGH;
 	
@@ -251,8 +259,10 @@ void SI24R1_RxPacket(uint8_t *rxbuf)
 uint8_t SI24R1_testConnection(void)
 {
 	uint8_t buf[5]={0XA5,0XA5,0XA5,0XA5,0XA5};
-  uint8_t check_buf[5];
+  
 	uint8_t i; 	 
+  for(i=0;i<5;i++)
+    check_buf[i]  = 0;
 	SI24R1_Write_Buf(W_REGISTER+TX_ADDR,buf,5); //写入5个字节的地址.	
 	SI24R1_Read_Buf(TX_ADDR,check_buf,5); //读出写入的地址  
 	for(i=0;i<5;i++)
@@ -272,8 +282,7 @@ void SI24R1_Check(void)
 {
 	while(!SI24R1_testConnection())
 	{
-		printf("\r SI24R1 no connect...\r\n");
-		RGB_LED_Red();//红灯常亮
+		usart_send("2401 error\r\n", 12);
 	}
 }
 

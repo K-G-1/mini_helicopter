@@ -1,5 +1,4 @@
-.\objects\iic.o: ..\HARDWARE\IIC\IIC.c
-.\objects\iic.o: ..\HARDWARE\IIC\IIC.h
+.\objects\iic.o: ..\HARDWARE\Drive\src\iic.c
 .\objects\iic.o: ..\Libraries\CMSIS\Device\ST\STM32F0xx\Include\stm32f0xx.h
 .\objects\iic.o: ..\Libraries\CMSIS\Include\core_cm0.h
 .\objects\iic.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
@@ -31,4 +30,5 @@
 .\objects\iic.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_usart.h
 .\objects\iic.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_wwdg.h
 .\objects\iic.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h
-.\objects\iic.o: ..\HARDWARE\delay\delay.h
+.\objects\iic.o: ..\HARDWARE\Drive\inc\iic.h
+.\objects\iic.o: ..\HARDWARE\Drive\inc\delay.h

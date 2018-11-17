@@ -9,10 +9,10 @@
 * 程序作者：愤怒的小孩
 * 版权所有：西安天际智联信息技术有限公司
 *******************************************************************************************/
-#include "stm32f10x.h"
+#include "stm32f0xx.h"
 #include "stdio.h"
 
-
+#define PUTCHAR_PROTOTYPE int fputc(int ch, FILE *f)
 /*****************************************************************************
 * 函  数：void USART_init(uint32_t baudrate)
 * 功  能：Usart1初始化为双工模式
@@ -26,15 +26,23 @@ void USART_init(uint32_t baudrate)
 	GPIO_InitTypeDef GPIO_InitStruct;   //定义GPIO结构体变量
 	USART_InitTypeDef USART_InitStruct;   //定义串口结构体变量
 	
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_USART1,ENABLE);   //使能GPIOA、USART1的时钟
-	
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1,ENABLE);   //使能GPIOA、USART1的时钟
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA,ENABLE);
+  	//PA.9和PA.10作为复用功能
+	GPIO_PinAFConfig(GPIOA, GPIO_PinSource9, GPIO_AF_0);			
+	GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_0);
+  
 	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_9;   //配置TX引脚
-	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_AF_PP;   //配置PA9为复用推挽输出
+	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_AF;   //配置PA9为复用推挽输出
+  GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
 	GPIO_InitStruct.GPIO_Speed=GPIO_Speed_50MHz;   //配置PA9速率
 	GPIO_Init(GPIOA,&GPIO_InitStruct);   //GPIO初始化函数
 	
 	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_10;   //配置RX引脚
-	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_IN_FLOATING;   //配置PA10为浮空输入
+	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_IN;   //配置PA10为浮空输入
+  GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
+  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
 	GPIO_InitStruct.GPIO_Speed=GPIO_Speed_50MHz;   //配置PA10速率
 	GPIO_Init(GPIOA,&GPIO_InitStruct);   //GPIO初始化函数
 	
@@ -48,7 +56,7 @@ void USART_init(uint32_t baudrate)
 	USART_Init(USART1,&USART_InitStruct);   //串口初始化函数
 	
 	USART_ITConfig(USART1,USART_IT_RXNE,ENABLE);		//串口接收中断
-	USART_ITConfig(USART1,USART_IT_IDLE,ENABLE);		//串口空闲中断
+//	USART_ITConfig(USART1,USART_IT_IDLE,ENABLE);		//串口空闲中断
 	
 	USART_Cmd(USART1,ENABLE);   //使能USART1
 }
@@ -60,11 +68,23 @@ void USART_init(uint32_t baudrate)
 * 返回值：无
 * 备  注：无
 *****************************************************************************/
-int fputc(int ch,FILE *f)   //printf重定向函数
+//int fputc(int ch,FILE *f)   //printf重定向函数
+//{
+//	USART_SendData(USART1,(uint8_t)ch);   //发送一字节数据
+//	while(USART_GetFlagStatus(USART1,USART_FLAG_TXE) == RESET);   //等待发送完成
+//	return ch;
+//}
+PUTCHAR_PROTOTYPE
 {
-	USART_SendData(USART1,(uint8_t)ch);   //发送一字节数据
-	while(USART_GetFlagStatus(USART1,USART_FLAG_TXE) == RESET);   //等待发送完成
-	return ch;
+  /* Place your implementation of fputc here */
+  /* e.g. write a character to the USART */
+  USART_SendData(USART1, (uint8_t) ch);
+
+  /* Loop until transmit data register is empty */
+  while (USART_GetFlagStatus(USART1, USART_FLAG_TXE) == RESET)
+  {}
+
+  return ch;
 }
 
 /*****************************************************************************

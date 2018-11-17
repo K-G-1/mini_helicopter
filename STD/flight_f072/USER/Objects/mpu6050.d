@@ -1,5 +1,4 @@
-.\objects\mpu6050.o: ..\HARDWARE\6050\mpu6050.c
-.\objects\mpu6050.o: ..\HARDWARE\6050\mpu6050.h
+.\objects\mpu6050.o: ..\HARDWARE\Drive\src\mpu6050.c
 .\objects\mpu6050.o: ..\Libraries\CMSIS\Device\ST\STM32F0xx\Include\stm32f0xx.h
 .\objects\mpu6050.o: ..\Libraries\CMSIS\Include\core_cm0.h
 .\objects\mpu6050.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
@@ -31,9 +30,12 @@
 .\objects\mpu6050.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_usart.h
 .\objects\mpu6050.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_wwdg.h
 .\objects\mpu6050.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h
-.\objects\mpu6050.o: ..\HARDWARE\9250\mpu9250.h
-.\objects\mpu6050.o: ..\HARDWARE\IMU\imu.h
-.\objects\mpu6050.o: ..\HARDWARE\delay\delay.h
-.\objects\mpu6050.o: ..\HARDWARE\IIC\IIC.h
-.\objects\mpu6050.o: ..\HARDWARE\Algorithm\Algorithm_filter\Algorithm_filter.h
-.\objects\mpu6050.o: ..\HARDWARE\param\param.h
+.\objects\mpu6050.o: ..\HARDWARE\Drive\inc\MPU6050.h
+.\objects\mpu6050.o: ..\HARDWARE\Drive\inc\iic.h
+.\objects\mpu6050.o: ..\HARDWARE\Drive\inc\delay.h
+.\objects\mpu6050.o: ..\HARDWARE\Drive\inc\usart.h
+.\objects\mpu6050.o: ..\HARDWARE\Drive\inc\led.h
+.\objects\mpu6050.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\mpu6050.o: ..\HARDWARE\IMU\structconfig.h
+.\objects\mpu6050.o: ..\HARDWARE\Drive\inc\si24r1.h
+.\objects\mpu6050.o: ..\HARDWARE\CONTROL\paramsave.h

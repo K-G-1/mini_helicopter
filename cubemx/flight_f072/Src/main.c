@@ -42,6 +42,7 @@
 #include "i2c.h"
 #include "spi.h"
 #include "tim.h"
+#include "usart.h"
 #include "gpio.h"
 
 /* USER CODE BEGIN Includes */
@@ -66,8 +67,8 @@ void SystemClock_Config(void);
 /* USER CODE END PFP */
 
 /* USER CODE BEGIN 0 */
-
-/* USER CODE END 0 */
+uint8_t rx_buf[10]={0}
+;/* USER CODE END 0 */
 
 /**
   * @brief  The application entry point.
@@ -102,15 +103,16 @@ int main(void)
   MX_TIM2_Init();
   MX_SPI1_Init();
   MX_I2C1_Init();
+  MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  HAL_Delay(1000);
-  while(mpu6050_init() != 0)
-  {
-    HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);
-    HAL_Delay(1000);
-  }
-  Get_6050_offest();
-  
+//  HAL_Delay(1000);
+//  while(mpu6050_init() != 0)
+//  {
+//    HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);
+//    HAL_Delay(1000);
+//  }
+//  Get_6050_offest();
+//  
 
 //  NRF24L01_Init();
 //  __HAL_SPI_ENABLE(&hspi1);
@@ -154,7 +156,10 @@ int main(void)
 ////      HAL_Delay(1000);
 ////    }
     HAL_GPIO_TogglePin(LED1_GPIO_Port,LED1_Pin);
-    HAL_Delay(1000);
+    HAL_Delay(500);
+    HAL_UART_Transmit(&huart1,"transmit:\n",10,100);
+    HAL_UART_Receive(&huart1,rx_buf,10,255);
+    HAL_UART_Transmit(&huart1,rx_buf,10,100);
   }
   /* USER CODE END 3 */
 
@@ -197,7 +202,8 @@ void SystemClock_Config(void)
     _Error_Handler(__FILE__, __LINE__);
   }
 
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_I2C1;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USART1|RCC_PERIPHCLK_I2C1;
+  PeriphClkInit.Usart1ClockSelection = RCC_USART1CLKSOURCE_PCLK1;
   PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_SYSCLK;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {

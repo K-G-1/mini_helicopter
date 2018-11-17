@@ -31,4 +31,6 @@ flight_f072\algorithm_filter.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_ha
 flight_f072\algorithm_filter.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_spi_ex.h
 flight_f072\algorithm_filter.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h
 flight_f072\algorithm_filter.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h
+flight_f072\algorithm_filter.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h
+flight_f072\algorithm_filter.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h
 flight_f072\algorithm_filter.o: ..\Src\Algorithm\Algorithm_math\Algorithm_math.h

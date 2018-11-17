@@ -1,5 +1,4 @@
-.\objects\spi.o: ..\HARDWARE\SPI\spi.c
-.\objects\spi.o: ..\HARDWARE\SPI\spi.h
+.\objects\spi.o: ..\HARDWARE\Drive\src\spi.c
 .\objects\spi.o: ..\Libraries\CMSIS\Device\ST\STM32F0xx\Include\stm32f0xx.h
 .\objects\spi.o: ..\Libraries\CMSIS\Include\core_cm0.h
 .\objects\spi.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
@@ -31,3 +30,4 @@
 .\objects\spi.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_usart.h
 .\objects\spi.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_wwdg.h
 .\objects\spi.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h
+.\objects\spi.o: ..\HARDWARE\Drive\inc\spi.h

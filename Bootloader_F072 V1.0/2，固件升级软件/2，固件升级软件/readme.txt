@@ -1,0 +1,1 @@
+特别提醒：FirmwareUpgrade需要安装.net framework 4.0,如果你的电脑没有安装过.net framework 4.0，请先安装：dotNetFx40_Full_x86_x64.exe,再运行软件。

@@ -9,7 +9,7 @@
 * 程序作者：愤怒的小孩
 * 版权所有：西安天际智联信息技术有限公司
 *******************************************************************************************/
-#include "stm32f10x.h"
+#include "stm32f0xx.h"
 #include "iic.h"
 #include "delay.h"
 
@@ -32,10 +32,12 @@
 void IIC_GPIO_Init(void)
 {
   GPIO_InitTypeDef GPIO_InitStructure;
-  RCC_APB2PeriphClockCmd(	RCC_APB2Periph_GPIOB, ENABLE );	//使能GPIOB时钟
+  RCC_AHBPeriphClockCmd(	RCC_AHBPeriph_GPIOB, ENABLE );	//使能GPIOB时钟
    
   GPIO_InitStructure.GPIO_Pin = SCL|SDA;
-  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP ;   //推挽输出
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_OUT ;   //推挽输出
+  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP;
   GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
   GPIO_Init(GPIOB, &GPIO_InitStructure);
   GPIO_SetBits(GPIOB,SCL|SDA); 	//PB6,PB7 输出高
@@ -60,7 +62,7 @@ void SDA_OUT(void)
 //	GPIO_Init(GPIOB, &GPIO_InitStructure);
   
   
-  GPIOB->CRL&=0X0FFFFFFF;GPIOB->CRL|=(uint32_t)1<<28;
+//  GPIOB->CRL&=0X0FFFFFFF;GPIOB->CRL|=(uint32_t)1<<28;
 }
 
 /******************************************************************************
@@ -79,7 +81,7 @@ void SDA_IN(void)
 //	GPIO_InitStructure.GPIO_Pin   = GPIO_Pin_7 ;
 //	GPIO_InitStructure.GPIO_Mode  = GPIO_Mode_IN_FLOATING;
 //	GPIO_Init(GPIOB, &GPIO_InitStructure);
-  GPIOB->CRL&=0X0FFFFFFF;GPIOB->CRL|=(uint32_t)8<<28;
+//  GPIOB->CRL&=0X0FFFFFFF;GPIOB->CRL|=(uint32_t)8<<28;
 }
 
 /******************************************************************************

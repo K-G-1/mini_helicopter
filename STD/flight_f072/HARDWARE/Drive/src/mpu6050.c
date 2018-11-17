@@ -9,7 +9,7 @@
 * 程序作者：愤怒的小孩
 * 版权所有：西安天际智联信息技术有限公司
 *******************************************************************************************/
-#include "stm32f10x.h"
+#include "stm32f0xx.h"
 #include "MPU6050.h"
 #include "iic.h"
 #include "delay.h"
@@ -135,7 +135,7 @@ void MPU6050_Check(void)
 	while(!MPU6050_testConnection())
 	{
 		printf("\rMPU6050 no connect...\r\n");
-		RGB_LED_green(); //绿灯常亮
+//		RGB_LED_green(); //绿灯常亮
 	}
 }
 
@@ -228,7 +228,7 @@ void MPU6050_Init(void)
   while(res != 0x68)
   {
     res=IIC_ADD_read(MPU6050Addr,MPU6050_RA_WHO_AM_I); 
-    printf("\rMPU6050 no connect...\r\n");
+//    printf("\rMPU6050 no connect...\r\n");
   }
     ;
 }
@@ -349,8 +349,7 @@ void MPU6050_Offset(void)
 		{
 			
 			 SENSER_FLAG_RESET(GYRO_OFFSET);
-			 PID_WriteFlash(); //保存陀螺仪的零偏数据
-			 GYRO_Offset_LED();
+//			 PID_WriteFlash(); //保存陀螺仪的零偏数据
 		     SENSER_FLAG_SET(ACC_OFFSET);//校准加速度
 			
 //			 printf("GYRO_OFFSET_RAW Value :X=%d  Y=%d  Z=%d\n",GYRO_OFFSET_RAW.X,GYRO_OFFSET_RAW.Y,GYRO_OFFSET_RAW.Z);
@@ -362,8 +361,7 @@ void MPU6050_Offset(void)
 		if(MPU6050_OffSet(MPU6050_ACC_RAW,&ACC_OFFSET_RAW,8196))
 		{
 			 SENSER_FLAG_RESET(ACC_OFFSET);
-			 PID_WriteFlash(); //保存加速度计的零偏数据
-			 ACC_Offset_LED();
+//			 PID_WriteFlash(); //保存加速度计的零偏数据
 //			 printf("ACC_OFFSET_RAW Value X=%d  Y=%d  Z=%d\n",ACC_OFFSET_RAW.X,ACC_OFFSET_RAW.Y,ACC_OFFSET_RAW.Z); 
 //			 printf("\n");
 		}

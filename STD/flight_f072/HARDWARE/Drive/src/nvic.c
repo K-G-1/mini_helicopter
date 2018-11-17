@@ -9,7 +9,7 @@
 * 程序作者：愤怒的小孩
 * 版权所有：西安天际智联信息技术有限公司
 *******************************************************************************************/
-#include "stm32f10x.h"
+#include "stm32f0xx.h"
 
 /*****************************************************************************
 * 函  数：void NvicConfig(void)
@@ -22,23 +22,20 @@ void NvicConfig(void)
 {
 	NVIC_InitTypeDef NVIC_InitStruct;
 	
-	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+//	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
 	
-	NVIC_InitStruct.NVIC_IRQChannel=TIM4_IRQn;   //TIM4中断通道
-	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority=1;   //抢占优先级0
-	NVIC_InitStruct.NVIC_IRQChannelSubPriority=1;   //子优先级1
+	NVIC_InitStruct.NVIC_IRQChannel=TIM2_IRQn;   //TIM4中断通道
+	NVIC_InitStruct.NVIC_IRQChannelPriority=1;   //抢占优先级0
 	NVIC_InitStruct.NVIC_IRQChannelCmd=ENABLE;   //使能TIM4中断通道
 	NVIC_Init(&NVIC_InitStruct);   //中断优先级初始化函数
 	
 	NVIC_InitStruct.NVIC_IRQChannel=USART1_IRQn;
-	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority=2;
-	NVIC_InitStruct.NVIC_IRQChannelSubPriority=1;
+	NVIC_InitStruct.NVIC_IRQChannelPriority=2;
 	NVIC_InitStruct.NVIC_IRQChannelCmd=ENABLE;
 	NVIC_Init(&NVIC_InitStruct);
 	
-	NVIC_InitStruct.NVIC_IRQChannel=EXTI0_IRQn;   //配置外部中断通道
-	NVIC_InitStruct.NVIC_IRQChannelPreemptionPriority=2;   //设置抢占优先级为0
-	NVIC_InitStruct.NVIC_IRQChannelSubPriority=2;   //设置子优先级为1
+	NVIC_InitStruct.NVIC_IRQChannel=EXTI0_1_IRQn;   //配置外部中断通道
+	NVIC_InitStruct.NVIC_IRQChannelPriority=2;   //设置子优先级为1
 	NVIC_InitStruct.NVIC_IRQChannelCmd=ENABLE;   //使能外部中断通道
 	NVIC_Init(&NVIC_InitStruct);   //中断优先级初始化函数
 }

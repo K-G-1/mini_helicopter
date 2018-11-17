@@ -1,5 +1,5 @@
-.\objects\imu.o: ..\HARDWARE\IMU\IMU.c
-.\objects\imu.o: ..\HARDWARE\IMU\IMU.h
+.\objects\imu.o: ..\HARDWARE\IMU\imu.c
+.\objects\imu.o: ..\HARDWARE\IMU\imu.h
 .\objects\imu.o: ..\Libraries\CMSIS\Device\ST\STM32F0xx\Include\stm32f0xx.h
 .\objects\imu.o: ..\Libraries\CMSIS\Include\core_cm0.h
 .\objects\imu.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
@@ -31,9 +31,10 @@
 .\objects\imu.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_usart.h
 .\objects\imu.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_wwdg.h
 .\objects\imu.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h
+.\objects\imu.o: ..\HARDWARE\IMU\structconfig.h
+.\objects\imu.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\imu.o: ..\HARDWARE\Drive\inc\si24r1.h
 .\objects\imu.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
-.\objects\imu.o: ..\HARDWARE\9250\mpu9250.h
-.\objects\imu.o: ..\HARDWARE\6050\mpu6050.h
-.\objects\imu.o: ..\HARDWARE\Algorithm\Algorithm_math\Algorithm_math.h
-.\objects\imu.o: ..\HARDWARE\Algorithm\Algorithm_filter\Algorithm_filter.h
-.\objects\imu.o: ..\HARDWARE\param\param.h
+.\objects\imu.o: ..\HARDWARE\IMU\filter.h
+.\objects\imu.o: ..\HARDWARE\Drive\inc\mpu6050.h
+.\objects\imu.o: ..\HARDWARE\CONTROL\control.h

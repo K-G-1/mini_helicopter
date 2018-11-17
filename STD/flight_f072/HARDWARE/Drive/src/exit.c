@@ -9,7 +9,7 @@
 * 程序作者：愤怒的小孩
 * 版权所有：西安天际智联信息技术有限公司
 *******************************************************************************************/
-#include "stm32f10x.h"
+#include "stm32f0xx.h"
 #include "exit.h"
 #include "delay.h"
 #include "stdio.h"
@@ -26,16 +26,19 @@ void Exit_Init(void)
 	GPIO_InitTypeDef GPIO_InitStruct;   //定义GPIO结构体变量
 	EXTI_InitTypeDef EXTI_InitStruct;	//定义外部中断结构体变量
 	
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_AFIO,ENABLE);   //使能GPIOB的时钟并开启复用时钟
-	
-	GPIO_EXTILineConfig(GPIO_PortSourceGPIOA,GPIO_PinSource0);   //PB2中断线映射
-	
-	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_0;   //配置GPIO第2引脚
-	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_IPU;   //配置GPIO为上拉输入
-	GPIO_InitStruct.GPIO_Speed=GPIO_Speed_50MHz;   //配置GPIO速率
-	GPIO_Init(GPIOA,&GPIO_InitStruct);   //GPIO初始化函数
-	
-	
+	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA,ENABLE);   //使能GPIOB的时钟并开启复用时钟
+	 /* Enable SYSCFG clock */
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_SYSCFG, ENABLE);
+  /* Connect EXTI0 Line to PA0 pin */
+  SYSCFG_EXTILineConfig(EXTI_PortSourceGPIOA, EXTI_PinSource0);
+//	GPIO_EXTILineConfig(GPIO_PortSourceGPIOA,GPIO_PinSource0);   //PB2中断线映射
+//	GPIO_PinAFConfig(GPIOA,GPIO_PinSource0,);
+  
+	GPIO_InitStruct.GPIO_Pin = GPIO_Pin_0;
+  GPIO_InitStruct.GPIO_Mode = GPIO_Mode_IN;
+  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
+  GPIO_Init(GPIOA, &GPIO_InitStruct);
+
 	EXTI_InitStruct.EXTI_Line=EXTI_Line0;   //中断线2
 	EXTI_InitStruct.EXTI_Mode=EXTI_Mode_Interrupt;   //外部中断模式
 	EXTI_InitStruct.EXTI_Trigger=EXTI_Trigger_Falling;   //下降沿触发

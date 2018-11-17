@@ -324,7 +324,7 @@
             <wLevel>2</wLevel>
             <uThumb>0</uThumb>
             <uSurpInc>0</uSurpInc>
-            <uC99>0</uC99>
+            <uC99>1</uC99>
             <uGnu>0</uGnu>
             <useXO>0</useXO>
             <v6Lang>1</v6Lang>
@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F072</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\Libraries\CMSIS\Device\ST\STM32F0xx\Include;..\Libraries\CMSIS\Include;..\Libraries\STM32F0xx_StdPeriph_Driver\inc;..\Libraries\CMSIS\Device\ST\STM32F0xx\Source\Templates\arm;..\HARDWARE\Drive\inc</IncludePath>
+              <IncludePath>..\USER;..\Libraries\CMSIS\Device\ST\STM32F0xx\Include;..\Libraries\CMSIS\Include;..\Libraries\STM32F0xx_StdPeriph_Driver\inc;..\Libraries\CMSIS\Device\ST\STM32F0xx\Source\Templates\arm;..\HARDWARE\Drive\inc;..\HARDWARE\COMMUNICATE;..\HARDWARE\CONTROL;..\HARDWARE\IMU;..\HARDWARE\Drive\src\BMP280</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -416,6 +416,101 @@
               <FileName>led.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\Drive\src\led.c</FilePath>
+            </File>
+            <File>
+              <FileName>usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Drive\src\usart.c</FilePath>
+            </File>
+            <File>
+              <FileName>exit.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Drive\src\exit.c</FilePath>
+            </File>
+            <File>
+              <FileName>flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Drive\src\flash.c</FilePath>
+            </File>
+            <File>
+              <FileName>iic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Drive\src\iic.c</FilePath>
+            </File>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Drive\src\motor.c</FilePath>
+            </File>
+            <File>
+              <FileName>mpu6050.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Drive\src\mpu6050.c</FilePath>
+            </File>
+            <File>
+              <FileName>nvic.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Drive\src\nvic.c</FilePath>
+            </File>
+            <File>
+              <FileName>spi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Drive\src\spi.c</FilePath>
+            </File>
+            <File>
+              <FileName>system.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Drive\src\system.c</FilePath>
+            </File>
+            <File>
+              <FileName>tim.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Drive\src\tim.c</FilePath>
+            </File>
+            <File>
+              <FileName>imu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\IMU\imu.c</FilePath>
+            </File>
+            <File>
+              <FileName>filter.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\IMU\filter.c</FilePath>
+            </File>
+            <File>
+              <FileName>control.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\CONTROL\control.c</FilePath>
+            </File>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\CONTROL\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>paramsave.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\CONTROL\paramsave.c</FilePath>
+            </File>
+            <File>
+              <FileName>ANO_DT.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\COMMUNICATE\ANO_DT.c</FilePath>
+            </File>
+            <File>
+              <FileName>remotedata.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\COMMUNICATE\remotedata.c</FilePath>
+            </File>
+            <File>
+              <FileName>bmp280.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Drive\src\BMP280\bmp280.c</FilePath>
+            </File>
+            <File>
+              <FileName>si24r1.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\Drive\src\si24r1.c</FilePath>
             </File>
           </Files>
         </Group>

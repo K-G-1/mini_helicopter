@@ -31,5 +31,7 @@ flight_f072\tim.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_spi.h
 flight_f072\tim.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_spi_ex.h
 flight_f072\tim.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim.h
 flight_f072\tim.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_tim_ex.h
+flight_f072\tim.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart.h
+flight_f072\tim.o: ../Drivers/STM32F0xx_HAL_Driver/Inc/stm32f0xx_hal_uart_ex.h
 flight_f072\tim.o: ../Inc/mpu6050.h
 flight_f072\tim.o: ../Inc/IMU.h

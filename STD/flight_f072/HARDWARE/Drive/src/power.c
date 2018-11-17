@@ -38,7 +38,7 @@ void BATT_Init(void)
 	GPIO_InitTypeDef GPIO_InitStruct;
 	ADC_InitTypeDef   ADC_InitStruct;
 	
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA|RCC_APB2Periph_ADC1, ENABLE); 
+	RCC_APB2PeriphClockCmd(RCC_AHBPeriph_GPIOA|RCC_APB2Periph_ADC1, ENABLE); 
 	RCC_ADCCLKConfig(RCC_PCLK2_Div6);
 	
 	//模拟输入模式选择       

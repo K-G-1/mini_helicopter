@@ -1,7 +1,7 @@
 #ifndef   _MPU6050_H
 #define   _MPU6050_H
 
-#include "stm32f10x.h"
+#include "stm32f0xx.h"
 
 #define MPU6050Addr 	0xD0
 

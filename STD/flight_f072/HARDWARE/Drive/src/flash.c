@@ -9,14 +9,14 @@
 * 程序作者：愤怒的小孩
 * 版权所有：西安天际智联信息技术有限公司
 *******************************************************************************************/
-#include "stm32f10x.h"
+#include "stm32f0xx.h"
 #include "flash.h"
 #include "delay.h"
 #include "usart.h" 
 
 
 /******************************************************************************
-* 函  数：u32 STMFLASH_ReadWord(u32 faddr)
+* 函  数：uint32_t STMFLASH_ReadWord(uint32_t faddr)
 * 功　能：读取指定地址的字(32位数据) 
 * 参  数：faddr:读地址 
 * 返回值：对应数据
@@ -24,11 +24,11 @@
 *******************************************************************************/
 uint32_t STMFLASH_ReadWord(uint32_t faddr)
 {
-	return *(vu32*)faddr; 
+	return *(__IO uint32_t*)faddr; 
 }  
 
 /******************************************************************************
-* 函  数：void STMFLASH_Write(u32 WriteAddr,u32 *pBuffer,u32 NumToWrite)	
+* 函  数：void STMFLASH_Write(uint32_t WriteAddr,uint32_t *pBuffer,uint32_t NumToWrite)	
 * 功　能：从指定地址开始写入指定长度的数据 
 * 参  数：WriteAddr:起始地址(此地址必须为4的倍数!!)
 *         pBuffer:数据指针
@@ -36,11 +36,11 @@ uint32_t STMFLASH_ReadWord(uint32_t faddr)
 * 返回值：无
 * 备  注：STM32F1的Flash未写扇区默认是0xFFF...F
 *******************************************************************************/
-void STMFLASH_Write(u32 WriteAddr,u32 *pBuffer,u32 NumToWrite)	
+void STMFLASH_Write(uint32_t WriteAddr,uint32_t *pBuffer,uint32_t NumToWrite)	
 { 
 	FLASH_Status status = FLASH_COMPLETE;
-	u32 addrx=0;
-	u32 endaddr=0;	
+	uint32_t addrx=0;
+	uint32_t endaddr=0;	
 	if(WriteAddr<STM32_FLASH_BASE||(WriteAddr>=(STM32_FLASH_BASE+1024*128)))return;	//非法地址
 	FLASH_Unlock();					 //解锁 
  
@@ -76,7 +76,7 @@ void STMFLASH_Write(u32 WriteAddr,u32 *pBuffer,u32 NumToWrite)
 } 
 
 /******************************************************************************
-* 函  数：void STMFLASH_Read(u32 ReadAddr,u32 *pBuffer,u32 NumToRead)  
+* 函  数：void STMFLASH_Read(uint32_t ReadAddr,uint32_t *pBuffer,uint32_t NumToRead)  
 * 功　能：从指定地址开始读出指定长度的数据
 * 参  数：ReadAddr:起始地址
 *         pBuffer:数据指针
@@ -84,9 +84,9 @@ void STMFLASH_Write(u32 WriteAddr,u32 *pBuffer,u32 NumToWrite)
 * 返回值：无
 * 备  注：无
 *******************************************************************************/
-void STMFLASH_Read(u32 ReadAddr,u32 *pBuffer,u32 NumToRead)   	
+void STMFLASH_Read(uint32_t ReadAddr,uint32_t *pBuffer,uint32_t NumToRead)   	
 {
-	u32 i;
+	uint32_t i;
 	for(i=0;i<NumToRead;i++)
 	{
 		pBuffer[i]=STMFLASH_ReadWord(ReadAddr);//读取4个字节.

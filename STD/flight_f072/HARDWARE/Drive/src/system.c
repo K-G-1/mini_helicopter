@@ -16,7 +16,7 @@
 void System_Init(void)
 {
 	NvicConfig(); //系统中断优先级管理
-	GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);
+//	GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);
 	LED_Init();	//用户指示灯初始化
 	Delay_Init(); //系统延时初始化
 	USART_init(115200);	//调试串口初始化
@@ -26,14 +26,14 @@ void System_Init(void)
 	SI24R1_Init(); //SI24R1(2.4G)初始化（红）
   SI24R1_Config();
 	MPU6050_Init(); //MPU6050初始化（绿） 
-	bmp280Init(); //FBM320初始化(气压计蓝) 
-	MOTOR_Init(); //电机输出初始化
-	BATT_Init(); //电池电压检测初始化
+//	bmp280Init(); //FBM320初始化(气压计蓝) 
+//	MOTOR_Init(); //电机输出初始化
+//	BATT_Init(); //电池电压检测初始化
 	PID_ReadFlash(); //Flash中的数据读取
 	PidParameter_init(); //PID参数初始化
 
 	
-	printf("System Init Finish\n");
+//	printf("System Init Finish\n");
 }
 
 void Task_Schedule(void)
@@ -51,7 +51,7 @@ void Task_Schedule(void)
 			Prepare_Data(); //获取姿态解算所需数据
 			IMUupdate(&Gyr_rad,&Acc_filt,&Att_Angle); //四元数姿态解算
 			Control(&Att_Angle,&Gyr_rad,&RC_Control,Airplane_Enable); //姿态控制
-			bmp280GetData(&Bmp280.bmp280_temp,&Bmp280.bmp280_press,&Bmp280.Altitude);
+//			bmp280GetData(&Bmp280.bmp280_temp,&Bmp280.bmp280_press,&Bmp280.Altitude);
 		}
 		if(LED_Scan) //10Hz
 		{
@@ -72,12 +72,12 @@ void Task_Schedule(void)
 			SI24R1_SingalCheck(); //2.4G通信检测
 			SendToRemote(); //发送数据给遥控器
 		}
-		if(Batt_Scan) //2.5Hz
-		{
-			Batt_Scan = 0;
-//			SI24R1_GetAddr(); //分配2.4G地址
-			LowVoltage_Alarm();	//低电量报警
-		}
+//		if(Batt_Scan) //2.5Hz
+//		{
+//			Batt_Scan = 0;
+////			SI24R1_GetAddr(); //分配2.4G地址
+//			LowVoltage_Alarm();	//低电量报警
+//		}
 }
 
 
