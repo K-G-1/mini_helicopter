@@ -9,7 +9,7 @@
 #define AtR    	0.0174533f		//  1/RtA             RtA倒数		
 #define Acc_G 	0.0011963f		//  1/32768/4/9.8     加速度量程为4G		int型1/(2^15)/4g
 #define Gyro_G 	0.03051756f	//  1/32768/1000      陀螺仪初始化的量程为 +—1000			1/(2^15)/4g单位为度/秒
-#define Gyro_Gr	0.0005327f  //  1/32768/1000/57.3 将上面的单位转化为弧度每秒
+#define Gyro_Gr	0.0010641f  //  1/32768/1000/57.3 将上面的单位转化为弧度每秒
 #define Gyro_G_x  0.06103f       //0.061036 //   4000/65536  +-2000
 
 
@@ -153,13 +153,15 @@ struct _float{
 struct _short{
 	      short x;
 				short y;
-				short z;};				
-struct _int16{
-       int16_t x;
-	     int16_t y;
-	     int16_t z;};	
+				short z;};	
+struct _int16_t{
+	      int16_t x;
+				int16_t y;
+				int16_t z;};
+				
 
-struct _int32{
+
+struct _int32_t{
        int32_t x;
 	     int32_t y;
 	     int32_t z;};	
@@ -179,13 +181,13 @@ struct _long
 
 
 struct _trans{
-        struct _int16 origin;  //原始值
-        struct _int16 averag;  //平均值
-        struct _int16 histor;  //历史值
-        struct _int16 quiet;   //静态值
+        struct _int16_t origin;  //原始值
+        struct _int16_t averag;  //平均值
+        struct _int16_t histor;  //历史值
+        struct _int16_t quiet;   //静态值
         struct _float radian;  //弧度值
         struct  _long temp;
-        struct _int16 sand;
+        struct _int16_t sand;
         
         u8 CALIBRATE;
     

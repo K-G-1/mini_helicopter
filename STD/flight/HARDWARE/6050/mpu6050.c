@@ -12,19 +12,19 @@ u8		 mpu6050_buffer[14];
 
 u8 mpu6050_init(void)
 {
-    u8 res;
-    IIC_ADD_write(MPU_6050_ADDR,MPU_PWR_MGMT1_REG,0x00); //Reset ing
-    delay_ms(10);
-    IIC_ADD_write(MPU_6050_ADDR,MPU_PWR_MGMT1_REG,0x03); //Reset ing
-	delay_ms(10);
-	IIC_ADD_write(MPU_6050_ADDR,MPU_SAMPLE_RATE_REG,0x00);
-	delay_ms(10);					 
-    IIC_ADD_write(MPU_6050_ADDR,MPU_CFG_REG,0x03);  
-	delay_ms(10);
-	IIC_ADD_write(MPU_6050_ADDR,MPU_ACCEL_CFG_REG,0x10);//加速度度最大量程 +-8G
-	delay_ms(10);	
-	IIC_ADD_write(MPU_6050_ADDR,MPU_GYRO_CFG_REG,0x10); //陀螺仪最大量程 +-2000度每秒
-	delay_ms(10);
+		u8 res;
+		IIC_ADD_write(MPU_6050_ADDR,MPU_PWR_MGMT1_REG,0x80); //Reset ing
+		delay_ms(10);
+		IIC_ADD_write(MPU_6050_ADDR,MPU_PWR_MGMT1_REG,0x01); //Reset ing
+		delay_ms(10);
+		IIC_ADD_write(MPU_6050_ADDR,MPU_SAMPLE_RATE_REG,0x00);
+		delay_ms(10);					 
+		IIC_ADD_write(MPU_6050_ADDR,MPU_CFG_REG,0x02);  
+		delay_ms(10);
+		IIC_ADD_write(MPU_6050_ADDR,MPU_ACCEL_CFG_REG,0x08);//加速度度最大量程 +-8G
+		delay_ms(10);	
+		IIC_ADD_write(MPU_6050_ADDR,MPU_GYRO_CFG_REG,0x18); //陀螺仪最大量程 +-2000度每秒
+		delay_ms(10);
 
     
 ////    IIC_ADD_write(GYRO_ADDRESS,0x37,0x02);//turn on Bypass Mode 

@@ -2,7 +2,7 @@
 ..\obj\imu.o: ..\HARDWARE\IMU\IMU.h
 ..\obj\imu.o: ..\USER\stm32f10x.h
 ..\obj\imu.o: ..\CORE\core_cm3.h
-..\obj\imu.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\imu.o: G:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\imu.o: ..\USER\system_stm32f10x.h
 ..\obj\imu.o: ..\USER\stm32f10x_conf.h
 ..\obj\imu.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h
@@ -29,7 +29,7 @@
 ..\obj\imu.o: ..\STM32F10x_FWLib\inc\stm32f10x_usart.h
 ..\obj\imu.o: ..\STM32F10x_FWLib\inc\stm32f10x_wwdg.h
 ..\obj\imu.o: ..\STM32F10x_FWLib\inc\misc.h
-..\obj\imu.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+..\obj\imu.o: G:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 ..\obj\imu.o: ..\HARDWARE\9250\mpu9250.h
 ..\obj\imu.o: ..\SYSTEM\sys\sys.h
 ..\obj\imu.o: ..\HARDWARE\6050\mpu6050.h

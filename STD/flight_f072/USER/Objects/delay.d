@@ -1,8 +1,8 @@
-.\objects\delay.o: ..\HARDWARE\delay\delay.c
-.\objects\delay.o: ..\HARDWARE\delay\delay.h
+.\objects\delay.o: ..\HARDWARE\Drive\src\delay.c
+.\objects\delay.o: ..\HARDWARE\Drive\inc\delay.h
+.\objects\delay.o: G:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\delay.o: ..\Libraries\CMSIS\Device\ST\STM32F0xx\Include\stm32f0xx.h
 .\objects\delay.o: ..\Libraries\CMSIS\Include\core_cm0.h
-.\objects\delay.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\delay.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\delay.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\delay.o: ..\Libraries\CMSIS\Device\ST\STM32F0xx\Include\system_stm32f0xx.h

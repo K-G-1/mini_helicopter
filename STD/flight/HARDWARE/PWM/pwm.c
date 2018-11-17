@@ -1,6 +1,6 @@
 #include "pwm.h"
 
-#define Moto_PwmMax 4000
+#define Moto_PwmMax 1000
 
 void Jtag_disable()
 {

@@ -338,7 +338,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F072</Define>
               <Undefine></Undefine>
-              <IncludePath>..\USER;..\Libraries\CMSIS\Device\ST\STM32F0xx\Include;..\Libraries\CMSIS\Include;..\Libraries\STM32F0xx_StdPeriph_Driver\inc;..\Libraries\CMSIS\Device\ST\STM32F0xx\Source\Templates\arm;..\HARDWARE\LED;..\HARDWARE\delay;..\HARDWARE\IIC;..\HARDWARE\6050;..\HARDWARE\9250;..\HARDWARE\Algorithm\Algorithm_filter;..\HARDWARE\Algorithm\Algorithm_math;..\HARDWARE\Control;..\HARDWARE\IMU;..\HARDWARE\NRF24L01;..\HARDWARE\PWM;..\HARDWARE\SPI;..\HARDWARE\TIM;..\HARDWARE\param;..\HARDWARE\STMFLASH;..\HARDWARE\RC;..\HARDWARE\SAND</IncludePath>
+              <IncludePath>..\USER;..\Libraries\CMSIS\Device\ST\STM32F0xx\Include;..\Libraries\CMSIS\Include;..\Libraries\STM32F0xx_StdPeriph_Driver\inc;..\Libraries\CMSIS\Device\ST\STM32F0xx\Source\Templates\arm;..\HARDWARE\Drive\inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -408,89 +408,14 @@
           <GroupName>HARDWARE</GroupName>
           <Files>
             <File>
-              <FileName>mpu6050.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\6050\mpu6050.c</FilePath>
-            </File>
-            <File>
-              <FileName>mpu9250.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\9250\mpu9250.c</FilePath>
-            </File>
-            <File>
-              <FileName>Algorithm_filter.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\Algorithm\Algorithm_filter\Algorithm_filter.c</FilePath>
-            </File>
-            <File>
-              <FileName>Algorithm_math.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\Algorithm\Algorithm_math\Algorithm_math.c</FilePath>
-            </File>
-            <File>
-              <FileName>control.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\Control\control.c</FilePath>
-            </File>
-            <File>
               <FileName>delay.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\delay\delay.c</FilePath>
-            </File>
-            <File>
-              <FileName>IIC.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\IIC\IIC.c</FilePath>
-            </File>
-            <File>
-              <FileName>IMU.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\IMU\IMU.c</FilePath>
+              <FilePath>..\HARDWARE\Drive\src\delay.c</FilePath>
             </File>
             <File>
               <FileName>led.c</FileName>
               <FileType>1</FileType>
-              <FilePath>..\HARDWARE\LED\led.c</FilePath>
-            </File>
-            <File>
-              <FileName>24l01.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\NRF24L01\24l01.c</FilePath>
-            </File>
-            <File>
-              <FileName>param.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\param\param.c</FilePath>
-            </File>
-            <File>
-              <FileName>pwm.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\PWM\pwm.c</FilePath>
-            </File>
-            <File>
-              <FileName>RC.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\RC\RC.c</FilePath>
-            </File>
-            <File>
-              <FileName>sand_data.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\SAND\sand_data.c</FilePath>
-            </File>
-            <File>
-              <FileName>spi.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\SPI\spi.c</FilePath>
-            </File>
-            <File>
-              <FileName>stmflash.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\STMFLASH\stmflash.c</FilePath>
-            </File>
-            <File>
-              <FileName>timer3.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\HARDWARE\TIM\timer3.c</FilePath>
+              <FilePath>..\HARDWARE\Drive\src\led.c</FilePath>
             </File>
           </Files>
         </Group>

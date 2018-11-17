@@ -2,7 +2,7 @@
 .\objects\main.o: main.h
 .\objects\main.o: ..\Libraries\CMSIS\Device\ST\STM32F0xx\Include\stm32f0xx.h
 .\objects\main.o: ..\Libraries\CMSIS\Include\core_cm0.h
-.\objects\main.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\main.o: G:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\main.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\main.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\main.o: ..\Libraries\CMSIS\Device\ST\STM32F0xx\Include\system_stm32f0xx.h
@@ -31,7 +31,5 @@
 .\objects\main.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_usart.h
 .\objects\main.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_wwdg.h
 .\objects\main.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h
-.\objects\main.o: ..\HARDWARE\LED\LED.h
-.\objects\main.o: ..\HARDWARE\delay\delay.h
-.\objects\main.o: ..\HARDWARE\IIC\IIC.h
-.\objects\main.o: ..\HARDWARE\6050\mpu6050.h
+.\objects\main.o: ..\HARDWARE\Drive\inc\led.h
+.\objects\main.o: ..\HARDWARE\Drive\inc\delay.h

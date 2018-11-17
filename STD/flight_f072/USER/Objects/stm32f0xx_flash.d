@@ -2,7 +2,7 @@
 .\objects\stm32f0xx_flash.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_flash.h
 .\objects\stm32f0xx_flash.o: ..\Libraries\CMSIS\Device\ST\STM32F0xx\Include\stm32f0xx.h
 .\objects\stm32f0xx_flash.o: ..\Libraries\CMSIS\Include\core_cm0.h
-.\objects\stm32f0xx_flash.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\stm32f0xx_flash.o: G:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\stm32f0xx_flash.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\stm32f0xx_flash.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\stm32f0xx_flash.o: ..\Libraries\CMSIS\Device\ST\STM32F0xx\Include\system_stm32f0xx.h

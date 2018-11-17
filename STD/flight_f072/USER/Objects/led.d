@@ -1,8 +1,7 @@
-.\objects\led.o: ..\HARDWARE\LED\led.c
-.\objects\led.o: ..\HARDWARE\LED\led.h
+.\objects\led.o: ..\HARDWARE\Drive\src\led.c
 .\objects\led.o: ..\Libraries\CMSIS\Device\ST\STM32F0xx\Include\stm32f0xx.h
 .\objects\led.o: ..\Libraries\CMSIS\Include\core_cm0.h
-.\objects\led.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\led.o: G:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\led.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\led.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\led.o: ..\Libraries\CMSIS\Device\ST\STM32F0xx\Include\system_stm32f0xx.h
@@ -31,3 +30,6 @@
 .\objects\led.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_usart.h
 .\objects\led.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_wwdg.h
 .\objects\led.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h
+.\objects\led.o: G:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\led.o: ..\HARDWARE\Drive\inc\delay.h
+.\objects\led.o: ..\HARDWARE\Drive\inc\led.h

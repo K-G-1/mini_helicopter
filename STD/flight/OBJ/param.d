@@ -3,7 +3,7 @@
 ..\obj\param.o: ..\SYSTEM\sys\sys.h
 ..\obj\param.o: ..\USER\stm32f10x.h
 ..\obj\param.o: ..\CORE\core_cm3.h
-..\obj\param.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+..\obj\param.o: G:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 ..\obj\param.o: ..\USER\system_stm32f10x.h
 ..\obj\param.o: ..\USER\stm32f10x_conf.h
 ..\obj\param.o: ..\STM32F10x_FWLib\inc\stm32f10x_adc.h

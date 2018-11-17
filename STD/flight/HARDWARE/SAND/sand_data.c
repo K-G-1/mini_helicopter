@@ -87,7 +87,7 @@ void sand_2402_data(s16 a_off_x,s16 a_off_y,s16 a_off_z,s16 g_off_x,s16 g_off_y,
 void sand_ACC_GYRO_data(void)
 {
 	int16_t sum=0,i=0;
-
+	int16_t temp;
 
 	u8 Tx_buff[32]={0};
 	
@@ -104,12 +104,15 @@ void sand_ACC_GYRO_data(void)
 	Tx_buff[8]=BYTE1(sensor.acc.averag.z);
 	Tx_buff[9]=BYTE0(sensor.acc.averag.z);
 	
-	Tx_buff[10]=BYTE1(sensor.gyro.averag.x);
-	Tx_buff[11]=BYTE0(sensor.gyro.averag.x);
-	Tx_buff[12]=BYTE1(sensor.gyro.averag.y);
-	Tx_buff[13]=BYTE0(sensor.gyro.averag.y);	
-	Tx_buff[14]=BYTE1(sensor.gyro.averag.z);
-	Tx_buff[15]=BYTE0(sensor.gyro.averag.z);
+	temp = sensor.gyro.radian.x *RtA;
+	Tx_buff[10]=BYTE1(temp);
+	Tx_buff[11]=BYTE0(temp);
+	temp = sensor.gyro.radian.y *RtA;
+	Tx_buff[12]=BYTE1(temp);
+	Tx_buff[13]=BYTE0(temp);	
+	temp = sensor.gyro.radian.z *RtA;
+	Tx_buff[14]=BYTE1(temp);
+	Tx_buff[15]=BYTE0(temp);
 	
 	Tx_buff[16]=BYTE1(sensor.mag.origin.x);
 	Tx_buff[17]=BYTE0(sensor.mag.origin.x);	

@@ -3,7 +3,7 @@
 .\objects\stm32f0xx_it.o: main.h
 .\objects\stm32f0xx_it.o: ..\Libraries\CMSIS\Device\ST\STM32F0xx\Include\stm32f0xx.h
 .\objects\stm32f0xx_it.o: ..\Libraries\CMSIS\Include\core_cm0.h
-.\objects\stm32f0xx_it.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\stm32f0xx_it.o: G:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\stm32f0xx_it.o: ..\Libraries\CMSIS\Include\core_cmInstr.h
 .\objects\stm32f0xx_it.o: ..\Libraries\CMSIS\Include\core_cmFunc.h
 .\objects\stm32f0xx_it.o: ..\Libraries\CMSIS\Device\ST\STM32F0xx\Include\system_stm32f0xx.h
@@ -32,3 +32,5 @@
 .\objects\stm32f0xx_it.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_usart.h
 .\objects\stm32f0xx_it.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_wwdg.h
 .\objects\stm32f0xx_it.o: ..\Libraries\STM32F0xx_StdPeriph_Driver\inc\stm32f0xx_misc.h
+.\objects\stm32f0xx_it.o: ..\HARDWARE\Drive\inc\led.h
+.\objects\stm32f0xx_it.o: ..\HARDWARE\Drive\inc\delay.h
