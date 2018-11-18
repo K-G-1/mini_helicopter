@@ -29,23 +29,16 @@ void USART_init(uint32_t baudrate)
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_USART1,ENABLE);   //使能GPIOA、USART1的时钟
 	RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA,ENABLE);
   	//PA.9和PA.10作为复用功能
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource9, GPIO_AF_0);			
-	GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_0);
+	GPIO_PinAFConfig(GPIOA, GPIO_PinSource9, GPIO_AF_1);			
+	GPIO_PinAFConfig(GPIOA, GPIO_PinSource10, GPIO_AF_1);
   
-	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_9;   //配置TX引脚
-	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_AF;   //配置PA9为复用推挽输出
+  /*USART1_TX ->PA9  USART1_RX ->PA10*/		
+  GPIO_InitStruct.GPIO_Pin = GPIO_Pin_9|GPIO_Pin_10;	       //选中串口默认输出管脚         
+  GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AF;  //定义输出最大速率 
   GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
   GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_UP;
-	GPIO_InitStruct.GPIO_Speed=GPIO_Speed_50MHz;   //配置PA9速率
-	GPIO_Init(GPIOA,&GPIO_InitStruct);   //GPIO初始化函数
-	
-	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_10;   //配置RX引脚
-	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_IN;   //配置PA10为浮空输入
-  GPIO_InitStruct.GPIO_OType = GPIO_OType_PP;
-  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL;
-	GPIO_InitStruct.GPIO_Speed=GPIO_Speed_50MHz;   //配置PA10速率
-	GPIO_Init(GPIOA,&GPIO_InitStruct);   //GPIO初始化函数
-	
+  GPIO_InitStruct.GPIO_Speed = GPIO_Speed_50MHz;//定义管脚9的模式  
+  GPIO_Init(GPIOA, &GPIO_InitStruct);           //调用函数，把结构体参数输入进行初始化		
 	
 	USART_InitStruct.USART_Mode=USART_Mode_Tx|USART_Mode_Rx;   //发送接收模式
 	USART_InitStruct.USART_Parity=USART_Parity_No;   //无奇偶校验

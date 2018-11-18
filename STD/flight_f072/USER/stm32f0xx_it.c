@@ -136,8 +136,8 @@ void USART1_IRQHandler(void)
 	
 	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) //接收中断
 	{ 
-//		res = USART1->RDR;
-//		ANO_DT_Data_Receive_Prepare(res); //上位机数据接收与解析
+		res = USART1->RDR;
+		ANO_DT_Data_Receive_Prepare(res); //上位机数据接收与解析
     USART_ClearITPendingBit(USART1,USART_IT_RXNE);
 	}else if(USART_GetITStatus(USART1, USART_IT_IDLE) != RESET) //空闲中断
 	{

@@ -134,7 +134,7 @@ void MPU6050_Check(void)
 { 
 	while(!MPU6050_testConnection())
 	{
-		printf("\rMPU6050 no connect...\r\n");
+//		printf("\rMPU6050 no connect...\r\n");
 //		RGB_LED_green(); //ÂÌµÆ³£ÁÁ
 	}
 }

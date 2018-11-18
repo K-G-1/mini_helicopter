@@ -276,6 +276,11 @@ void PID_ReadFlash(void)
 		DefaultParams_WriteFlash();
 		usart_send("Flash Read Error!!!\r\n",21);
 	}
+  else if(PIDflash.PIT_Angle_P ==0 && PIDflash.ROL_Angle_P==0 && PIDflash.YAW_Angle_P==0)
+  {
+    DefaultParams_WriteFlash();
+		usart_send("Flash Read Error!!!\r\n",21);
+  }
 	else
 	{
 		usart_send("Flash Read OK!!!\r\n",18);
