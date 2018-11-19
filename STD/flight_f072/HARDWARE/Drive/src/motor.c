@@ -18,7 +18,8 @@ int16_t MOTO2_PWM = 0;
 int16_t MOTO3_PWM = 0;
 int16_t MOTO4_PWM = 0;
 
-
+uint16_t TimerPeriod = 0;
+uint16_t Channel1Pulse = 0, Channel2Pulse = 0, Channel3Pulse = 0, Channel4Pulse = 0;
 /******************************************************************************************
 * 函  数：void MOTOR_Init(void)
 * 功  能：电机引脚初始化 以及TIM3 配置输出PWM
@@ -31,61 +32,61 @@ int16_t MOTO4_PWM = 0;
 *******************************************************************************************/
 void MOTOR_Init(void)
 {
-	GPIO_InitTypeDef GPIO_InitStruct;   //定义GPIO结构体变量
-	TIM_TimeBaseInitTypeDef TIM_TimeBaseInitStruct;   //定义定时器结构体变量
-	TIM_OCInitTypeDef TIM_OCInitStruct;   //定义输出比较结构体变量
-	
-	RCC_APB2PeriphClockCmd(RCC_AHBPeriph_GPIOA|RCC_AHBPeriph_GPIOB,ENABLE);   //GPIOA、B、复用时钟使能
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE);   //使能TIM3的时钟
-//	GPIO_PinRemapConfig(GPIO_PartialRemap_TIM3,ENABLE);
-//  GPIO_PinRemapConfig(GPIO_Remap_SWJ_JTAGDisable, ENABLE);
+  TIM_TimeBaseInitTypeDef  TIM_TimeBaseStructure;
+  TIM_OCInitTypeDef  TIM_OCInitStructure;
+  GPIO_InitTypeDef GPIO_InitStructure;
+
+  /* GPIOA, GPIOB and GPIOE Clocks enable */
+  RCC_AHBPeriphClockCmd( RCC_AHBPeriph_GPIOA | RCC_AHBPeriph_GPIOB, ENABLE);
   
+  /* GPIOA Configuration: Channel 1, 2, 3, 4 and Channel 1N as alternate function push-pull */
+  GPIO_InitStructure.GPIO_Pin = GPIO_Pin_0 | GPIO_Pin_1 | GPIO_Pin_4 | GPIO_Pin_5 ;
+  GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF;
+  GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+  GPIO_InitStructure.GPIO_OType = GPIO_OType_PP;
+  GPIO_InitStructure.GPIO_PuPd = GPIO_PuPd_UP ;
+  GPIO_Init(GPIOB, &GPIO_InitStructure);
   
-	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_4|GPIO_Pin_5;   //配置GPIO第6、7引脚
-	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_IN;   	  //配置GPIO为复用推挽输出
-	GPIO_InitStruct.GPIO_Speed=GPIO_Speed_50MHz;  	  //配置GPIO速率
-	GPIO_Init(GPIOB,&GPIO_InitStruct);   //GPIO初始化函数
-	
-	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_0|GPIO_Pin_1;   //配置GPIO第0、1引脚
-	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_IN;   	  //配置GPIO为复用推挽输出
-	GPIO_InitStruct.GPIO_Speed=GPIO_Speed_50MHz;   	  //配置GPIO速率
-	GPIO_Init(GPIOB,&GPIO_InitStruct);   //GPIO初始化函数
-	
-	TIM_TimeBaseInitStruct.TIM_Period=1000-1;   	  //设置自动重装载的周期值
-	TIM_TimeBaseInitStruct.TIM_Prescaler=100;   	  //设置预分频值
-	TIM_TimeBaseInitStruct.TIM_CounterMode=TIM_CounterMode_Up; //向上计数模式
-	TIM_TimeBaseInitStruct.TIM_ClockDivision=TIM_CKD_DIV1;     //设置时钟分割
-	TIM_TimeBaseInit(TIM3,&TIM_TimeBaseInitStruct);   		   //定时器初始化函数
-	
-	TIM_OCInitStruct.TIM_OCMode=TIM_OCMode_PWM1;   //PWM模式1
-	TIM_OCInitStruct.TIM_Pulse=0;   						   //初始化占空比为0
-	TIM_OCInitStruct.TIM_OCPolarity=TIM_OCPolarity_High;   	   //输出比较极性低
-	TIM_OCInitStruct.TIM_OutputState=TIM_OutputState_Enable;   //比较输出使能
-	TIM_OC1Init(TIM3,&TIM_OCInitStruct);   					   //比较输出初始化函数
-	TIM_OC1PreloadConfig(TIM3,TIM_OCPreload_Enable);   //输出比较1预装载寄存器使能
-	
-	TIM_OCInitStruct.TIM_OCMode=TIM_OCMode_PWM1;   //PWM模式1
-	TIM_OCInitStruct.TIM_Pulse=0;   					   		//初始化占空比为0
-	TIM_OCInitStruct.TIM_OCPolarity=TIM_OCPolarity_High;   		//输出比较极性低
-	TIM_OCInitStruct.TIM_OutputState=TIM_OutputState_Enable;   	//比较输出使能
-	TIM_OC2Init(TIM3,&TIM_OCInitStruct);   						//比较输出初始化函数
-	TIM_OC2PreloadConfig(TIM3,TIM_OCPreload_Enable);   //输出比较2预装载寄存器使能
-	
-	TIM_OCInitStruct.TIM_OCMode=TIM_OCMode_PWM1;   //PWM模式1
-	TIM_OCInitStruct.TIM_Pulse=0;   							//初始化占空比为0
-	TIM_OCInitStruct.TIM_OCPolarity=TIM_OCPolarity_High;   		//输出比较极性低
-	TIM_OCInitStruct.TIM_OutputState=TIM_OutputState_Enable;   	//比较输出使能
-	TIM_OC3Init(TIM3,&TIM_OCInitStruct);   						//比较输出初始化函数
-	TIM_OC3PreloadConfig(TIM3,TIM_OCPreload_Enable);   //输出比较3预装载寄存器使能
-	
-	TIM_OCInitStruct.TIM_OCMode=TIM_OCMode_PWM1;   //PWM模式1
-	TIM_OCInitStruct.TIM_Pulse=0;   							//初始化占空比为0
-	TIM_OCInitStruct.TIM_OCPolarity=TIM_OCPolarity_High;   		//输出比较极性低
-	TIM_OCInitStruct.TIM_OutputState=TIM_OutputState_Enable;   	//比较输出使能
-	TIM_OC4Init(TIM3,&TIM_OCInitStruct);   						//比较输出初始化函数
-	TIM_OC4PreloadConfig(TIM3,TIM_OCPreload_Enable);   //输出比较4预装载寄存器使能
-	
-	TIM_Cmd(TIM3,ENABLE);   //TIM3使能
+  GPIO_PinAFConfig(GPIOB, GPIO_PinSource0, GPIO_AF_1);
+  GPIO_PinAFConfig(GPIOB, GPIO_PinSource1, GPIO_AF_1);
+  GPIO_PinAFConfig(GPIOB, GPIO_PinSource4, GPIO_AF_1);
+  GPIO_PinAFConfig(GPIOB, GPIO_PinSource5, GPIO_AF_1);
+  
+
+  /* TIM3 clock enable */
+  RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3 , ENABLE);
+  
+  /* Time Base configuration */
+  TIM_TimeBaseStructure.TIM_Prescaler = 48-1;
+  TIM_TimeBaseStructure.TIM_CounterMode = TIM_CounterMode_Up;
+  TIM_TimeBaseStructure.TIM_Period = 1000-1;
+  TIM_TimeBaseStructure.TIM_ClockDivision = 0;
+  TIM_TimeBaseStructure.TIM_RepetitionCounter = 0;
+
+  TIM_TimeBaseInit(TIM3, &TIM_TimeBaseStructure);
+
+  /* Channel 1, 2,3 and 4 Configuration in PWM mode */
+  TIM_OCInitStructure.TIM_OCMode = TIM_OCMode_PWM1;
+  TIM_OCInitStructure.TIM_OutputState = TIM_OutputState_Enable;
+  TIM_OCInitStructure.TIM_Pulse = 0;
+  TIM_OCInitStructure.TIM_OCPolarity = TIM_OCPolarity_High;
+
+  TIM_OC1Init(TIM3, &TIM_OCInitStructure);
+
+  TIM_OCInitStructure.TIM_Pulse = 0;
+  TIM_OC2Init(TIM3, &TIM_OCInitStructure);
+
+  TIM_OCInitStructure.TIM_Pulse = 0;
+  TIM_OC3Init(TIM3, &TIM_OCInitStructure);
+
+  TIM_OCInitStructure.TIM_Pulse = 0;
+  TIM_OC4Init(TIM3, &TIM_OCInitStructure);
+
+  /* TIM1 counter enable */
+  TIM_Cmd(TIM3, ENABLE);
+
+  /* TIM1 Main Output Enable */
+  TIM_CtrlPWMOutputs(TIM3, ENABLE);
 }
 
 /************************************************************************************************

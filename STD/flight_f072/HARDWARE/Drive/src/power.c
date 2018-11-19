@@ -38,25 +38,43 @@ void BATT_Init(void)
 	GPIO_InitTypeDef GPIO_InitStruct;
 	ADC_InitTypeDef   ADC_InitStruct;
 	
-	RCC_APB2PeriphClockCmd(RCC_AHBPeriph_GPIOA|RCC_APB2Periph_ADC1, ENABLE); 
-	RCC_ADCCLKConfig(RCC_PCLK2_Div6);
+  /* GPIOC Periph clock enable */
+  RCC_AHBPeriphClockCmd(RCC_AHBPeriph_GPIOA, ENABLE);
+  
+  /* ADC1 Periph clock enable */
+  RCC_APB2PeriphClockCmd(RCC_APB2Periph_ADC1, ENABLE);
 	
 	//模拟输入模式选择       
 	GPIO_InitStruct.GPIO_Pin=GPIO_Pin_3;
-	GPIO_InitStruct.GPIO_Mode=GPIO_Mode_AIN; //模拟输入
+  GPIO_InitStruct.GPIO_Mode = GPIO_Mode_AN;
+  GPIO_InitStruct.GPIO_PuPd = GPIO_PuPd_NOPULL ;
 	GPIO_Init(GPIOA, &GPIO_InitStruct);
 
-	ADC_InitStruct.ADC_Mode=ADC_Mode_Independent;						//独立模式
-	ADC_InitStruct.ADC_DataAlign=ADC_DataAlign_Right;					//数据右对齐
-	ADC_InitStruct.ADC_NbrOfChannel=1;									//1个数据通道
-	ADC_InitStruct.ADC_ScanConvMode=DISABLE;							//扫描转换模式失能
-	ADC_InitStruct.ADC_ExternalTrigConv=ADC_ExternalTrigConv_None;		//外部触发失能
-	ADC_InitStruct.ADC_ContinuousConvMode=DISABLE;						//连续转换失能
-	ADC_Init(ADC1,&ADC_InitStruct);
+    /* ADCs DeInit */  
+  ADC_DeInit(ADC1);
+  /* Initialize ADC structure */
+  ADC_StructInit(&ADC_InitStruct);
+  
+  /* Configure the ADC1 in continuous mode with a resolution equal to 12 bits  */
+  ADC_InitStruct.ADC_Resolution = ADC_Resolution_12b;
+  ADC_InitStruct.ADC_ContinuousConvMode = ENABLE; 
+  ADC_InitStruct.ADC_ExternalTrigConvEdge = ADC_ExternalTrigConvEdge_None;
+  ADC_InitStruct.ADC_DataAlign = ADC_DataAlign_Right;
+  ADC_InitStruct.ADC_ScanDirection = ADC_ScanDirection_Upward;
+  ADC_Init(ADC1, &ADC_InitStruct); 
 	
-	ADC_Cmd(ADC1, ENABLE); //使能ADC1
-	
-	ADC_RegularChannelConfig(ADC1,ADC_Channel_3,1,ADC_SampleTime_239Cycles5);	//规则组转换通道
+  ADC_ChannelConfig(ADC1, ADC_Channel_3 , ADC_SampleTime_239_5Cycles);
+  /* ADC Calibration */
+  ADC_GetCalibrationFactor(ADC1);
+  
+  /* Enable the ADC peripheral */
+  ADC_Cmd(ADC1, ENABLE);     
+  
+  /* Wait the ADRDY flag */
+  while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_ADRDY)); 
+  
+  /* ADC1 regular Software Start Conv */ 
+  ADC_StartOfConversion(ADC1);
 }
 
 /******************************************************************************************
@@ -68,9 +86,13 @@ void BATT_Init(void)
 *******************************************************************************************/
 uint16_t Get_BatteryAdc(uint8_t ch)
 {
-	ADC_RegularChannelConfig(ADC1, ch, 1, ADC_SampleTime_239Cycles5);
-	ADC_SoftwareStartConvCmd(ADC1,ENABLE);	//软件触发转换使能
-	while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC));	//等待转换结束
+    /* Test EOC flag */
+  while(ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC) == RESET);
+  /* Get ADC1 converted data */
+//  ADC1ConvertedValue =ADC_GetConversionValue(ADC1);
+//	ADC_RegularChannelConfig(ADC1, ch, 1, ADC_SampleTime_239Cycles5);
+//	ADC_SoftwareStartConvCmd(ADC1,ENABLE);	//软件触发转换使能
+//	while(!ADC_GetFlagStatus(ADC1, ADC_FLAG_EOC));	//等待转换结束
 	return ADC_GetConversionValue(ADC1);	//返回转换结果的值
 }		
 

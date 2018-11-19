@@ -446,10 +446,10 @@ ARM Macro Assembler    Page 7
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0 --apcs=interw
 ork --depend=.\objects\startup_stm32f072.d -o.\objects\startup_stm32f072.o -I.\
 RTE\_Target_1 -ID:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\2.0.0\Drivers\CMSIS\Devi
-ce\ST\STM32F0xx\Include -ID:\Keil_v5\ARM\CMSIS\Include -ID:\Keil_v5\ARM\PACK\Ke
-il\STM32F0xx_DFP\2.0.0 --predefine="__UVISION_VERSION SETA 526" --predefine="ST
-M32F072xB SETA 1" --list=.\listings\startup_stm32f072.lst ..\Libraries\CMSIS\De
-vice\ST\STM32F0xx\Source\Templates\arm\startup_stm32f072.s
+ce\ST\STM32F0xx\Include -ID:\Keil_v5\ARM\CMSIS\Include --predefine="__UVISION_V
+ERSION SETA 526" --predefine="STM32F072xB SETA 1" --list=.\listings\startup_stm
+32f072.lst ..\Libraries\CMSIS\Device\ST\STM32F0xx\Source\Templates\arm\startup_
+stm32f072.s
 
 
 

@@ -171,7 +171,7 @@ void SendToRemote(void)
 	
 	SI24R1_TX_DATA[1] = SENSER_OFFSET_FLAG; //标志位组
 	
-//	temp = (int)(BAT.BattAdc); //飞机电池电压
+	temp = (int)(BAT.BattAdc); //飞机电池电压
 	SI24R1_TX_DATA[2] = Byte1(temp);
 	SI24R1_TX_DATA[3] = Byte0(temp);
 	temp = (int)(Att_Angle.yaw*10); //航向
