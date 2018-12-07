@@ -63,9 +63,9 @@
 #define NRF_CE_GPIO_Port GPIOA
 #define NRF_CSN_Pin GPIO_PIN_0
 #define NRF_CSN_GPIO_Port GPIOB
-#define NRF_IRQ_Pin GPIO_PIN_1
+#define NRF_IRQ_Pin GPIO_PIN_10
 #define NRF_IRQ_GPIO_Port GPIOB
-#define NRF_IRQ_EXTI_IRQn EXTI1_IRQn
+#define NRF_IRQ_EXTI_IRQn EXTI15_10_IRQn
 #define LED1_Pin GPIO_PIN_15
 #define LED1_GPIO_Port GPIOA
 #define LED2_Pin GPIO_PIN_3

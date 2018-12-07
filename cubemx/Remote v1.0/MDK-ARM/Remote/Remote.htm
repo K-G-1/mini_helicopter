@@ -3,7 +3,7 @@
 <title>Static Call Graph - [Remote\Remote.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image Remote\Remote.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Tue Nov 20 00:18:07 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sat Dec 08 00:03:47 2018
 <BR><P>
 <H3>Maximum Stack Usage =        376 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -36,8 +36,8 @@ Function Pointers
  <LI><a href="#[1b]">DMA1_Channel7_IRQHandler</a> from startup_stm32f103xb.o(.text) referenced from startup_stm32f103xb.o(RESET)
  <LI><a href="#[7]">DebugMon_Handler</a> from stm32f1xx_it.o(i.DebugMon_Handler) referenced from startup_stm32f103xb.o(RESET)
  <LI><a href="#[10]">EXTI0_IRQHandler</a> from startup_stm32f103xb.o(.text) referenced from startup_stm32f103xb.o(RESET)
- <LI><a href="#[32]">EXTI15_10_IRQHandler</a> from startup_stm32f103xb.o(.text) referenced from startup_stm32f103xb.o(RESET)
- <LI><a href="#[11]">EXTI1_IRQHandler</a> from stm32f1xx_it.o(i.EXTI1_IRQHandler) referenced from startup_stm32f103xb.o(RESET)
+ <LI><a href="#[32]">EXTI15_10_IRQHandler</a> from stm32f1xx_it.o(i.EXTI15_10_IRQHandler) referenced from startup_stm32f103xb.o(RESET)
+ <LI><a href="#[11]">EXTI1_IRQHandler</a> from startup_stm32f103xb.o(.text) referenced from startup_stm32f103xb.o(RESET)
  <LI><a href="#[12]">EXTI2_IRQHandler</a> from startup_stm32f103xb.o(.text) referenced from startup_stm32f103xb.o(RESET)
  <LI><a href="#[13]">EXTI3_IRQHandler</a> from startup_stm32f103xb.o(.text) referenced from startup_stm32f103xb.o(RESET)
  <LI><a href="#[14]">EXTI4_IRQHandler</a> from startup_stm32f103xb.o(.text) referenced from startup_stm32f103xb.o(RESET)
@@ -172,7 +172,7 @@ Global Symbols
 <P><STRONG><a name="[10]"></a>EXTI0_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f103xb.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
-<P><STRONG><a name="[32]"></a>EXTI15_10_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f103xb.o(.text))
+<P><STRONG><a name="[11]"></a>EXTI1_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f103xb.o(.text))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
 <P><STRONG><a name="[12]"></a>EXTI2_IRQHandler</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, startup_stm32f103xb.o(.text))
@@ -313,6 +313,7 @@ Global Symbols
 
 <P><STRONG><a name="[a9]"></a>__ARM_scalbnf</STRONG> (Thumb, 24 bytes, Stack size 0 bytes, fscalb.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF_Receive_Dal
+<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartTask_ADC
 </UL>
 
 <P><STRONG><a name="[104]"></a>scalbnf</STRONG> (Thumb, 0 bytes, Stack size 0 bytes, fscalb.o(.text), UNUSED)
@@ -332,9 +333,10 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Adc_Average
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF_Receive_Dal
+<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartTask_ADC
 </UL>
 
-<P><STRONG><a name="[bc]"></a>__aeabi_f2iz</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, ffixi.o(.text))
+<P><STRONG><a name="[bb]"></a>__aeabi_f2iz</STRONG> (Thumb, 50 bytes, Stack size 0 bytes, ffixi.o(.text))
 <BR><BR>[Called By]<UL><LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartTask_OLED
 </UL>
 
@@ -390,8 +392,8 @@ Global Symbols
 <P><STRONG><a name="[7]"></a>DebugMon_Handler</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, stm32f1xx_it.o(i.DebugMon_Handler))
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f103xb.o(RESET)
 </UL>
-<P><STRONG><a name="[11]"></a>EXTI1_IRQHandler</STRONG> (Thumb, 6 bytes, Stack size 0 bytes, stm32f1xx_it.o(i.EXTI1_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = EXTI1_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler &rArr; HAL_GPIO_EXTI_Callback &rArr; osSemaphoreRelease &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
+<P><STRONG><a name="[32]"></a>EXTI15_10_IRQHandler</STRONG> (Thumb, 8 bytes, Stack size 0 bytes, stm32f1xx_it.o(i.EXTI15_10_IRQHandler))
+<BR><BR>[Stack]<UL><LI>Max Depth = 144<LI>Call Chain = EXTI15_10_IRQHandler &rArr; HAL_GPIO_EXTI_IRQHandler &rArr; HAL_GPIO_EXTI_Callback &rArr; osSemaphoreRelease &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[4f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_IRQHandler
 </UL>
@@ -420,6 +422,7 @@ Global Symbols
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_ConfigChannel
 </UL>
 <BR>[Called By]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Adc_Average
+<LI><a href="#[3b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartTask_ADC
 </UL>
 
 <P><STRONG><a name="[57]"></a>Get_Adc_Average</STRONG> (Thumb, 142 bytes, Stack size 48 bytes, adc.o(i.Get_Adc_Average))
@@ -446,7 +449,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[5a]"></a>HAL_ADC_Init</STRONG> (Thumb, 272 bytes, Stack size 24 bytes, stm32f1xx_hal_adc.o(i.HAL_ADC_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 88<LI>Call Chain = HAL_ADC_Init &rArr; HAL_ADC_MspInit &rArr; HAL_GPIO_Init
+<BR><BR>[Stack]<UL><LI>Max Depth = 96<LI>Call Chain = HAL_ADC_Init &rArr; HAL_ADC_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_MspInit
 <LI><a href="#[4c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;ADC_ConversionStop_Disable
@@ -454,8 +457,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[96]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MX_ADC1_Init
 </UL>
 
-<P><STRONG><a name="[5b]"></a>HAL_ADC_MspInit</STRONG> (Thumb, 50 bytes, Stack size 24 bytes, adc.o(i.HAL_ADC_MspInit))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = HAL_ADC_MspInit &rArr; HAL_GPIO_Init
+<P><STRONG><a name="[5b]"></a>HAL_ADC_MspInit</STRONG> (Thumb, 64 bytes, Stack size 32 bytes, adc.o(i.HAL_ADC_MspInit))
+<BR><BR>[Stack]<UL><LI>Max Depth = 72<LI>Call Chain = HAL_ADC_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5c]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_Init
 </UL>
@@ -533,7 +536,7 @@ Global Symbols
 </UL>
 <BR>[Calls]<UL><LI><a href="#[65]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_EXTI_Callback
 </UL>
-<BR>[Called By]<UL><LI><a href="#[11]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI1_IRQHandler
+<BR>[Called By]<UL><LI><a href="#[32]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI15_10_IRQHandler
 </UL>
 
 <P><STRONG><a name="[5c]"></a>HAL_GPIO_Init</STRONG> (Thumb, 408 bytes, Stack size 40 bytes, stm32f1xx_hal_gpio.o(i.HAL_GPIO_Init))
@@ -817,7 +820,7 @@ Global Symbols
 </UL>
 
 <P><STRONG><a name="[96]"></a>MX_ADC1_Init</STRONG> (Thumb, 72 bytes, Stack size 24 bytes, adc.o(i.MX_ADC1_Init))
-<BR><BR>[Stack]<UL><LI>Max Depth = 112<LI>Call Chain = MX_ADC1_Init &rArr; HAL_ADC_Init &rArr; HAL_ADC_MspInit &rArr; HAL_GPIO_Init
+<BR><BR>[Stack]<UL><LI>Max Depth = 120<LI>Call Chain = MX_ADC1_Init &rArr; HAL_ADC_Init &rArr; HAL_ADC_MspInit &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[5a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_Init
 <LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_ADC_ConfigChannel
@@ -837,7 +840,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[9c]"></a>MX_GPIO_Init</STRONG> (Thumb, 188 bytes, Stack size 40 bytes, gpio.o(i.MX_GPIO_Init))
+<P><STRONG><a name="[9c]"></a>MX_GPIO_Init</STRONG> (Thumb, 190 bytes, Stack size 40 bytes, gpio.o(i.MX_GPIO_Init))
 <BR><BR>[Stack]<UL><LI>Max Depth = 80<LI>Call Chain = MX_GPIO_Init &rArr; HAL_GPIO_Init
 </UL>
 <BR>[Calls]<UL><LI><a href="#[9e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_NVIC_EnableIRQ
@@ -1037,7 +1040,7 @@ Global Symbols
 <LI><a href="#[ae]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_Set_Pos
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_P6x8Str
 </UL>
-<BR>[Called By]<UL><LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;oled_show_RC_data
+<BR>[Called By]<UL><LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;oled_show_RC_data
 <LI><a href="#[3e]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;StartTask_OLED
 </UL>
 
@@ -1122,11 +1125,14 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.constdata)
 </UL>
-<P><STRONG><a name="[3b]"></a>StartTask_ADC</STRONG> (Thumb, 62 bytes, Stack size 0 bytes, freertos.o(i.StartTask_ADC))
+<P><STRONG><a name="[3b]"></a>StartTask_ADC</STRONG> (Thumb, 94 bytes, Stack size 0 bytes, freertos.o(i.StartTask_ADC))
 <BR><BR>[Stack]<UL><LI>Max Depth = 136<LI>Call Chain = StartTask_ADC &rArr; osMailPut &rArr; xQueueGenericSend &rArr; xTaskResumeAll &rArr; xTaskIncrementTick
 </UL>
 <BR>[Calls]<UL><LI><a href="#[57]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Adc_Average
+<LI><a href="#[52]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Get_Adc
 <LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
+<LI><a href="#[4a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_ui2f
+<LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ARM_scalbnf
 <LI><a href="#[b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailPut
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.constdata)
@@ -1167,19 +1173,19 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.constdata)
 </UL>
-<P><STRONG><a name="[3e]"></a>StartTask_OLED</STRONG> (Thumb, 214 bytes, Stack size 16 bytes, freertos.o(i.StartTask_OLED))
+<P><STRONG><a name="[3e]"></a>StartTask_OLED</STRONG> (Thumb, 232 bytes, Stack size 16 bytes, freertos.o(i.StartTask_OLED))
 <BR><BR>[Stack]<UL><LI>Max Depth = 248<LI>Call Chain = StartTask_OLED &rArr; oled_show_RC_data &rArr; OLED_P6x8data &rArr; OLED_P6x8Str &rArr; OLED_Set_Pos &rArr; OLED_WrCmd &rArr; HAL_I2C_Mem_Write &rArr; I2C_RequestMemoryWrite &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[94]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osDelay
 <LI><a href="#[a8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NRF_Receive_Dal
-<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;oled_show_RC_data
+<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;oled_show_RC_data
 <LI><a href="#[bd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;change_offest
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_P6x8data
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_P6x8_float
 <LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_P6x8Str
 <LI><a href="#[b8]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osSemaphoreWait
 <LI><a href="#[b9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;osMailGet
-<LI><a href="#[bc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
+<LI><a href="#[bb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2iz
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> freertos.o(.constdata)
 </UL>
@@ -1317,7 +1323,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[35]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[bb]"></a>oled_show_RC_data</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, oled.o(i.oled_show_RC_data))
+<P><STRONG><a name="[bc]"></a>oled_show_RC_data</STRONG> (Thumb, 56 bytes, Stack size 8 bytes, oled.o(i.oled_show_RC_data))
 <BR><BR>[Stack]<UL><LI>Max Depth = 232<LI>Call Chain = oled_show_RC_data &rArr; OLED_P6x8data &rArr; OLED_P6x8Str &rArr; OLED_Set_Pos &rArr; OLED_WrCmd &rArr; HAL_I2C_Mem_Write &rArr; I2C_RequestMemoryWrite &rArr; I2C_WaitOnMasterAddressFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;OLED_P6x8data

@@ -211,6 +211,8 @@ void StartTask_ADC(void const * argument)
   for(;;)
   {
     Get_Adc_Average(10);
+    bat_value = Get_Adc(ADC_CHANNEL_9);
+    bat_voltage = (float)(bat_value *2 * 33 )/4096;
     for (i = 0;i<4 ;i++)
       RC_ADC_Buff[i] += RC_offest[i];
     osMailPut(ADC_ValueHandle,RC_ADC_Buff);
@@ -299,7 +301,10 @@ void StartTask_OLED(void const * argument)
   {
     display_mail = osMailGet(ADC_ValueHandle,10);
     if(display_mail.status == osEventMail)
+    {
+      OLED_P6x8_float(90,1,bat_voltage);
       oled_show_RC_data(display_mail.value.p);
+    }
     
 //    display_mail = osMailGet(RC_Offest_buffHandle,10);
 //    if(display_mail.status == osEventMail)
@@ -319,6 +324,7 @@ void StartTask_OLED(void const * argument)
     {
       NRF_Receive_Dal(Rx_buff);
       OLED_P6x8_float(90,2,receive_data.BAT_voltage);
+      
       OLED_P6x8data (96,6,receive_data.Altitude);
       
       OLED_P6x8_float(36,0,receive_data.pitch);

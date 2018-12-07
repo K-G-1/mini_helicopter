@@ -17,21 +17,26 @@ Library Manager: ArmAr.exe V5.06 update 6 (build 750)
 Hex Converter:   FromElf.exe V5.06 update 6 (build 750)
 CPU DLL:         SARMCM3.DLL V5.26.2.0
 Dialog DLL:      DCM.DLL V1.17.2.0
-Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.5.0
+Target DLL:      Segger\JL2CM3.dll V2.99.20.0
 Dialog DLL:      TCM.DLL V1.36.1.0
  
 <h2>Project:</h2>
 G:\Keil\STM32F1\mini_helicopter\cubemx\Remote v1.0\MDK-ARM\Remote.uvprojx
-Project File Date:  11/20/2018
+Project File Date:  12/07/2018
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Remote'
-compiling system_stm32f1xx.c...
+compiling freertos.c...
+../Src/freertos.c(366): warning:  #177-D: variable "i"  was declared but never referenced
+    uint8_t i = 0;
+../Src/freertos.c(367): warning:  #177-D: variable "err"  was declared but never referenced
+    uint16_t err;
+../Src/freertos.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=19200 RO-data=2636 RW-data=196 ZI-data=14076  
+Program Size: Code=19268 RO-data=2636 RW-data=200 ZI-data=14080  
 FromELF: creating hex file...
-"Remote\Remote.axf" - 0 Error(s), 0 Warning(s).
+"Remote\Remote.axf" - 0 Error(s), 2 Warning(s).
 
 <h2>Software Packages used:</h2>
 
