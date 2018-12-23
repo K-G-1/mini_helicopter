@@ -175,16 +175,20 @@ uint16_t Get_Adc_Average(uint8_t times)
 	{
 		temp_val[0]+=Get_Adc(ADC_CHANNEL_0);
         temp_val[1]+=Get_Adc(ADC_CHANNEL_1);
-        temp_val[2]+=Get_Adc(ADC_CHANNEL_2);
-        temp_val[3]+=Get_Adc(ADC_CHANNEL_3);
+        temp_val[2]+=Get_Adc(ADC_CHANNEL_3);
+        temp_val[3]+=Get_Adc(ADC_CHANNEL_2);
 	}
     
-    for(t = 0;t<4;t++)
-    {
-        temp = temp_val[t] /times;
-        temp = temp*0.244f ;//(1000/4096)
-        RC_ADC_Buff[t] = 2000 - temp ;
-    }
+  for(t = 0;t<4;t++)
+  {
+  temp = temp_val[t] /times;
+  temp = temp*0.244f ;//(1000/4096)
+  RC_ADC_Buff[t] = 2000 - temp ;
+  }
+
+  temp = temp_val[1] /times;
+  temp = temp*0.244f ;//(1000/4096)
+  RC_ADC_Buff[1] = 1000 + temp ;
     return 0;
     
 } 	 

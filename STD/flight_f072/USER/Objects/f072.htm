@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\f072.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\f072.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Mon Nov 19 13:44:57 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060750: Last Updated: Sun Dec 23 14:11:49 2018
 <BR><P>
 <H3>Maximum Stack Usage =        336 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -333,7 +333,6 @@ Global Symbols
 <BR><BR>[Stack]<UL><LI>Max Depth = 8<LI>Call Chain = __aeabi_idivmod
 </UL>
 <BR>[Called By]<UL><LI><a href="#[c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;MPU6050_OffSet
-<LI><a href="#[99]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Remote_Data_ReceiveAnalysis
 </UL>
 
 <P><STRONG><a name="[148]"></a>__use_two_region_memory</STRONG> (Thumb, 2 bytes, Stack size 0 bytes, heapauxi.o(.text), UNUSED)
@@ -1462,10 +1461,8 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[10]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;NMI_Handler
 </UL>
 
-<P><STRONG><a name="[99]"></a>Remote_Data_ReceiveAnalysis</STRONG> (Thumb, 192 bytes, Stack size 24 bytes, remotedata.o(i.Remote_Data_ReceiveAnalysis))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = Remote_Data_ReceiveAnalysis &rArr; __aeabi_idivmod
-</UL>
-<BR>[Calls]<UL><LI><a href="#[ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_idivmod
+<P><STRONG><a name="[99]"></a>Remote_Data_ReceiveAnalysis</STRONG> (Thumb, 116 bytes, Stack size 16 bytes, remotedata.o(i.Remote_Data_ReceiveAnalysis))
+<BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = Remote_Data_ReceiveAnalysis
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;EXTI0_1_IRQHandler
 </UL>

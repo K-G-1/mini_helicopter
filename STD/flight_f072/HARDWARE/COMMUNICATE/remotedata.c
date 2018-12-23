@@ -16,6 +16,8 @@
 #include "led.h"
 #include "power.h"
 
+#define REMOTE_VERSION 0
+
 uint8_t DataID;	//数据包ID
 RC_TYPE RC_Control;
 
@@ -55,6 +57,8 @@ void Remote_Data_ReceiveAnalysis(void)
 		RC_Control.YAW = SI24R1_RX_DATA[4]<<8|SI24R1_RX_DATA[5]; 		//ADC1
 		RC_Control.PITCH     = SI24R1_RX_DATA[6]<<8|SI24R1_RX_DATA[7];	  	//ADC4
 		RC_Control.ROLL    = SI24R1_RX_DATA[8]<<8|SI24R1_RX_DATA[9];		//ADC3
+    
+#if REMOTE_VERSION
 		if(RC_Control.THROTTLE_TEMP > 1600)
 		{
 				RC_Control.THROTTLE += (RC_Control.THROTTLE_TEMP - 1500)/50;
@@ -67,6 +71,9 @@ void Remote_Data_ReceiveAnalysis(void)
 			if(RC_Control.THROTTLE <= 1000)
 					RC_Control.THROTTLE =1000;
 		}
+#else
+    RC_Control.THROTTLE = RC_Control.THROTTLE_TEMP;
+#endif
 		
     Pre_mode = SI24R1_RX_DATA[1];
 	}
