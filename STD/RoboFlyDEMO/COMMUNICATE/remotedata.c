@@ -55,18 +55,21 @@ void Remote_Data_ReceiveAnalysis(void)
 		RC_Control.YAW = SI24R1_RX_DATA[4]<<8|SI24R1_RX_DATA[5]; 		//ADC1
 		RC_Control.PITCH     = SI24R1_RX_DATA[6]<<8|SI24R1_RX_DATA[7];	  	//ADC4
 		RC_Control.ROLL    = SI24R1_RX_DATA[8]<<8|SI24R1_RX_DATA[9];		//ADC3
-		if(RC_Control.THROTTLE_TEMP > 1600)
-		{
-				RC_Control.THROTTLE += (RC_Control.THROTTLE_TEMP - 1500)/50;
-				if(RC_Control.THROTTLE >= 2000 )
-					RC_Control.THROTTLE = 2000;
-		}
-		else if(RC_Control.THROTTLE_TEMP < 1400)
-		{
-			RC_Control.THROTTLE += (RC_Control.THROTTLE_TEMP - 1500)/50;
-			if(RC_Control.THROTTLE <= 1000)
-					RC_Control.THROTTLE =1000;
-		}
+    
+    // 油门值进行低通滤波
+    RC_Control.THROTTLE =0.8f* RC_Control.THROTTLE + 0.2f * RC_Control.THROTTLE_TEMP;
+//		if(RC_Control.THROTTLE_TEMP > 1600)
+//		{
+//				RC_Control.THROTTLE += (RC_Control.THROTTLE_TEMP - 1500)/50;
+//				if(RC_Control.THROTTLE >= 2000 )
+//					RC_Control.THROTTLE = 2000;
+//		}
+//		else if(RC_Control.THROTTLE_TEMP < 1400)
+//		{
+//			RC_Control.THROTTLE += (RC_Control.THROTTLE_TEMP - 1500)/50;
+//			if(RC_Control.THROTTLE <= 1000)
+//					RC_Control.THROTTLE =1000;
+//		}
 		
     Pre_mode = SI24R1_RX_DATA[1];
 	}

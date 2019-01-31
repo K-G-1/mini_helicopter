@@ -181,8 +181,8 @@ static float bmp280PressureToAltitude(float* pressure/*, float* groundPressure, 
 {
     if (*pressure>0)
     {
-//        return((pow((1015.7f/ *pressure),CONST_PF)-1.0f)*(FIX_TEMP+273.15f))/0.0065f;
-      return ((1013.25f - *pressure)*9);
+        return((pow((1015.7f/ *pressure),CONST_PF)-1.0f)*(FIX_TEMP+273.15f))/0.0065f;
+//      return ((1013.25f - *pressure)*9);    // ²»´øÎÂ¶È²¹³¥
     }
     else
     {

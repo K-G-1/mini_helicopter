@@ -51,18 +51,22 @@ void Task_Schedule(void)
 			Prepare_Data(); //获取姿态解算所需数据
 			IMUupdate(&Gyr_rad,&Acc_filt,&Att_Angle); //四元数姿态解算
 			Control(&Att_Angle,&Gyr_rad,&RC_Control,Airplane_Enable); //姿态控制
-			bmp280GetData(&Bmp280.bmp280_temp,&Bmp280.bmp280_press,&Bmp280.Altitude);
+
 		}
+    
+    if(BMP_Scan) //50hz
+    {
+      BMP_Scan = 0;
+      bmp280GetData(&Bmp280.bmp280_temp,&Bmp280.bmp280_press,&Bmp280.Altitude);
+    }
+    
 		if(LED_Scan) //10Hz
 		{
 			LED_Scan = 0;
 			LED_Run();
 			Deblocking();
-//			if(!Airplane_Enable&&Run_flag)
-//			{
-//				RGB_LED_Runing(); //飞机上锁状态灯
-//			}
-//			BATT_Alarm_LED(); //电池低电压报警	  
+
+			BATT_Alarm_LED(); //电池低电压报警	  
 		}
 		if(IRQ_Scan) //5Hz
 		{
@@ -77,6 +81,7 @@ void Task_Schedule(void)
 			Batt_Scan = 0;
 //			SI24R1_GetAddr(); //分配2.4G地址
 			LowVoltage_Alarm();	//低电量报警
+      
 		}
 }
 

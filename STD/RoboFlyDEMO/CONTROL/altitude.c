@@ -34,7 +34,8 @@ float corr_baro = 0.0f;					    //m（气压计矫正系数）
 
 static void inertial_filter_predict(float dt, float x[2],float acc);
 static void inertial_filter_correct(float e, float dt, float x[3], int i, float w);
-	
+
+/*pixhawk 曾经使用过这种的位置估计算法 ，但是最新的使用kalman计算*/
 void Altitude_Combine(void)
 {
 	uint8_t i,j;

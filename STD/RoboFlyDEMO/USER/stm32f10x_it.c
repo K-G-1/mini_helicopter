@@ -22,6 +22,7 @@
 uint8_t LED_Scan = 0;
 uint8_t IMU_Scan = 0;
 uint8_t MPU_Scan = 0;
+uint8_t BMP_Scan = 0;
 uint8_t IRQ_Scan = 0;
 uint8_t Batt_Scan = 0;
 uint8_t ANO_Scan = 0;
@@ -63,12 +64,13 @@ void USART1_IRQHandler(void)
 ****************************************************************************************************/
 void TIM4_IRQHandler(void)   //TIM4中断服务函数
 {
-	static uint16_t ms2 = 0,ms5 = 0,ms10 = 0,ms100 = 0,ms200 = 0,ms400 = 0; //分频系数
+	static uint16_t ms2 = 0,ms5 = 0,ms10 = 0,ms50 =0,ms100 = 0,ms200 = 0,ms400 = 0; //分频系数
 	if(TIM_GetITStatus(TIM4,TIM_IT_Update) != RESET)	//判断是否进入TIM更新中断
 	{
 		ms2++;
 		ms5++;
-		ms10++;		
+		ms10++;	
+    ms50 ++;
 		ms100++;
 		ms200++;
 		ms400++;
@@ -86,6 +88,11 @@ void TIM4_IRQHandler(void)   //TIM4中断服务函数
 		{
 			ms10 = 0;
 			IMU_Scan = 1;
+		}
+    if(ms50 >= 50)//50Hz
+		{
+			ms50 = 0;
+			BMP_Scan = 1;
 		}
 		if(ms100 >= 100)//10Hz
 		{

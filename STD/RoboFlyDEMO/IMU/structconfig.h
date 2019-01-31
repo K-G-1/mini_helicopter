@@ -233,6 +233,7 @@ extern float   Altitude;
 extern uint8_t LED_Scan ;
 extern uint8_t IMU_Scan ;
 extern uint8_t MPU_Scan ;
+extern uint8_t BMP_Scan ;
 extern uint8_t IRQ_Scan ;
 extern uint8_t Batt_Scan;
 extern uint8_t ANO_Scan ;

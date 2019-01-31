@@ -158,7 +158,7 @@
         <Ww>
           <count>1</count>
           <WinNumber>1</WinNumber>
-          <ItemText>Bmp280.Altitude</ItemText>
+          <ItemText>BAT.BattMeasureV,0x0A</ItemText>
         </Ww>
       </WatchWindow1>
       <Tracepoint>

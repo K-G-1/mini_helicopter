@@ -60,19 +60,41 @@ void LED_Init(void)
 * 返回值：无
 * 备  注: 无
 ***************************************************************************/
-void LED_Run(void)
+ void LED_Run(void)
 {
 	static uint8_t flag = 1;
-	if(flag)
+  static uint8_t cnt = 0;
+  if(Airplane_Enable)
 	{
-		flag = 0;
-		GPIO_SetBits(GPIOB,GPIO_Pin_12);
-	}
-	else
-	{
-		flag = 1;
-		GPIO_ResetBits(GPIOB,GPIO_Pin_12);
-	}
+    if(flag)
+    {
+      flag = 0;
+      GPIO_SetBits(GPIOB,GPIO_Pin_12);
+    }
+    else
+    {
+      flag = 1;
+      GPIO_ResetBits(GPIOB,GPIO_Pin_12);
+    }
+  }
+  else 
+  {
+    cnt ++;
+    if(cnt >= 10)
+    {
+      cnt = 0;
+      if(flag)
+      {
+        flag = 0;
+        GPIO_SetBits(GPIOB,GPIO_Pin_12);
+      }
+      else
+      {
+        flag = 1;
+        GPIO_ResetBits(GPIOB,GPIO_Pin_12);
+      }
+    }
+  }
 }
 
 /********************************************************************************
@@ -443,14 +465,25 @@ void BATT_Alarm_LED(void)
 		if(flag)
 		{
 			flag = 0;
-			RGB_LED_Red();
+			GPIO_SetBits(GPIOB,GPIO_Pin_13);
 		}
 		else
 		{
 			flag = 1;
-			RGB_LED_Off();
+			GPIO_ResetBits(GPIOB,GPIO_Pin_13);
 		}
 	}
 }
 
+void LED_task(uint16_t feq)
+{
+  static uint16_t cnt;
+  cnt ++;
+  
+  
+  if((feq / 10) == cnt )  // 10HZ
+    BATT_Alarm_LED();
 
+
+  
+}
