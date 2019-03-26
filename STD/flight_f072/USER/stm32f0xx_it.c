@@ -49,6 +49,7 @@ uint8_t LED_Scan = 0;
 uint8_t IMU_Scan = 0;
 uint8_t MPU_Scan = 0;
 uint8_t IRQ_Scan = 0;
+uint8_t BMP_Scan = 0;
 uint8_t Batt_Scan = 0;
 uint8_t ANO_Scan = 0;
 /* Private function prototypes -----------------------------------------------*/
@@ -134,17 +135,41 @@ void USART1_IRQHandler(void)
 	uint8_t clear = clear; //定义这个变量是针对编译出现“没有用到这个变量”的警告提示
 	uint8_t res;
 	
-	if(USART_GetITStatus(USART1, USART_IT_RXNE) != RESET) //接收中断
+	if(USART_GetFlagStatus(USART1, USART_FLAG_RXNE) != RESET) //接收中断
 	{ 
 		res = USART1->RDR;
 		ANO_DT_Data_Receive_Prepare(res); //上位机数据接收与解析
-    USART_ClearITPendingBit(USART1,USART_IT_RXNE);
-	}else if(USART_GetITStatus(USART1, USART_IT_IDLE) != RESET) //空闲中断
+    USART_ClearFlag(USART1,USART_FLAG_RXNE);
+	}else if(USART_GetFlagStatus(USART1, USART_FLAG_IDLE) != RESET) //空闲中断
 	{
-		USART1->ICR |= (1<<4);										//清除IDLE标志位
+		USART_ClearFlag(USART1,USART_FLAG_IDLE);
 		
 	}
-	
+	else if(USART_GetFlagStatus(USART1, USART_FLAG_ORE) != RESET) //空闲中断
+	{
+		res = USART1->RDR;
+		USART_ClearFlag(USART1,USART_FLAG_ORE);
+		
+	}
+	else if(USART_GetITStatus(USART1, USART_IT_EOB) != RESET) //空闲中断
+	{
+		res = USART1->RDR;
+		USART_ClearITPendingBit(USART1,USART_IT_EOB);
+		
+	}
+	else if(USART_GetITStatus(USART1, USART_IT_CM) != RESET) //空闲中断
+	{
+		res = USART1->RDR;
+		USART_ClearITPendingBit(USART1,USART_IT_CM);
+		
+	}
+//	else
+//	{
+//		res = USART1->RDR;
+//		USART_ClearITPendingBit(USART1,USART_IT_TC|USART_IT_PE|USART_IT_FE|
+//														USART_IT_NE|USART_IT_ORE|USART_IT_IDLE|USART_IT_LBD|
+//														USART_IT_CTS|USART_IT_RTO|USART_IT_EOB|USART_IT_CM|USART_IT_WU);
+//	}
 }
 
 /****************************************************************************************************
@@ -158,12 +183,13 @@ void USART1_IRQHandler(void)
 ****************************************************************************************************/
 void TIM2_IRQHandler(void)   //TIM4中断服务函数
 {
-	static uint16_t ms2 = 0,ms5 = 0,ms10 = 0,ms100 = 0,ms200 = 0,ms400 = 0; //分频系数
+	static uint16_t ms2 = 0,ms5 = 0,ms10 = 0,ms50ms= 0 ,ms100 = 0,ms200 = 0,ms400 = 0; //分频系数
 	if(TIM_GetITStatus(TIM2,TIM_IT_Update) != RESET)	//判断是否进入TIM更新中断
 	{
 		ms2++;
 		ms5++;
 		ms10++;		
+		ms50ms++;
 		ms100++;
 		ms200++;
 		ms400++;
@@ -181,6 +207,11 @@ void TIM2_IRQHandler(void)   //TIM4中断服务函数
 		{
 			ms10 = 0;
 			IMU_Scan = 1;
+		}
+		if(ms50ms >= 50)
+		{
+			ms50ms =0;
+			BMP_Scan = 1;
 		}
 		if(ms100 >= 100)//10Hz
 		{

@@ -54,7 +54,7 @@ void Task_Schedule(void)
 
 		}
     
-    if(BMP_Scan) //50hz
+    if(BMP_Scan) //20hz
     {
       BMP_Scan = 0;
       bmp280GetData(&Bmp280.bmp280_temp,&Bmp280.bmp280_press,&Bmp280.Altitude);

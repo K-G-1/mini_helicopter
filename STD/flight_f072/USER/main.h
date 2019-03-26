@@ -30,6 +30,8 @@
 #include "power.h"
 #include "remotedata.h"
 #include "bmp280.h"
+#include "altitude.h"
+
 
 void System_Init(void);
 void Task_Schedule(void);

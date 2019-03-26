@@ -23,6 +23,7 @@
 ".\objects\bmp280.o"
 ".\objects\si24r1.o"
 ".\objects\power.o"
+".\objects\altitude.o"
 ".\objects\startup_stm32f072.o"
 ".\objects\system_stm32f0xx.o"
 ".\objects\stm32f0xx_adc.o"

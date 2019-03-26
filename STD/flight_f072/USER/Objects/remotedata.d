@@ -55,3 +55,4 @@
 .\objects\remotedata.o: ..\HARDWARE\COMMUNICATE\remotedata.h
 .\objects\remotedata.o: ..\HARDWARE\Drive\src\BMP280\bmp280.h
 .\objects\remotedata.o: D:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\remotedata.o: ..\HARDWARE\CONTROL\altitude.h

@@ -104,6 +104,8 @@ typedef struct BMP280
   float bmp280_temp;
 	float bmp280_press;
 	float Altitude;
+	float Used_alt;
+	float offest;
 	
 } BMP280;
 
@@ -182,6 +184,22 @@ typedef struct PIDSave
 
 }PID_SAVE;
 
+typedef struct 
+{
+    uint16_t dig_T1;                                                                /* calibration T1 data */
+    int16_t dig_T2;                                                                /* calibration T2 data */
+    int16_t dig_T3;                                                                /* calibration T3 data */
+    uint16_t dig_P1;                                                                /* calibration P1 data */
+    int16_t dig_P2;                                                                /* calibration P2 data */
+    int16_t dig_P3;                                                                /* calibration P3 data */
+    int16_t dig_P4;                                                                /* calibration P4 data */
+    int16_t dig_P5;                                                                /* calibration P5 data */
+    int16_t dig_P6;                                                                /* calibration P6 data */
+    int16_t dig_P7;                                                                /* calibration P7 data */
+    int16_t dig_P8;                                                                /* calibration P8 data */
+    int16_t dig_P9;                                                                /* calibration P9 data */
+    int32_t t_fine;                                                                /* calibration t_fine data */
+} bmp280Calib;
 //电池电压管理数据结构 
 typedef struct BATT_TYPE
 {
@@ -229,15 +247,18 @@ extern uint8_t BATT_LEDflag;
 extern uint8_t SI24R1_Controlflag;
 extern uint8_t Altitude_mode;
 extern float   Altitude;
+extern bmp280Calib  bmp280Cal;;
 
 extern uint8_t LED_Scan ;
 extern uint8_t IMU_Scan ;
 extern uint8_t MPU_Scan ;
+extern uint8_t BMP_Scan ;
 extern uint8_t IRQ_Scan ;
 extern uint8_t Batt_Scan;
 extern uint8_t ANO_Scan ;
 
 extern float   THROTTLE;
 extern 		BATT_TYPE BAT;
+
 #endif
 

@@ -105,12 +105,12 @@ int main(void)
   MX_I2C1_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-//  HAL_Delay(1000);
-//  while(mpu6050_init() != 0)
-//  {
-//    HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);
-//    HAL_Delay(1000);
-//  }
+  HAL_Delay(1000);
+  while(mpu6050_init() != 0)
+  {
+    HAL_GPIO_TogglePin(LED2_GPIO_Port,LED2_Pin);
+    HAL_Delay(1000);
+  }
 //  Get_6050_offest();
 //  
 

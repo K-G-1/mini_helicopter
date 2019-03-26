@@ -10,7 +10,7 @@
 * 版权所有：西安天际智联信息技术有限公司
 *******************************************************************************************/
 #include "altitude.h"
-#include "fbm320.h"
+#include "BMP280.h"
 #include "structconfig.h"
 #include "imu.h"
 #include "pid.h"
@@ -38,7 +38,7 @@ static void inertial_filter_correct(float e, float dt, float x[3], int i, float 
 void Altitude_Combine(void)
 {
 	uint8_t i,j;
-	float dt = 0.005; //次程序没次被调用的时间间隔
+	float dt = 0.01; //次程序没次被调用的时间间隔
 	float accel_bias_corr[3] = { 0.0f, 0.0f, 0.0f }; /* 加速度计的偏移矫正 */
 	
 	if(AccbUpdate)
@@ -61,7 +61,7 @@ void Altitude_Combine(void)
 	} 
 	if(ALT_Updated)
 	{
-		corr_baro = 0 - FBM.AltitudeFilter - z_est[0];    //初始化值为零 测量值与估计值求差
+		corr_baro =0-z_est[0] -(Bmp280.Used_alt*100) ;    //初始化值为零 测量值与估计值求差
 		ALT_Updated = 0;
 	}
 	 
@@ -117,7 +117,7 @@ static void inertial_filter_correct(float e, float dt, float x[3], int i, float 
 
 void Altitude_Control(void)
 {
-	PID_Postion_Cal(&PID_ALT,Altitude,FBM.AltitudeFilter);
+	PID_Postion_Cal(&PID_ALT,Altitude,Bmp280.Altitude);
 	
 	if(Altitude_mode && RC_Control.THROTTLE>200)
 	THROTTLE = 480 + PID_ALT.OutPut;

@@ -5,35 +5,24 @@
 #include "usart.h"
 #include "iic.h"
 #include "structconfig.h"
+
 /*bmp280 气压和温度过采样 工作模式*/
 #define BMP280_PRESSURE_OSR			(BMP280_OVERSAMP_8X)
 #define BMP280_TEMPERATURE_OSR		(BMP280_OVERSAMP_16X)
 #define BMP280_MODE					(BMP280_PRESSURE_OSR<<2|BMP280_TEMPERATURE_OSR<<5|BMP280_NORMAL_MODE)
 BMP280 Bmp280;
+#define FILTER_NUM	5
+#define FILTER_A	0.1f
 
-typedef struct 
-{
-    uint16_t dig_T1;                                                                /* calibration T1 data */
-    int16_t dig_T2;                                                                /* calibration T2 data */
-    int16_t dig_T3;                                                                /* calibration T3 data */
-    uint16_t dig_P1;                                                                /* calibration P1 data */
-    int16_t dig_P2;                                                                /* calibration P2 data */
-    int16_t dig_P3;                                                                /* calibration P3 data */
-    int16_t dig_P4;                                                                /* calibration P4 data */
-    int16_t dig_P5;                                                                /* calibration P5 data */
-    int16_t dig_P6;                                                                /* calibration P6 data */
-    int16_t dig_P7;                                                                /* calibration P7 data */
-    int16_t dig_P8;                                                                /* calibration P8 data */
-    int16_t dig_P9;                                                                /* calibration P9 data */
-    int32_t t_fine;                                                                /* calibration t_fine data */
-} bmp280Calib;
 
-bmp280Calib  bmp280Cal;
-
+ bmp280Calib  bmp280Cal;
+uint8_t ALTIUDE_OK = 0,ALT_Updated = 0;
 static uint8_t bmp280ID=0;
 static bool isInit=false;
 static int32_t bmp280RawPressure=0;
 static int32_t bmp280RawTemperature=0;
+static float filter_buf[FILTER_NUM]={0.0f};
+
 
 static void bmp280GetPressure(void);
 static void presssureFilter(float* in,float* out);
@@ -41,6 +30,7 @@ static float bmp280PressureToAltitude(float* pressure/*, float* groundPressure, 
 
 bool bmp280Init(void)
 {	
+	uint8_t buf = 0;
     if (isInit)
         return true;
 
@@ -49,21 +39,23 @@ bool bmp280Init(void)
 
 //bmp280ID=iicDevReadByte(BMP280_ADDR,BMP280_CHIP_ID);	                   /* 读取bmp280 ID*/
 	IIC_ReadByteFromSlave(BMP280_ADDR,BMP280_CHIP_ID,&bmp280ID);
-	if(bmp280ID==BMP280_DEFAULT_CHIP_ID)
-		printf("BMP280 ID IS: 0x%X\n",bmp280ID);
-    else
-        return false;
+		if(bmp280ID!=BMP280_DEFAULT_CHIP_ID)
+				GPIO_ResetBits(GPIOB,GPIO_Pin_13);
+//	if(bmp280ID==BMP280_DEFAULT_CHIP_ID)
+//		printf("BMP280 ID IS: 0x%X\n",bmp280ID);
+//		else
+//				return false;
 
     /* 读取校准数据 */
 
     IIC_ReadMultByteFromSlave(BMP280_ADDR,BMP280_TEMPERATURE_CALIB_DIG_T1_LSB_REG,24,(uint8_t *)&bmp280Cal);	
 	IIC_WriteByteToSlave(BMP280_ADDR,BMP280_CTRL_MEAS_REG,BMP280_MODE);
 	IIC_WriteByteToSlave(BMP280_ADDR,BMP280_CONFIG_REG,5<<2);		               /*配置IIR滤波*/
-	
+	buf = IIC_ADD_read(BMP280_ADDR,BMP280_TEMPERATURE_CALIB_DIG_T1_LSB_REG);
 //	printf("BMP280 Calibrate Registor Are: \r\n");
 //	for(i=0;i<24;i++)
 //		printf("Registor %2d: 0x%X\n",i,p[i]);
-	
+	Bmp280.offest = 0;
     isInit=true;
     return true;
 }
@@ -114,14 +106,13 @@ static uint32_t bmp280CompensateP(int32_t adcP)
     return(uint32_t)p;
 }
 
-#define FILTER_NUM	5
-#define FILTER_A	0.1f
+
 
 /*限幅平均滤波法*/
 static void presssureFilter(float* in,float* out)
 {	
 	static uint8_t i=0;
-	static float filter_buf[FILTER_NUM]={0.0};
+	
 	double filter_sum=0.0;
 	uint8_t cnt=0;	
 	float deta;
@@ -158,17 +149,28 @@ void bmp280GetData(float* pressure,float* temperature,float* asl)
 {
     static float t;
     static float p;
-	
+	static float temp;;
 	bmp280GetPressure();
 
-	t=bmp280CompensateT(bmp280RawTemperature)/100.0;		
-	p=bmp280CompensateP(bmp280RawPressure)/25600.0;		
+	*temperature=bmp280CompensateT(bmp280RawTemperature)/100.0f;		
+	*pressure=bmp280CompensateP(bmp280RawPressure)/25600.0f;		
 
-	presssureFilter(&p,pressure);
-	*temperature=(float)t;                                                     /*单位度*/
+//	presssureFilter(&p,pressure);
+//	*temperature=(float)t;                                                     /*单位度*/
 //	*pressure=(float)p ;	                                                   /*单位hPa*/	
-	
+//	temp =  Bmp280.offest - *pressure;
 	*asl=bmp280PressureToAltitude(pressure);	                               /*转换成海拔*/	
+
+
+	ALT_Updated = 1;
+	
+	if(ALTIUDE_OK < 10)
+	{
+		temp += *asl;
+		ALTIUDE_OK ++;
+		Bmp280.offest = temp / 10;
+	}
+	Bmp280.Used_alt = *asl - Bmp280.offest;
 }
 
 #define CONST_PF 0.1902630958	                                               //(1/5.25588f) Pressure factor

@@ -30,7 +30,7 @@ void NvicConfig(void)
 	NVIC_Init(&NVIC_InitStruct);   //中断优先级初始化函数
 	
 	NVIC_InitStruct.NVIC_IRQChannel=USART1_IRQn;
-	NVIC_InitStruct.NVIC_IRQChannelPriority=2;
+	NVIC_InitStruct.NVIC_IRQChannelPriority=3;
 	NVIC_InitStruct.NVIC_IRQChannelCmd=ENABLE;
 	NVIC_Init(&NVIC_InitStruct);
 	

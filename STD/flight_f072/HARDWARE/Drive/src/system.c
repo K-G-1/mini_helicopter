@@ -20,17 +20,22 @@ void System_Init(void)
 	LED_Init();	//用户指示灯初始化
 	Delay_Init(); //系统延时初始化
 	USART_init(115200);	//调试串口初始化
+	
+	PID_ReadFlash(); //Flash中的数据读取
+	PidParameter_init(); //PID参数初始化
+	
 	IIC_GPIO_Init(); //模拟IIC初始化
 	TIM_Init();	//系统时基初始化
 	Exit_Init(); //外部中断初始化
 	SI24R1_Init(); //SI24R1(2.4G)初始化（红）
   SI24R1_Config();
 	MPU6050_Init(); //MPU6050初始化（绿） 
-//	bmp280Init(); //FBM320初始化(气压计蓝) 
+	bmp280Init(); //FBM320初始化(气压计蓝) 
 	MOTOR_Init(); //电机输出初始化
 	BATT_Init(); //电池电压检测初始化
-	PID_ReadFlash(); //Flash中的数据读取
-	PidParameter_init(); //PID参数初始化
+//	PID_ReadFlash(); //Flash中的数据读取
+	Delay_ms(500);
+	bmp280Init(); //FBM320初始化(气压计蓝) 
 
 	
 //	printf("System Init Finish\n");
@@ -51,7 +56,7 @@ void Task_Schedule(void)
 			Prepare_Data(); //获取姿态解算所需数据
 			IMUupdate(&Gyr_rad,&Acc_filt,&Att_Angle); //四元数姿态解算
 			Control(&Att_Angle,&Gyr_rad,&RC_Control,Airplane_Enable); //姿态控制
-//			bmp280GetData(&Bmp280.bmp280_temp,&Bmp280.bmp280_press,&Bmp280.Altitude);
+			Altitude_Combine();
 		}
 		if(LED_Scan) //10Hz
 		{
@@ -64,11 +69,14 @@ void Task_Schedule(void)
 //			}
 //			BATT_Alarm_LED(); //电池低电压报警	  
 		}
+		if(BMP_Scan )
+		{
+			BMP_Scan = 0;
+			bmp280GetData(&Bmp280.bmp280_press,&Bmp280.bmp280_temp,&Bmp280.Altitude);
+		}
 		if(IRQ_Scan) //5Hz
 		{
 			IRQ_Scan = 0;
-
-      
 			SI24R1_SingalCheck(); //2.4G通信检测
 			SendToRemote(); //发送数据给遥控器
 		}

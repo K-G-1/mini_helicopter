@@ -88,7 +88,7 @@ void ANO_DT_Data_Exchange(void)
 	if(f.send_status)
 	{
 		f.send_status = 0;
-		ANO_DT_Send_Status(Att_Angle.rol,Att_Angle.pit,Att_Angle.yaw,Bmp280.Altitude*100,Flight_mode,Airplane_Enable);
+		ANO_DT_Send_Status(Att_Angle.rol,Att_Angle.pit,Att_Angle.yaw,(Bmp280.Used_alt)*100,Flight_mode,Airplane_Enable);
 	}	
 //////////////////////////////////////// 发送传感器信息 //////////////////////////////////////////
 	else if(f.send_senser)
@@ -96,23 +96,24 @@ void ANO_DT_Data_Exchange(void)
 		f.send_senser = 0;
 		ANO_DT_Send_Senser((int16_t)Acc_filt.X,(int16_t)Acc_filt.Y,(int16_t)Acc_filt.Z,
 											 (int16_t)Gyr_rad.X*RadtoDeg,(int16_t)Gyr_rad.Y*RadtoDeg,(int16_t)Gyr_rad.Z*RadtoDeg,0,0,0,0);
-		#if defined (ROL_PID_DEBUG)   //ROLL角调试
-			Data_Send_AngleRate(Gyr_rad.X*RadtoDeg,PID_ROL_Rate.Pout,PID_ROL_Rate.Iout,PID_ROL_Rate.Dout,
-		                       PID_ROL_Angle.Error,PID_ROL_Angle.Pout,PID_ROL_Angle.Iout,PID_ROL_Angle.Dout);
-		
-		#elif defined (PIT_PID_DEBUG) //PITCH角调试	
-			Data_Send_AngleRate(Gyr_rad.Y*RadtoDeg,PID_PIT_Rate.Pout,PID_PIT_Rate.Iout,PID_PIT_Rate.Dout,
-		                       PID_PIT_Angle.Error,PID_PIT_Angle.Pout,PID_PIT_Angle.Iout,PID_PIT_Angle.Dout);
-		
-		#elif defined (YAW_PID_DEBUG) //YAW角调试
-			Data_Send_AngleRate(Gyr_rad.Z*RadtoDeg,PID_YAW_Rate.Pout,PID_YAW_Rate.Iout,PID_YAW_Rate.Dout,
-													PID_YAW_Angle.Error,PID_YAW_Angle.Pout,PID_YAW_Angle.Iout,PID_YAW_Angle.Dout);
-		
-		#elif defined (ALT_PID_DEBUGE)//ALT环调试
-			Data_Send_AngleRate(FBM.AltitudeFilter,PID_ALT.Error,PID_ALT.Pout,PID_ALT.Iout,PID_ALT.Dout,0,0,0);
-		#else
-			 Data_Send_Filter();
-		#endif
+//		#if defined (ROL_PID_DEBUG)   //ROLL角调试
+//			Data_Send_AngleRate(Gyr_rad.X*RadtoDeg,PID_ROL_Rate.Pout,PID_ROL_Rate.Iout,PID_ROL_Rate.Dout,
+//		                       PID_ROL_Angle.Error,PID_ROL_Angle.Pout,PID_ROL_Angle.Iout,PID_ROL_Angle.Dout);
+//		
+//		#elif defined (PIT_PID_DEBUG) //PITCH角调试	
+//			Data_Send_AngleRate(Gyr_rad.Y*RadtoDeg,PID_PIT_Rate.Pout,PID_PIT_Rate.Iout,PID_PIT_Rate.Dout,
+//		                       PID_PIT_Angle.Error,PID_PIT_Angle.Pout,PID_PIT_Angle.Iout,PID_PIT_Angle.Dout);
+//		
+//		#elif defined (YAW_PID_DEBUG) //YAW角调试
+//			Data_Send_AngleRate(Gyr_rad.Z*RadtoDeg,PID_YAW_Rate.Pout,PID_YAW_Rate.Iout,PID_YAW_Rate.Dout,
+//													PID_YAW_Angle.Error,PID_YAW_Angle.Pout,PID_YAW_Angle.Iout,PID_YAW_Angle.Dout);
+//		
+//		#elif defined (ALT_PID_DEBUGE)//ALT环调试
+//			Data_Send_AngleRate(FBM.AltitudeFilter,PID_ALT.Error,PID_ALT.Pout,PID_ALT.Iout,PID_ALT.Dout,0,0,0);
+//		#else
+//			 Data_Send_Filter();
+//		#endif
+		ANO_DT_Send_ALT(Bmp280.offest*100,nav.z);
 	}	 
 /////////////////////////////////////////////////////////////////////////////////////
 	else if(f.send_rcdata)
@@ -210,6 +211,7 @@ void ANO_DT_Data_Receive_Prepare(uint8_t data)
 	{
 		state=1;
 		RxBuffer[0]=data;
+//		TIM_Cmd(TIM2,DISABLE);  
 	}
 	else if(state==1&&data==0xAF)
 	{
@@ -240,6 +242,7 @@ void ANO_DT_Data_Receive_Prepare(uint8_t data)
 		state = 0;
 		RxBuffer[4+_data_cnt]=data;
 		ANO_DT_Data_Receive_Anl(RxBuffer,_data_cnt+5);
+//		TIM_Cmd(TIM2,ENABLE);  
 	}
 	else
 		state = 0;
@@ -580,6 +583,38 @@ void ANO_DT_Send_MotoPWM(uint16_t m_1,uint16_t m_2,uint16_t m_3,uint16_t m_4,uin
 	
 	ANO_DT_Send_Data(data_to_send, _cnt);
 }
+void ANO_DT_Send_ALT(float ultra, float baro)
+{
+	uint8_t _cnt=0,sum = 0,i;
+	int temp;
+	
+	data_to_send[_cnt++]=0xAA;
+	data_to_send[_cnt++]=0xAA;
+	data_to_send[_cnt++]=0x07;
+	data_to_send[_cnt++]=0;
+	
+	temp = -baro;
+	data_to_send[_cnt++]=BYTE3(temp);
+	data_to_send[_cnt++]=BYTE2(temp);
+	data_to_send[_cnt++]=BYTE1(temp);
+	data_to_send[_cnt++]=BYTE0(temp);
+	temp = ultra;
+	data_to_send[_cnt++]=BYTE3(temp);
+	data_to_send[_cnt++]=BYTE2(temp);
+	data_to_send[_cnt++]=BYTE1(temp);
+	data_to_send[_cnt++]=BYTE0(temp);
+	
+	data_to_send[3] = _cnt-4;
+	
+  
+	for(i=0;i<_cnt;i++)
+		sum += data_to_send[i];
+	
+	data_to_send[_cnt++]=sum;
+	
+	ANO_DT_Send_Data(data_to_send, _cnt);
+}
+
 void ANO_DT_Send_PID(uint8_t group,float p1_p,float p1_i,float p1_d,float p2_p,float p2_i,float p2_d,float p3_p,float p3_i,float p3_d)
 {
 	uint8_t _cnt=0,sum = 0,i;

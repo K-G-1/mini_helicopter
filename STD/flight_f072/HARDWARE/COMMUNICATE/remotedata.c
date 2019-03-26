@@ -190,7 +190,7 @@ void SendToRemote(void)
 	temp = (int)(Att_Angle.rol*10); //横滚
 	SI24R1_TX_DATA[8] = Byte1(temp);
 	SI24R1_TX_DATA[9] = Byte0(temp);
-	temp = (int)(Bmp280.Altitude*100); //高度留待
+	temp = (int)(Bmp280.Used_alt*10000); //高度留待
 	SI24R1_TX_DATA[10] = Byte1(temp);
 	SI24R1_TX_DATA[11] = Byte0(temp);
   temp = (int)(Flight_mode);

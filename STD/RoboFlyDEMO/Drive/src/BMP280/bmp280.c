@@ -50,10 +50,12 @@ bool bmp280Init(void)
 //bmp280ID=iicDevReadByte(BMP280_ADDR,BMP280_CHIP_ID);	                   /* 读取bmp280 ID*/
 	IIC_ReadByteFromSlave(BMP280_ADDR,BMP280_CHIP_ID,&bmp280ID);
 	if(bmp280ID==BMP280_DEFAULT_CHIP_ID)
-		printf("BMP280 ID IS: 0x%X\n",bmp280ID);
-    else
-        return false;
-
+	{
+		GPIO_SetBits(GPIOB,GPIO_Pin_14);
+	}
+	else{
+		GPIO_ResetBits(GPIOB,GPIO_Pin_14);
+	}
     /* 读取校准数据 */
 
     IIC_ReadMultByteFromSlave(BMP280_ADDR,BMP280_TEMPERATURE_CALIB_DIG_T1_LSB_REG,24,(uint8_t *)&bmp280Cal);	
@@ -181,8 +183,8 @@ static float bmp280PressureToAltitude(float* pressure/*, float* groundPressure, 
 {
     if (*pressure>0)
     {
-        return((pow((1015.7f/ *pressure),CONST_PF)-1.0f)*(FIX_TEMP+273.15f))/0.0065f;
-//      return ((1013.25f - *pressure)*9);    // 不带温度补偿
+//        return((pow((1015.7f/ *pressure),CONST_PF)-1.0f)*(FIX_TEMP+273.15f))/0.0065f;
+      return ((1013.25f - *pressure)*9);    // 不带温度补偿
     }
     else
     {

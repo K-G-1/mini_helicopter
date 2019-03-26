@@ -89,7 +89,7 @@ void TIM4_IRQHandler(void)   //TIM4中断服务函数
 			ms10 = 0;
 			IMU_Scan = 1;
 		}
-    if(ms50 >= 50)//50Hz
+    if(ms50 >= 50)//20Hz
 		{
 			ms50 = 0;
 			BMP_Scan = 1;
