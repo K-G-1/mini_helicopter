@@ -99,13 +99,22 @@ void Control(FLOAT_ANGLE *att_in,FLOAT_XYZ *gyr_in, RC_TYPE *rc_in, uint8_t arme
 	PID_Postion_Cal(&PID_YAW_Rate,Target_Angle.yaw*PID_YAW_Angle.P,gyr_in->Z*RadtoDeg); //YAW角速度环PID （输入角度，输出电机控制量）
 	
 	//动力分配（自己DIY是动力分配一定要好好研究，动力分配搞错飞机肯定飞不起来!!!）
-	if(rc_in->THROTTLE>1050&&armed)//当油门大于150时和飞机解锁时动力分配才生效
+	if(rc_in->THROTTLE>1050&&armed && Flight_mode == 1)//当油门大于150时和飞机解锁时动力分配才生效
 	{                                                                                 
 		Moto_PWM_1 = rc_in->THROTTLE-1000 + PID_ROL_Rate.OutPut - PID_PIT_Rate.OutPut - PID_YAW_Rate.OutPut;   
 		Moto_PWM_2 = rc_in->THROTTLE-1000 - PID_ROL_Rate.OutPut - PID_PIT_Rate.OutPut + PID_YAW_Rate.OutPut;   
 		Moto_PWM_3 = rc_in->THROTTLE-1000 - PID_ROL_Rate.OutPut + PID_PIT_Rate.OutPut - PID_YAW_Rate.OutPut;   
 		Moto_PWM_4 = rc_in->THROTTLE-1000 + PID_ROL_Rate.OutPut + PID_PIT_Rate.OutPut + PID_YAW_Rate.OutPut;   
+		rc_in->PRE_THROTTLE = rc_in->THROTTLE-1000;
 	} 
+	else if(rc_in->THROTTLE>1050&&armed && Flight_mode == 2)
+	{
+		Moto_PWM_1 = rc_in->PRE_THROTTLE + PID_ALT.OutPut + PID_ROL_Rate.OutPut - PID_PIT_Rate.OutPut - PID_YAW_Rate.OutPut;   
+		Moto_PWM_2 = rc_in->PRE_THROTTLE + PID_ALT.OutPut - PID_ROL_Rate.OutPut - PID_PIT_Rate.OutPut + PID_YAW_Rate.OutPut;   
+		Moto_PWM_3 = rc_in->PRE_THROTTLE + PID_ALT.OutPut - PID_ROL_Rate.OutPut + PID_PIT_Rate.OutPut - PID_YAW_Rate.OutPut;   
+		Moto_PWM_4 = rc_in->PRE_THROTTLE + PID_ALT.OutPut + PID_ROL_Rate.OutPut + PID_PIT_Rate.OutPut + PID_YAW_Rate.OutPut; 
+		
+	}
 	else
 	{
 		Moto_PWM_1 = 0;

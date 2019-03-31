@@ -117,10 +117,10 @@ static void inertial_filter_correct(float e, float dt, float x[3], int i, float 
 
 void Altitude_Control(void)
 {
-	PID_Postion_Cal(&PID_ALT,Altitude,Bmp280.Altitude);
+	PID_Postion_Cal(&PID_ALT,100,Bmp280.Used_alt);
 	
-	if(Altitude_mode && RC_Control.THROTTLE>200)
-	THROTTLE = 480 + PID_ALT.OutPut;
+//	if(Altitude_mode && RC_Control.THROTTLE>200)
+//	THROTTLE = 480 + PID_ALT.OutPut;
 }
 
 

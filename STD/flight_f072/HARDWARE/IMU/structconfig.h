@@ -79,6 +79,7 @@ typedef struct
 	int16_t ROLL;
 	int16_t PITCH;
 	int16_t THROTTLE;
+	int16_t PRE_THROTTLE;
 	int16_t THROTTLE_TEMP;
 	int16_t YAW;
 }RC_TYPE;

@@ -131,6 +131,16 @@ uint8_t key_use = 0;
 extern int16_t RC_offest[4];
 uint8_t key_press = 0;
 extern osSemaphoreId Data_saveHandle;
+
+/*****************************************************
+@Version		:V1.0
+@CreatDate	:
+@Description	: key_status 按键状态，0-3是偏移值数组的位置  4：判断是否修改模式
+								key_use	按键的使用功能 0： 无状态 1：修改偏移	2： 修改模式
+思路：默认key_use = 0,key_status = 0xff；	按下Key1 则进入修改偏移值 	后续按下Key3/4修改数值 按下Key2 发送
+																					按下Key4 则进入修改模式 后续按下Key3 修改模式，按下Key2 发送
+@Author		: K.G.
+*****************************************************/
 void KEY_Scan(uint8_t mode )
 {
     if(mode == 1)

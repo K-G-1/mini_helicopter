@@ -99,7 +99,7 @@ void PidParameter_init(void)
 	PID_ALT_Rate.Ilimit = 0;
 	PID_ALT_Rate.Irang = 0;
 	PID_ALT.Ilimit_flag = 0;
-	PID_ALT.Ilimit = 100;
+	PID_ALT.Ilimit = 200;
 	PID_ALT.Irang = 200;
 }
 

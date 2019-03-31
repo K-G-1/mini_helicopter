@@ -88,7 +88,7 @@ void ANO_DT_Data_Exchange(void)
 	if(f.send_status)
 	{
 		f.send_status = 0;
-		ANO_DT_Send_Status(Att_Angle.rol,Att_Angle.pit,Att_Angle.yaw,(Bmp280.Used_alt)*100,Flight_mode,Airplane_Enable);
+		ANO_DT_Send_Status(Att_Angle.rol,Att_Angle.pit,Att_Angle.yaw,-nav.z,Flight_mode,Airplane_Enable);
 	}	
 //////////////////////////////////////// 发送传感器信息 //////////////////////////////////////////
 	else if(f.send_senser)
@@ -113,7 +113,7 @@ void ANO_DT_Data_Exchange(void)
 //		#else
 //			 Data_Send_Filter();
 //		#endif
-		ANO_DT_Send_ALT(Bmp280.offest*100,nav.z);
+		ANO_DT_Send_ALT((Bmp280.Used_alt)*100,nav.z);
 	}	 
 /////////////////////////////////////////////////////////////////////////////////////
 	else if(f.send_rcdata)
@@ -583,7 +583,7 @@ void ANO_DT_Send_MotoPWM(uint16_t m_1,uint16_t m_2,uint16_t m_3,uint16_t m_4,uin
 	
 	ANO_DT_Send_Data(data_to_send, _cnt);
 }
-void ANO_DT_Send_ALT(float ultra, float baro)
+void ANO_DT_Send_ALT(float baro, float ultra)
 {
 	uint8_t _cnt=0,sum = 0,i;
 	int temp;
@@ -593,14 +593,14 @@ void ANO_DT_Send_ALT(float ultra, float baro)
 	data_to_send[_cnt++]=0x07;
 	data_to_send[_cnt++]=0;
 	
-	temp = -baro;
+	temp = baro;
 	data_to_send[_cnt++]=BYTE3(temp);
 	data_to_send[_cnt++]=BYTE2(temp);
 	data_to_send[_cnt++]=BYTE1(temp);
 	data_to_send[_cnt++]=BYTE0(temp);
-	temp = ultra;
-	data_to_send[_cnt++]=BYTE3(temp);
-	data_to_send[_cnt++]=BYTE2(temp);
+	temp = (uint16_t)ultra;
+//	data_to_send[_cnt++]=BYTE3(temp);
+//	data_to_send[_cnt++]=BYTE2(temp);
 	data_to_send[_cnt++]=BYTE1(temp);
 	data_to_send[_cnt++]=BYTE0(temp);
 	

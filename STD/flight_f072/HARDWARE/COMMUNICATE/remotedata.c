@@ -45,10 +45,11 @@ void Remote_Data_ReceiveAnalysis(void)
 	{	
     if(SI24R1_RX_DATA[1] == 0 )
       Flight_mode = 1;
-//    else if(SI24R1_RX_DATA[1] == 1 )
-//      Flight_mode = 2;
+    else if(SI24R1_RX_DATA[1] == 1 )
+      Flight_mode = 2;
     if(SI24R1_RX_DATA[1] == 2 && Pre_mode != 2)
     {
+			Flight_mode = 0;
       SENSER_FLAG_SET(GYRO_OFFSET);
     }
 

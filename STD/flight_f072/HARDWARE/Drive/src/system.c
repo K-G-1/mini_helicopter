@@ -73,6 +73,7 @@ void Task_Schedule(void)
 		{
 			BMP_Scan = 0;
 			bmp280GetData(&Bmp280.bmp280_press,&Bmp280.bmp280_temp,&Bmp280.Altitude);
+			Altitude_Control();
 		}
 		if(IRQ_Scan) //5Hz
 		{

@@ -312,7 +312,7 @@ void NRF_Receive_Dal(uint8_t *rx_buf)
     return ;
   //
   receive_data.bat_value = (*(rx_buf + 2)<<8)|(*(rx_buf +3));
-  receive_data.BAT_voltage = (float)(receive_data.bat_value *2 * 33 )/4096;
+  receive_data.BAT_voltage = (float)(receive_data.bat_value *2 * 330 )/4096;
   
   //
   receive_data.yaw = (*(rx_buf + 4)<<8)|(*(rx_buf +5)) ;

@@ -178,6 +178,44 @@ void OLED_P6x8_float(unsigned char x,unsigned char y,int ch)
 	
 
 }
+void OLED_P6x8_BARO(unsigned char x,unsigned char y,int ch)
+{
+	unsigned char i=0;
+	uint16_t bai,shi,ge;
+	if(ch>=00)
+	{
+		
+		OLED_P6x8Str(x,y," ");
+	}
+	else
+	{
+		ch = -ch;
+		OLED_P6x8Str(x,y,"-");
+	}
+	bai = ch/100%10 +16;
+	shi= ch/10%10   +16;
+	ge = ch%10      +16;
+	
+	if(x>126){x=0;y++;}
+	OLED_Set_Pos(x+6,y);
+
+	for(i=0;i<6;i++)
+	OLED_WrDat(F6x8[bai][i]);
+	
+	OLED_P6x8Str(x+12,y,(unsigned char *)".");
+	
+	OLED_Set_Pos(x+18,y);
+	for(i=0;i<6;i++)
+		OLED_WrDat(F6x8[shi][i]);
+  
+  
+	OLED_Set_Pos(x+24,y);
+	for(i=0;i<6;i++)
+		OLED_WrDat(F6x8[ge][i]);
+	
+
+}
+
 /*******************功能描述：显示8*16一组标准ASCII字符串	 显示的坐标（x,y），y为页范围0～7****************/
 void OLED_P8x16Str(unsigned char x,unsigned char y,unsigned char ch[])				//一共8页i，即是8行，每两行像是一个数字或一个汉字
 {
@@ -302,8 +340,8 @@ void change_offest(uint8_t y)
       OLED_P6x8Str(72,7,">");
       if(fly_mode == 0)
         OLED_P6x8Str(78,7,"Nor mode");
-//      else if(fly_mode == 1)
-//        OLED_P6x8Str(78,7,"Alt mode");
+      else if(fly_mode == 1)
+        OLED_P6x8Str(78,7,"Alt mode");
       else if(fly_mode == 2)
         OLED_P6x8Str(78,7,"Cal mode");
     }
