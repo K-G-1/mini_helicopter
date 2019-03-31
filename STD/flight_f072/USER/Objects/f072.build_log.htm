@@ -27,10 +27,19 @@ Project File Date:  03/26/2019
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'D:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'Target 1'
-compiling ANO_DT.c...
+compiling bmp280.c...
+..\HARDWARE\Drive\src\BMP280\bmp280.c(33): warning:  #550-D: variable "buf"  was set but never used
+  	uint8_t buf = 0;
+..\HARDWARE\Drive\src\BMP280\bmp280.c(150): warning:  #177-D: variable "t"  was declared but never referenced
+      static float t;
+..\HARDWARE\Drive\src\BMP280\bmp280.c(151): warning:  #177-D: variable "p"  was declared but never referenced
+      static float p;
+..\HARDWARE\Drive\src\BMP280\bmp280.c(112): warning:  #177-D: function "presssureFilter"  was declared but never referenced
+  static void presssureFilter(float* in,float* out)
+..\HARDWARE\Drive\src\BMP280\bmp280.c: 4 warnings, 0 errors
 linking...
-Program Size: Code=26044 RO-data=724 RW-data=292 ZI-data=3876  
-".\Objects\f072.axf" - 0 Error(s), 0 Warning(s).
+Program Size: Code=28980 RO-data=860 RW-data=292 ZI-data=3876  
+".\Objects\f072.axf" - 0 Error(s), 4 Warning(s).
 
 <h2>Software Packages used:</h2>
 
